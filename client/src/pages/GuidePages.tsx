@@ -1,6 +1,8 @@
+import { useMemo, useState } from "react";
 import { ArrowUpRight, BookOpen, ChevronRight, Home as HomeIcon, Search, ShieldCheck, Sparkles } from "lucide-react";
 import { Link } from "wouter";
 import { uiGuides } from "@/lib/uiGuides";
+import { uiCatalog350, type UiCatalogEntry } from "@/lib/uiCatalog350";
 import { skills, skillCategories } from "@/lib/skills";
 
 const nav = [
@@ -15,8 +17,16 @@ function PageFrame({ active, kicker, title, children }: { active: string; kicker
   return <main className="site-shell inner-page"><header className="topbar"><Link className="brand" href="/"><span className="brand-stamp"><span className="stamp-slash">/</span><span className="stamp-main">AI<span>100</span></span><span className="stamp-caption">FIELD<br />GUIDE</span></span></Link><nav className="topnav" aria-label="주요 메뉴">{nav.map(([label, href]) => <Link key={href} className={active === href ? "active" : ""} href={href}>{label}</Link>)}</nav><div className="top-actions"><span className="updated">AI/100 FIELD GUIDE</span><Link className="icon-button" href="/" aria-label="홈으로 이동"><HomeIcon size={16} /></Link></div></header><section className="inner-hero"><div><span className="section-kicker">{kicker}</span><h1>{title}</h1></div><Link className="back-home" href="/"><HomeIcon size={15} /> 홈으로 돌아가기</Link></section>{children}<footer className="footer inner-footer"><div className="footer-brand">AI<span>/</span>100</div><p>작은 문제를 찾고, 알맞은 도구를 고르고, 실제 결과를 공유하세요.</p><span className="footer-meta">CURATED FIELD GUIDE · 2026</span></footer></main>;
 }
 
+function UiCatalogRow({ item }: { item: UiCatalogEntry }) {
+  return <details className="ui-catalog-entry"><summary><span className="ui-catalog-index">{String(item.id).padStart(3, "0")}</span><div><b>{item.name}</b><small>{item.category} · {item.location}</small></div><ChevronRight size={17} /></summary><div className="ui-catalog-detail"><div><span>무엇을 위한 UI인가요?</span><p>{item.purpose}</p></div><div><span>추천 패턴</span><p>{item.pattern}</p></div><div><span>실제 사용 예시</span><p>{item.example}</p></div><div><span>참고할 디자인·개발 툴</span><p>{item.tools}</p></div></div></details>;
+}
+
 export function UiGuidePage() {
-  return <PageFrame active="/ui-guide" kicker="UI / UX FIELD KIT" title={<>화면 요소별<br /><em>추천 도구.</em></>}><section className="guide-page-grid">{uiGuides.map((guide, i) => <article className="guide-page-card" key={guide.element}><span className="guide-page-index">{String(i + 1).padStart(2, "0")}</span><h2>{guide.element}</h2><p>{guide.goal}</p><div className="ui-tool-tags">{guide.recommended.map((name) => <span key={name}>{name}</span>)}</div><div className="guide-example"><span>실제 참고 포인트</span><strong>{guide.example}</strong></div></article>)}</section></PageFrame>;
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("전체");
+  const catalogCategories = useMemo(() => ["전체", ...Array.from(new Set(uiCatalog350.map((item) => item.category)))], []);
+  const filtered = useMemo(() => { const term = query.trim().toLowerCase(); return uiCatalog350.filter((item) => (category === "전체" || item.category === category) && (!term || [item.name, item.category, item.location, item.purpose, item.example, item.tools].join(" ").toLowerCase().includes(term))); }, [query, category]);
+  return <PageFrame active="/ui-guide" kicker="UI / UX FIELD KIT / 350" title={<>화면 요소별<br /><em>추천 도구.</em></>}><section className="ui-guide-lead"><p>홈페이지의 위치와 기능을 35개 영역, 350개 항목으로 나눴습니다. 필요한 화면을 검색하고, 위치·목적·패턴·실제 예시·참고 툴을 한 항목씩 확인하세요.</p><div><strong>350</strong><span>UI patterns indexed</span><strong>35</strong><span>homepage zones</span></div></section><section className="guide-page-grid">{uiGuides.slice(0, 3).map((guide, i) => <article className="guide-page-card" key={guide.element}><span className="guide-page-index">{String(i + 1).padStart(2, "0")}</span><h2>{guide.element}</h2><p>{guide.goal}</p><div className="ui-tool-tags">{guide.recommended.map((name) => <span key={name}>{name}</span>)}</div><div className="guide-example"><span>대표 참고 포인트</span><strong>{guide.example}</strong></div></article>)}</section><section className="ui-catalog-browser"><div className="ui-catalog-toolbar"><label className="ui-catalog-search"><Search size={18} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="예: CTA, 로그인, 대시보드, 모바일…" aria-label="UI 카탈로그 검색" /></label><select value={category} onChange={(event) => setCategory(event.target.value)} aria-label="UI 카테고리 선택">{catalogCategories.map((item) => <option key={item} value={item}>{item}</option>)}</select><span className="ui-catalog-count">{filtered.length} / 350</span></div><div className="ui-catalog-list">{filtered.map((item) => <UiCatalogRow key={item.id} item={item} />)}</div></section></PageFrame>;
 }
 
 export function SkillsPage() {
