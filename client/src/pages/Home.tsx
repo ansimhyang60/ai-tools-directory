@@ -48,7 +48,7 @@ export default function Home() {
   const [difficulty, setDifficulty] = useState<(typeof difficulties)[number]>("전체");
   const [selected, setSelected] = useState<Tool | null>(null);
   const [view, setView] = useState<"list" | "grid">("list");
-  const [dataset, setDataset] = useState<"curated" | "expanded">("curated");
+  const [dataset, setDataset] = useState<"curated" | "expanded">("expanded");
   const [uiGuideOpen, setUiGuideOpen] = useState(false);
 
   const filtered = useMemo(() => {
@@ -61,7 +61,7 @@ export default function Home() {
     });
   }, [query, category, difficulty]);
 
-  const reset = () => { setQuery(""); setCategory("전체"); setDifficulty("전체"); setDataset("curated"); };
+  const reset = () => { setQuery(""); setCategory("전체"); setDifficulty("전체"); setDataset("expanded"); };
   const activeFilters = (category !== "전체" ? 1 : 0) + (difficulty !== "전체" ? 1 : 0) + (query ? 1 : 0);
   const expandedFiltered = useMemo(() => { const term = query.trim().toLowerCase(); return expandedCatalog.filter((tool) => !term || [tool.name, tool.category, tool.note, tool.pricing].join(" ").toLowerCase().includes(term)); }, [query]);
   const isExpanded = dataset === "expanded";
@@ -79,7 +79,7 @@ export default function Home() {
           <div className="eyebrow"><span className="eyebrow-dot" /> A HUMAN-CURATED INDEX OF AI TOOLS</div>
           <h1>Start with<br /><em>the job,</em><br />not the tool.</h1>
           <p className="hero-dek">기획부터 디자인, 코딩, 자동화, 데이터, 마케팅까지. 지금 만들고 싶은 일을 말하면, 가장 작은 유용한 도구 조합을 찾을 수 있습니다.</p>
-          <div className="hero-actions"><a className="primary-action" href="#directory">100개 도구 살펴보기 <ArrowUpRight size={17} /></a><span className="hero-note">검색하고 · 비교하고 · 바로 시도하세요</span></div>
+          <div className="hero-actions"><a className="primary-action" href="#directory">736+ 공개 카탈로그 보기 <ArrowUpRight size={17} /></a><span className="hero-note">검색하고 · 비교하고 · 바로 시도하세요</span></div>
         </div>
         <div className="hero-art"><img src="/manus-storage/ai-atlas-hero_c483f211.png" alt="AI 도구를 분류한 종이 아틀라스 일러스트" /><div className="hero-stamp"><strong>100</strong><span>AI tools<br />indexed</span></div></div>
       </section>
