@@ -57,6 +57,7 @@ export default function Home() {
   const [view, setView] = useState<"list" | "grid">("list");
   const [dataset, setDataset] = useState<"curated" | "expanded">("expanded");
   const [uiGuideOpen, setUiGuideOpen] = useState(false);
+  const [directoryOpen, setDirectoryOpen] = useState(false);
   const [skillQuery, setSkillQuery] = useState("");
   const [skillCategory, setSkillCategory] = useState("전체");
 
@@ -89,7 +90,7 @@ export default function Home() {
           <div className="eyebrow"><span className="eyebrow-dot" /> A HUMAN-CURATED INDEX OF AI TOOLS</div>
           <h1>Start with<br /><em>the job,</em><br />not the tool.</h1>
           <p className="hero-dek">기획부터 디자인, 코딩, 자동화, 데이터, 마케팅까지. 지금 만들고 싶은 일을 말하면, 가장 작은 유용한 도구 조합을 찾을 수 있습니다.</p>
-          <div className="hero-actions"><a className="primary-action" href="#directory">736+ 공개 카탈로그 보기 <ArrowUpRight size={17} /></a><span className="hero-note">검색하고 · 비교하고 · 바로 시도하세요</span></div>
+          <div className="hero-actions"><button className="primary-action" onClick={() => setDirectoryOpen(true)}>736+ 공개 카탈로그 펼치기 <ArrowUpRight size={17} /></button><span className="hero-note">필요할 때만 펼쳐서 검색하세요</span></div>
         </div>
         <div className="hero-art"><img src="/manus-storage/ai-atlas-hero_c483f211.png" alt="AI 도구를 분류한 종이 아틀라스 일러스트" /><div className="hero-stamp"><strong>100</strong><span>AI tools<br />indexed</span></div></div>
       </section>
@@ -106,10 +107,11 @@ export default function Home() {
 
         <section className="directory-panel">
           <div className="section-intro"><div><span className="section-kicker">THE DIRECTORY</span><h2>어떤 일을<br /><em>하고 있나요?</em></h2></div><p>이름을 알고 있지 않아도 괜찮습니다. 지금 필요한 업무나 만들고 싶은 결과를 검색해 보세요.</p></div>
+          <button className="directory-toggle" onClick={() => setDirectoryOpen((value) => !value)} aria-expanded={directoryOpen}><span>{directoryOpen ? "공개 카탈로그 접기" : "공개 카탈로그 736+ 펼치기"}</span><span>{directoryOpen ? "−" : "+"}</span></button><div className={`directory-collapsible ${directoryOpen ? "is-open" : ""}`}>
           <div className="search-wrap"><Search size={21} /><input id="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="예: 홈페이지, 회의록, 고객 메일, 이미지, 데이터 분석…" /><kbd><Command size={12} /> K</kbd>{query && <button className="clear-search" onClick={() => setQuery("")} aria-label="검색어 지우기"><X size={15} /></button>}</div>
           <div className="dataset-tabs"><button className={!isExpanded ? "dataset-tab active" : "dataset-tab"} onClick={() => setDataset("curated")}>추천 100개</button><button className={isExpanded ? "dataset-tab active" : "dataset-tab"} onClick={() => setDataset("expanded")}>공개 카탈로그 736+</button><span>출처·가격 상태 포함</span></div><div className="filter-bar"><div className="filter-group"><span className="filter-label"><Filter size={13} /> CATEGORY</span><div className="pills">{categories.slice(0, 7).map((item) => <Pill key={item} active={category === item} onClick={() => setCategory(item)}>{item}</Pill>)}<select aria-label="추가 카테고리 선택" value={categories.slice(0, 7).includes(category) ? "" : category} onChange={(e) => setCategory(e.target.value || "전체")}><option value="">더 보기 +</option>{categories.slice(7).map((item) => <option key={item} value={item}>{item}</option>)}</select></div></div><div className="filter-group difficulty-group"><span className="filter-label">LEVEL</span><div className="pills">{difficulties.map((item) => <Pill key={item} active={difficulty === item} onClick={() => setDifficulty(item)} tone={item === "초급" ? "mint" : item === "고급" ? "tomato" : "default"}>{item}</Pill>)}</div></div></div>
           <div className="results-head"><div><strong>{isExpanded ? expandedFiltered.length : filtered.length}</strong> tools found {activeFilters > 0 && <span className="filter-count">{activeFilters} filters active</span>}</div><div className="view-switch"><button className={view === "list" ? "active" : ""} onClick={() => setView("list")} aria-label="목록 보기"><Layers3 size={16} /></button><button className={view === "grid" ? "active" : ""} onClick={() => setView("grid")} aria-label="격자 보기"><Grid2X2 size={16} /></button></div></div>
-          {(isExpanded ? expandedFiltered.length : filtered.length) ? <div className={view === "list" ? "tool-list" : "tool-grid"}>{isExpanded ? expandedFiltered.map((tool, idx) => <CatalogRow key={`${tool.name}-${tool.id}`} tool={tool} index={idx} onOpen={(item) => setSelected({ id: item.id, name: item.name, category: item.category, role: item.note, summary: item.note, example: item.pricing, difficulty: "초급", tags: item.tags, url: item.url })} />) : filtered.map((tool, idx) => <ToolRow key={tool.id} tool={tool} index={tools.indexOf(tool)} onOpen={setSelected} />)}</div> : <div className="empty-state"><Sparkles size={26} /><h3>아직 이 조합은 찾지 못했어요.</h3><p>검색어를 조금 넓히거나 필터를 초기화해 보세요.</p><button className="secondary-action" onClick={reset}>필터 모두 초기화</button></div>}
+          {(isExpanded ? expandedFiltered.length : filtered.length) ? <div className={view === "list" ? "tool-list" : "tool-grid"}>{isExpanded ? expandedFiltered.map((tool, idx) => <CatalogRow key={`${tool.name}-${tool.id}`} tool={tool} index={idx} onOpen={(item) => setSelected({ id: item.id, name: item.name, category: item.category, role: item.note, summary: item.note, example: item.pricing, difficulty: "초급", tags: item.tags, url: item.url })} />) : filtered.map((tool, idx) => <ToolRow key={tool.id} tool={tool} index={tools.indexOf(tool)} onOpen={setSelected} />)}</div> : <div className="empty-state"><Sparkles size={26} /><h3>아직 이 조합은 찾지 못했어요.</h3><p>검색어를 조금 넓히거나 필터를 초기화해 보세요.</p><button className="secondary-action" onClick={reset}>필터 모두 초기화</button></div>}</div>
         </section>
       </div>
 

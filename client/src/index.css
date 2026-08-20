@@ -227,3 +227,12 @@ h1 em,h2 em { font-style:normal; color:var(--cobalt); }
 .source-links { display:flex; gap:18px; margin-top:18px; }
 .source-links a { display:flex; align-items:center; gap:5px; font-family:var(--display); font-size:11px; }
 @media (max-width:700px) { .vibe-use-grid { display:block; }.vibe-use-grid article, .vibe-use-grid article:nth-child(even) { padding:20px 0; border-right:0; }.vibe-use-grid h2 { margin-top:17px; }.source-principles > div:not(.source-links) { display:block; }.source-principles p + p { margin-top:12px; }.source-links { display:block; }.source-links a + a { margin-top:10px; } }
+
+/* Main directory is collapsed by default to keep the landing page breathable. */
+.directory-toggle { width:100%; display:flex; justify-content:space-between; align-items:center; padding:17px 0; border-top:2px solid var(--ink); border-bottom:1px solid var(--line); background:transparent; color:var(--ink); font-family:var(--display); font-size:12px; text-align:left; }
+.directory-toggle:hover { color:var(--cobalt); }
+.directory-toggle > span:last-child { font-size:22px; line-height:1; color:var(--cobalt); }
+.directory-collapsible { display:none; }
+.directory-collapsible.is-open { display:block; }
+.directory-collapsible .search-wrap { margin-top:24px; }
+@media (max-width:760px) { .directory-toggle { padding:15px 0; }.directory-collapsible .search-wrap { margin-top:18px; } }
