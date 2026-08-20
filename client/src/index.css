@@ -188,3 +188,20 @@ h1 em,h2 em { font-style:normal; color:var(--cobalt); }
 .principles-page article h2 { font-family:var(--display); font-size:27px; letter-spacing:-.06em; }
 .principles-page article p { max-width:680px; color:var(--muted); font-size:13px; line-height:1.7; margin-top:8px; }
 @media (max-width:800px) { .inner-hero { min-height:250px; padding:68px 20px 42px; display:block; }.back-home { margin-top:25px; }.guide-page-grid { display:block; padding:0 20px 70px; }.guide-page-card, .guide-page-card:nth-child(even) { min-height:0; margin:0; padding:25px 0; border-right:0; }.guide-page-card h2 { margin-top:22px; }.guide-example { display:block; }.guide-example strong { display:block; max-width:none; margin-top:8px; }.skills-page-intro { display:block; padding:25px 20px; }.skill-page-stats { margin-top:22px; }.skills-page-list { padding:0 20px 70px; }.skill-page-entry summary { grid-template-columns:32px 1fr 20px; gap:10px; }.skill-page-entry summary em { grid-column:2; grid-row:2; }.skill-page-detail { padding:4px 0 24px 42px; }.skill-page-columns { display:block; }.skill-page-columns > div { margin-top:15px; }.path-page, .principles-page { padding:0 20px 70px; }.path-page-steps article { grid-template-columns:42px 1fr 18px; gap:12px; }.principles-page article { grid-template-columns:42px 1fr; gap:12px; } }
+
+/* Home-to-page bridges: summaries stay on home, full content lives on its route. */
+.home-bridge { position:relative; }
+.bridge-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-bottom:1px solid var(--line); margin-bottom:22px; }
+.bridge-card { min-height:145px; padding:18px 22px 20px 0; margin-right:22px; border-right:1px solid var(--line); }
+.bridge-card:last-child { border-right:0; margin-right:0; }
+.bridge-card > span { color:var(--cobalt); font-family:var(--display); font-size:11px; }
+.bridge-card h3 { font-family:var(--display); font-size:18px; letter-spacing:-.05em; margin-top:25px; }
+.bridge-card p { color:var(--muted); font-size:12px; line-height:1.5; margin-top:7px; }
+.home-bridge .secondary-action { display:inline-flex; align-items:center; gap:7px; }
+.bridge-skill-strip { display:flex; flex-wrap:wrap; gap:8px; padding:20px 0 25px; }
+.bridge-skill-strip span { font-family:var(--display); font-size:12px; padding:9px 11px; color:var(--ink); background:#F4EDE3; border:1px solid var(--line); }
+.bridge-copy { max-width:520px; color:var(--muted); font-size:13px; line-height:1.7; margin:20px 0; }
+.home-bridge.path-section .path-copy { padding-top:0; }
+.home-bridge.principles { display:grid; grid-template-columns:1fr 1.5fr; gap:5vw; }
+.home-bridge.principles .principle-grid { margin-top:0; }
+@media (max-width:760px) { .bridge-grid { display:block; }.bridge-card, .bridge-card:last-child { min-height:0; margin:0; padding:16px 0; border-right:0; border-bottom:1px solid var(--line); }.bridge-card h3 { margin-top:15px; }.bridge-skill-strip { padding-bottom:20px; }.home-bridge.principles { display:block; }.home-bridge.principles .principle-grid { margin-top:30px; } }
