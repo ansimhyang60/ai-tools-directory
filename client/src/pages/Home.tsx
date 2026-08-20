@@ -1,5 +1,5 @@
 /* Paper + Pixel Atlas: warm editorial directory, asymmetric index rail, cobalt signals. */
-import { useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { ArrowUpRight, BookOpen, ChevronRight, Command, Filter, Grid2X2, Layers3, Search, Sparkles, X } from "lucide-react";
 import { tools, categories, difficulties, type Tool } from "@/lib/tools";
 import { expandedCatalog, type CatalogTool } from "@/lib/expandedCatalog";
@@ -20,6 +20,14 @@ const categoryColors: Record<string, string> = {
   "데이터": "#147A78",
   "마케팅": "#D25B45",
 };
+
+const featuredSlides = [
+  { eyebrow: "01 / WORKFLOW", title: "반복 업무를\n작게 자동화", text: "메일 초안·문서 요약·CSV 정리부터 시작하세요. 초안은 AI, 최종 발송은 사람이 확인합니다.", tool: "ChatGPT", toolText: "문서·메일·데이터를 한 흐름으로", toolUrl: "https://chatgpt.com", tone: "blue" },
+  { eyebrow: "02 / VIBE CODING", title: "아이디어를\n웹앱으로", text: "문제와 사용자를 말로 정리하고, AI에게 계획을 요청한 뒤 작은 화면 하나부터 구현합니다.", tool: "Claude", toolText: "계획·코드리뷰·긴 문맥 작업", toolUrl: "https://claude.ai", tone: "tomato" },
+  { eyebrow: "03 / RESEARCH", title: "자료를 넣고\n답을 찾기", text: "내 문서와 자료를 기준으로 질문·요약·비교를 반복하면 리서치 시간을 줄일 수 있습니다.", tool: "NotebookLM", toolText: "내 자료 중심의 학습·리서치", toolUrl: "https://notebooklm.google.com", tone: "mint" },
+  { eyebrow: "04 / UI DESIGN", title: "화면의 첫인상을\n빠르게 만들기", text: "히어로·CTA·카드·메뉴를 먼저 시각화하고, 개발 전에 화면의 흐름을 확인합니다.", tool: "Canva", toolText: "발표·브랜드·UI 콘셉트 시각화", toolUrl: "https://www.canva.com", tone: "purple" },
+  { eyebrow: "05 / BUILD & SHIP", title: "작게 만들고\n바로 공개하기", text: "코드 작성부터 테스트·배포까지 한 번에 연결하고 실제 사용자의 반응으로 다음 기능을 결정합니다.", tool: "Codex", toolText: "코드베이스 수정·테스트·개선", toolUrl: "https://chatgpt.com/codex", tone: "amber" },
+] as const;
 
 function Pill({ children, active, onClick, tone = "default" }: { children: React.ReactNode; active?: boolean; onClick?: () => void; tone?: "default" | "mint" | "tomato" }) {
   return <button onClick={onClick} className={`pill ${active ? "is-active" : ""} ${tone !== "default" ? `pill-${tone}` : ""}`}>{children}</button>;
@@ -58,6 +66,7 @@ export default function Home() {
   const [dataset, setDataset] = useState<"curated" | "expanded">("expanded");
   const [uiGuideOpen, setUiGuideOpen] = useState(false);
   const [directoryOpen, setDirectoryOpen] = useState(false);
+  const [featuredIndex, setFeaturedIndex] = useState(0);
   const [skillQuery, setSkillQuery] = useState("");
   const [skillCategory, setSkillCategory] = useState("전체");
 
@@ -75,6 +84,12 @@ export default function Home() {
   const activeFilters = (category !== "전체" ? 1 : 0) + (difficulty !== "전체" ? 1 : 0) + (query ? 1 : 0);
   const expandedFiltered = useMemo(() => { const term = query.trim().toLowerCase(); return expandedCatalog.filter((tool) => !term || [tool.name, tool.category, tool.note, tool.pricing].join(" ").toLowerCase().includes(term)); }, [query]);
   const isExpanded = dataset === "expanded";
+  const featured = featuredSlides[featuredIndex];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setFeaturedIndex((current) => (current + 1) % featuredSlides.length), 6500);
+    return () => window.clearInterval(timer);
+  }, []);
   const filteredSkills = useMemo(() => { const term = skillQuery.trim().toLowerCase(); return skills.filter((skill) => (skillCategory === "전체" || skill.category === skillCategory) && (!term || [skill.name, skill.category, skill.summary, skill.example, ...skill.compatible].join(" ").toLowerCase().includes(term))); }, [skillQuery, skillCategory]);
 
   return (
@@ -94,6 +109,8 @@ export default function Home() {
         </div>
         <div className="hero-art"><img src="/manus-storage/ai-atlas-hero_c483f211.png" alt="AI 도구를 분류한 종이 아틀라스 일러스트" /><div className="hero-stamp"><strong>100</strong><span>AI tools<br />indexed</span></div></div>
       </section>
+
+      <section className="featured-slide-section" aria-label="바이브코딩 활용방안과 인기 AI 도구 추천"><div className="featured-slide-index"><span>RECOMMENDED / 05</span><strong>{String(featuredIndex + 1).padStart(2, "0")}</strong></div><div className="featured-slide-copy"><span className="section-kicker">{featured.eyebrow}</span><h2>{featured.title.split("\n").map((line) => <Fragment key={line}>{line}<br /></Fragment>)}</h2><p>{featured.text}</p><a className="featured-tool-link" href={featured.toolUrl} target="_blank" rel="noreferrer"><strong>{featured.tool}</strong><span>{featured.toolText}</span><ArrowUpRight size={16} /></a></div><div className={`featured-slide-art tone-${featured.tone}`}><span className="featured-art-number">0{featuredIndex + 1}</span><span className="featured-art-label">VIBE<br />CODING<br />IN PRACTICE</span><div className="featured-art-orbit" /></div><div className="featured-slide-controls"><button type="button" onClick={() => setFeaturedIndex((featuredIndex - 1 + featuredSlides.length) % featuredSlides.length)} aria-label="이전 추천 보기">←</button><div>{featuredSlides.map((slide, index) => <button type="button" key={slide.tool} className={index === featuredIndex ? "active" : ""} onClick={() => setFeaturedIndex(index)} aria-label={`${index + 1}번 추천 보기`} />)}</div><button type="button" onClick={() => setFeaturedIndex((featuredIndex + 1) % featuredSlides.length)} aria-label="다음 추천 보기">→</button></div></section>
 
       <section className="signal-strip" aria-label="디렉터리 요약"><div><span className="strip-number">100</span><span>curated index</span></div><div><span className="strip-number">736+</span><span>public records</span></div><div><span className="strip-number">10</span><span>UI patterns</span></div><div className="strip-note">AI/100 FIELD GUIDE<br /><strong>공개 기록은 보조 탐색용 · 가격 재확인 필요</strong></div></section>
       <section className="home-bridge ui-guide-section"><div className="ui-guide-head"><div><span className="section-kicker">UI / UX FIELD KIT</span><h2>화면 요소별<br /><em>추천 도구.</em></h2></div><p>홈에서는 대표 항목만 보여주고, 전체 UI 참고 콘텐츠는 독립 페이지에서 이어집니다.</p></div><div className="bridge-grid">{uiGuides.slice(0, 3).map((guide) => <article className="bridge-card" key={guide.element}><span>{String(uiGuides.indexOf(guide) + 1).padStart(2, "0")}</span><h3>{guide.element}</h3><p>{guide.goal}</p></article>)}</div><Link className="secondary-action" href="/ui-guide">UI 참고 전체 보기 <ArrowUpRight size={15} /></Link></section>
