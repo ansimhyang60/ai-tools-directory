@@ -8,7 +8,7 @@ export type Tool = {
   summary: string;
   example: string;
   difficulty: Difficulty;
-  tags: string[];
+  tags: readonly string[];
   url?: string;
 };
 

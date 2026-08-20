@@ -70,3 +70,10 @@ Every component should reinforce the selected Paper + Pixel Atlas direction: war
 - Cobalt #2457FF is reserved for active search, selected filters/categories, primary links, and key headline emphasis. Tomato and mint are functional state colors.
 - Tool entries use stronger role labels, explicit category markers, and more prominent “사용 예시” cues so the directory reads like a field guide rather than anonymous SaaS rows.
 - Lower guidance sections reuse index numerals, rules, and margin-note labels from the catalog.
+
+## Style Decisions — Catalog Expansion
+
+- AI/100 and the curated 100-tool index remain the primary brand signal. The 736+ public records are a secondary discovery layer and never replace the core identity.
+- Korean is the primary explanatory voice. English is reserved for compact atlas labels, status tags, and the brand phrase.
+- Cobalt marks active/search/primary links; tomato marks attention or popular paths; mint marks beginner-friendly routes.
+- The open catalog carries explicit source labels and pricing-state language so a row communicates what it is, where it came from, and how confidently its price is known.
