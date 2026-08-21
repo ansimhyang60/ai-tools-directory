@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
 import { Check, Copy, Filter, Search, Sparkles, Star, X } from "lucide-react";
 import { workflowPrompts } from "@/lib/workflows";
-import { extraWorkflowPrompts } from "@/lib/workflowsExtra";
+import { accountingWorkflowPrompts, extraWorkflowPrompts } from "@/lib/workflowsExtra";
 import { PageFrame } from "./GuidePages";
 
-const allWorkflowPrompts = [...workflowPrompts, ...extraWorkflowPrompts];
+const allWorkflowPrompts = [...workflowPrompts, ...extraWorkflowPrompts, ...accountingWorkflowPrompts];
 const levelById: Record<string, "초급" | "중급" | "고급"> = {
   "mail-automation": "중급", "document-summary": "초급", "csv-analysis": "중급", "webapp-plan": "초급", "ui-design": "초급", "social-content": "초급", "youtube-seo": "초급", "research-brief": "중급", "vba-spec": "중급", "image-model": "고급", "meeting": "초급", "prompt-improve": "초급", "presentation": "초급", "customer-support": "초급", "seo-page": "중급", "release-check": "중급", "notebooklm-study": "초급",
 };
