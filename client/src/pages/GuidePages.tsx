@@ -7,6 +7,7 @@ import { skills, skillCategories } from "@/lib/skills";
 import { skills300 } from "@/lib/skills300";
 
 const nav = [
+  ["업무 찾기", "/workflows"],
   ["도구 찾기", "/"],
   ["UI 참고", "/ui-guide"],
   ["스킬 라이브러리", "/skills"],
@@ -14,7 +15,7 @@ const nav = [
   ["사용 원칙", "/principles"],
 ] as const;
 
-function PageFrame({ active, kicker, title, children }: { active: string; kicker: string; title: React.ReactNode; children: React.ReactNode }) {
+export function PageFrame({ active, kicker, title, children }: { active: string; kicker: string; title: React.ReactNode; children: React.ReactNode }) {
   return <main className="site-shell inner-page"><header className="topbar"><Link className="brand" href="/"><span className="brand-stamp"><span className="stamp-slash">/</span><span className="stamp-main">AI<span>100</span></span><span className="stamp-caption">FIELD<br />GUIDE</span></span></Link><nav className="topnav" aria-label="주요 메뉴">{nav.map(([label, href]) => <Link key={href} className={active === href ? "active" : ""} href={href}>{label}</Link>)}</nav><div className="top-actions"><span className="updated">AI/100 FIELD GUIDE</span><Link className="icon-button" href="/" aria-label="홈으로 이동"><HomeIcon size={16} /></Link></div></header><section className="inner-hero"><div><span className="section-kicker">{kicker}</span><h1>{title}</h1></div><Link className="back-home" href="/"><HomeIcon size={15} /> 홈으로 돌아가기</Link></section>{children}<footer className="footer inner-footer"><div className="footer-brand">AI<span>/</span>100</div><p>작은 문제를 찾고, 알맞은 도구를 고르고, 실제 결과를 공유하세요.</p><span className="footer-meta">CURATED FIELD GUIDE · 2026</span></footer></main>;
 }
 
