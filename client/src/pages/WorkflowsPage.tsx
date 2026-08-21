@@ -1,12 +1,12 @@
 import { useMemo, useState } from "react";
 import { Check, Copy, Filter, Search, Sparkles, Star, X } from "lucide-react";
 import { workflowPrompts } from "@/lib/workflows";
-import { accountingWorkflowPrompts, extraWorkflowPrompts } from "@/lib/workflowsExtra";
+import { accountingWorkflowPrompts, excelAutomationWorkflowPrompts, extraWorkflowPrompts } from "@/lib/workflowsExtra";
 import { PageFrame } from "./GuidePages";
 
-const allWorkflowPrompts = [...workflowPrompts, ...extraWorkflowPrompts, ...accountingWorkflowPrompts];
+const allWorkflowPrompts = [...workflowPrompts, ...extraWorkflowPrompts, ...accountingWorkflowPrompts, ...excelAutomationWorkflowPrompts];
 const levelById: Record<string, "초급" | "중급" | "고급"> = {
-  "mail-automation": "중급", "document-summary": "초급", "csv-analysis": "중급", "webapp-plan": "초급", "ui-design": "초급", "social-content": "초급", "youtube-seo": "초급", "research-brief": "중급", "vba-spec": "중급", "image-model": "고급", "meeting": "초급", "prompt-improve": "초급", "presentation": "초급", "customer-support": "초급", "seo-page": "중급", "release-check": "중급", "notebooklm-study": "초급",
+  "mail-automation": "중급", "document-summary": "초급", "csv-analysis": "중급", "webapp-plan": "초급", "ui-design": "초급", "social-content": "초급", "youtube-seo": "초급", "research-brief": "중급", "vba-spec": "중급", "image-model": "고급", "meeting": "초급", "prompt-improve": "초급", "presentation": "초급", "customer-support": "초급", "seo-page": "중급", "release-check": "중급", "notebooklm-study": "초급", "excel-clean-columns": "초급", "excel-duplicate-check": "초급", "excel-merge-sheets": "중급", "excel-xlookup-match": "초급", "excel-date-due-alert": "초급", "excel-reminder-mail-list": "중급", "excel-vba-report": "고급", "excel-pivot-dashboard": "중급", "excel-split-files": "고급", "excel-data-validation": "초급", "excel-csv-import": "중급", "excel-formula-audit": "중급", "excel-inventory-low-stock": "초급", "excel-weekly-summary": "초급",
 };
 const featuredIds = new Set(["mail-automation", "webapp-plan", "csv-analysis", "ui-design", "document-summary", "sales-analysis", "email-draft"]);
 const sourceById: Record<string, string> = Object.fromEntries(allWorkflowPrompts.map((item) => [item.id, "AI/100 공개 프롬프트 카탈로그"]));
