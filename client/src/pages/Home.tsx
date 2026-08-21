@@ -6,6 +6,7 @@ import { expandedCatalog, type CatalogTool } from "@/lib/expandedCatalog";
 import { uiGuides } from "@/lib/uiGuides";
 import { skills, skillCategories, type SkillEntry } from "@/lib/skills";
 import { Link } from "wouter";
+import { siteNav } from "@/lib/siteNav";
 
 const categoryColors: Record<string, string> = {
   "범용 AI": "#2457FF",
@@ -96,7 +97,7 @@ export default function Home() {
     <main className="site-shell">
       <header className="topbar">
         <a className="brand" href="#top"><span className="brand-stamp"><span className="stamp-slash">/</span><span className="stamp-main">AI<span>100</span></span><span className="stamp-caption">FIELD<br />GUIDE</span></span></a>
-        <nav className="topnav" aria-label="주요 메뉴"><Link href="/">도구 찾기</Link><Link href="/ui-guide">UI 참고</Link><Link href="/skills">스킬 라이브러리</Link><Link href="/path">학습 경로</Link><Link href="/principles">사용 원칙</Link></nav>
+        <nav className="topnav" aria-label="주요 메뉴">{siteNav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</nav>
         <div className="top-actions"><span className="updated">AI/100 INDEX · 736+ PUBLIC RECORDS</span><button className="icon-button" aria-label="검색으로 이동" onClick={() => document.getElementById("search")?.focus()}><Search size={17} /></button></div>
       </header>
 
