@@ -9,9 +9,10 @@ import Home from "./pages/Home";
 import { UiGuidePage, SkillsPage, PathPage, PrinciplesPage } from "./pages/GuidePages";
 import WorkflowsPage from "./pages/WorkflowsPage";
 import WorkflowDetailPage from "./pages/WorkflowDetailPage";
+import ToolsPage from "./pages/ToolsPage";
 
 function Router() {
-  return <Switch><Route path="/" component={Home} /><Route path="/workflows" component={WorkflowsPage} /><Route path="/workflows/:id" component={WorkflowDetailPage} /><Route path="/ui-guide" component={UiGuidePage} /><Route path="/skills" component={SkillsPage} /><Route path="/path" component={PathPage} /><Route path="/principles" component={PrinciplesPage} /><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch>;
+  return <Switch><Route path="/" component={Home} /><Route path="/workflows" component={WorkflowsPage} /><Route path="/tools" component={ToolsPage} /><Route path="/workflows/:id" component={WorkflowDetailPage} /><Route path="/ui-guide" component={UiGuidePage} /><Route path="/skills" component={SkillsPage} /><Route path="/path" component={PathPage} /><Route path="/principles" component={PrinciplesPage} /><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch>;
 }
 
 export default function App() {
