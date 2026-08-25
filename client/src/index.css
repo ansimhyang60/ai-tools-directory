@@ -513,3 +513,155 @@ h1 em, h2 em, .inner-page > .inner-hero h1 em { color:var(--tomato); }
 .homepage-choice-card p { max-width:36ch; margin:0; color:#526075; line-height:1.7; }
 .choice-card-action { display:flex; align-items:center; gap:9px; margin-top:auto; padding-top:30px; font:700 12px/1 var(--display); }
 @media (max-width:620px) { .homepage-choice-grid { grid-template-columns:1fr; gap:12px; padding:30px 0 44px; } .homepage-choice-card { min-height:220px; } .homepage-choice-card h2 { margin-top:24px; } }
+
+
+/* Paper + Pixel Atlas / 2.0 UI system: hard surfaces, clear layers, generous measure, no beige-on-beige controls. */
+:root { --paper:#FBF7EE; --paper-deep:#EEE5D7; --ink:#16223A; --muted:#596274; --line:#CFC4B5; --cobalt:#2B59D9; --tomato:#E86F51; --coral-soft:#F8DED5; --blue-soft:#E4EBFF; --mint-soft:#DDF1E6; --white:#FFFDF8; --control:#E8DFD1; --content-max:1480px; }
+body { background:var(--paper); color:var(--ink); }
+button, a, input, select { -webkit-tap-highlight-color:transparent; }
+h1, h2, h3, h4, p, span, strong, small, button, a { overflow-wrap:break-word; }
+h1, h2, h3 { text-wrap:balance; word-break:keep-all; }
+p { text-wrap:pretty; word-break:keep-all; }
+.topbar { padding-inline:clamp(20px,5vw,72px); }
+.topnav { gap:clamp(18px,2.5vw,34px); white-space:nowrap; }
+.content-layout { grid-template-columns:minmax(270px,300px) minmax(0,1fr); }
+.index-rail { padding-left:clamp(28px,5vw,72px); padding-right:32px; }
+.rail-item { width:100%; white-space:normal; line-height:1.35; }
+.directory-panel { padding-left:clamp(32px,5vw,78px); padding-right:clamp(32px,5vw,78px); }
+.section-intro > p, .tools-intro > p, .workflow-lead > p, .ui-guide-lead > p, .skills-page-intro > p { line-height:1.8; }
+.tools-dataset-tabs { display:flex; align-items:stretch; flex-wrap:wrap; gap:6px; padding:6px; background:#DED3C4; border:1px solid #BBAE9E; box-shadow:3px 3px 0 rgba(22,34,58,.08); }
+.tools-dataset-tabs button, .dataset-tabs .dataset-tab { min-height:44px; padding:0 17px; border:1px solid transparent; background:#FFFDF8; color:#4B5568; font-weight:700; line-height:1.2; white-space:nowrap; transition:background .16s var(--ease-out), color .16s var(--ease-out), transform .16s var(--ease-out); }
+.tools-dataset-tabs button:hover, .dataset-tabs .dataset-tab:hover { background:#F6E7DF; color:var(--ink); }
+.tools-dataset-tabs button.is-active, .dataset-tabs .dataset-tab.active { background:var(--tomato); border-color:var(--tomato); color:#fffdf8; box-shadow:2px 2px 0 rgba(22,34,58,.16); }
+.tools-dataset-tabs button small, .dataset-tabs .dataset-tab small { display:inline-flex; align-items:center; justify-content:center; min-width:26px; height:20px; margin-left:7px; padding:0 5px; background:#DDE5FA; color:#24418E; border-radius:999px; font-size:10px; }
+.tools-dataset-tabs button.is-active small, .dataset-tabs .dataset-tab.active small { background:rgba(255,255,255,.24); color:#fffdf8; }
+.dataset-explainer { margin:0 0 22px; padding:17px 20px; background:#F5E5DE; border-left:4px solid var(--tomato); color:#4A5263; line-height:1.65; }
+.pill, .pills select { min-height:36px; padding:0 12px; background:#FFFDF8; border-color:#BFB3A5; color:#4E596A; }
+.pill.is-active { background:var(--tomato); border-color:var(--tomato); color:#FFFDF8; }
+.pill:hover { border-color:var(--tomato); color:#B94F39; background:#FCEEE9; }
+.tool-row, .standalone-tool-row { min-height:96px; padding-block:24px; }
+.row-main, .standalone-tool-main { min-width:0; }
+.row-main p, .standalone-tool-main small { max-width:52ch; line-height:1.6; }
+.tool-row .category-label, .standalone-tool-category, .standalone-tool-source { white-space:normal; }
+.detail-panel { padding:clamp(68px,8vw,104px) clamp(28px,4vw,52px) 46px; }
+.detail-panel h2 { max-width:12ch; text-wrap:balance; }
+
+/* Task first recommender: the primary route from a vague job to a concrete tool + skill pair. */
+.task-recommender { width:min(var(--content-max),calc(100% - 2 * clamp(24px,5vw,72px))); margin:0 auto; padding:clamp(48px,7vw,96px) 0; }
+.task-recommender-heading { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr); gap:clamp(28px,7vw,100px); align-items:end; padding-bottom:34px; border-bottom:2px solid var(--ink); }
+.task-recommender-heading .section-kicker { display:flex; align-items:center; gap:8px; }
+.task-recommender-heading h2 { margin-top:18px; font-size:clamp(38px,5.4vw,76px); line-height:.95; }
+.task-recommender-heading h2 em { color:var(--tomato); font-style:normal; }
+.task-recommender-heading p { margin:0; color:var(--muted); line-height:1.8; }
+.task-picker { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:26px; }
+.task-picker-item { min-height:118px; padding:17px 18px; display:grid; grid-template-columns:30px 1fr; gap:7px 12px; text-align:left; border:1px solid #BEB2A4; background:#FFFDF8; color:var(--ink); transition:transform .18s var(--ease-out), border-color .18s, box-shadow .18s, background .18s; }
+.task-picker-item:hover { transform:translateY(-3px); border-color:var(--tomato); box-shadow:4px 4px 0 rgba(22,34,58,.1); }
+.task-picker-item > span { display:grid; place-items:center; width:28px; height:28px; grid-row:span 2; border:1px solid currentColor; font:700 10px/1 var(--display); letter-spacing:.08em; }
+.task-picker-item strong { align-self:end; font-family:var(--display); font-size:15px; line-height:1.2; }
+.task-picker-item small { grid-column:2; color:#667083; font-size:11px; line-height:1.5; }
+.task-picker-item.tone-blue.is-selected { background:var(--blue-soft); border:2px solid var(--cobalt); }
+.task-picker-item.tone-coral.is-selected { background:var(--coral-soft); border:2px solid var(--tomato); }
+.task-picker-item.tone-mint.is-selected { background:var(--mint-soft); border:2px solid #23805B; }
+.task-picker-item.tone-ink.is-selected { background:#E4E6EA; border:2px solid var(--ink); }
+.task-match-header { display:flex; justify-content:space-between; gap:24px; align-items:end; margin-top:34px; padding:22px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.task-match-header > div > span, .task-match-header > div > p, .task-result-label > span { display:block; font:700 10px/1.2 var(--display); letter-spacing:.13em; color:var(--tomato); }
+.task-match-header h3 { margin-top:8px; font-family:var(--display); font-size:clamp(22px,3vw,36px); letter-spacing:-.06em; }
+.task-match-header p { margin-top:7px; color:var(--muted); }
+.task-match-count { align-self:start; padding:8px 10px; background:var(--ink); color:var(--white); font:700 10px/1 var(--display); letter-spacing:.11em; white-space:nowrap; }
+.task-recommendation-columns { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px; margin-top:24px; }
+.task-result-group { min-width:0; }
+.task-result-label { display:flex; justify-content:space-between; align-items:center; gap:16px; padding-bottom:12px; border-bottom:3px solid var(--ink); }
+.task-result-label a { display:inline-flex; align-items:center; gap:5px; color:var(--cobalt); font:700 11px/1 var(--display); }
+.task-result-card { min-height:74px; display:grid; grid-template-columns:38px minmax(0,1fr) 16px; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); color:var(--ink); }
+.task-result-card:hover { color:var(--tomato); }
+.task-result-card > .brand-logo, .task-result-card > .brand-logo-fallback { width:38px; height:38px; }
+.task-result-card > span:nth-child(2) { min-width:0; }
+.task-result-card strong, .task-result-card small, .task-result-card em { display:block; }
+.task-result-card strong { font-family:var(--display); font-size:14px; line-height:1.2; }
+.task-result-card small { margin-top:4px; color:var(--muted); font-size:11px; line-height:1.4; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.task-result-card em { margin-top:4px; color:#B94F39; font:700 9px/1.2 var(--display); font-style:normal; letter-spacing:.04em; }
+.task-result-index { display:grid; place-items:center; width:38px; height:38px; background:#E7DFD2; color:#526075; font:700 10px/1 var(--display); }
+.task-workflow-result { background:#F7F0E5; padding-inline:10px; margin-top:8px; border:1px solid #D9CEBF; }
+@media (max-width:1080px) { .content-layout { grid-template-columns:250px minmax(0,1fr); } .task-picker { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:760px) { .content-layout { display:block; } .index-rail { padding:20px; } .directory-panel { padding:40px 20px 70px; } .task-recommender { width:calc(100% - 40px); padding:52px 0 64px; } .task-recommender-heading { grid-template-columns:1fr; gap:22px; } .task-recommender-heading h2 { font-size:clamp(36px,12vw,56px); } .task-picker { grid-template-columns:1fr; } .task-picker-item { min-height:94px; } .task-recommendation-columns { grid-template-columns:1fr; gap:36px; } .task-match-header { align-items:start; flex-direction:column; } .tools-dataset-tabs { align-items:stretch; } .tools-dataset-tabs button, .dataset-tabs .dataset-tab { flex:1 1 100%; min-height:45px; } .tools-dataset-tabs button small, .dataset-tabs .dataset-tab small { float:none; } }
+@media (max-width:430px) { .topbar { padding-inline:16px; } .brand { min-width:0; } .task-result-card small { white-space:normal; } .detail-panel h2 { font-size:42px; } }
+
+
+/* Paper + Pixel Atlas / connected detail stage: every tool points to a reusable skill and workflow. */
+.detail-connected-atlas { margin-top:28px; padding:20px; background:#EAF0FF; border:1px solid #AABBEA; border-left:4px solid var(--cobalt); }
+.detail-connected-heading > span { display:block; color:var(--cobalt); font:700 10px/1.2 var(--display); letter-spacing:.14em; }
+.detail-connected-heading strong { display:block; margin-top:9px; font-family:var(--display); font-size:18px; line-height:1.12; letter-spacing:-.04em; }
+.detail-connected-list { margin-top:18px; border-top:1px solid rgba(22,34,58,.2); }
+.detail-connected-list a { display:grid; grid-template-columns:58px minmax(0,1fr) 14px; gap:10px; align-items:center; padding:13px 0; border-bottom:1px solid rgba(22,34,58,.16); }
+.detail-connected-list a:hover { color:var(--tomato); }
+.detail-connected-list a span { color:var(--tomato); font:700 9px/1 var(--display); letter-spacing:.1em; }
+.detail-connected-list a strong { min-width:0; font-family:var(--display); font-size:12px; line-height:1.35; }
+
+/* Atlas controls: make selection states readable even on the warm paper base. */
+.tools-filter-panel, .tools-search-panel { background:#F1E9DD; border:1px solid #D5C7B7; padding:22px; }
+.tools-search-panel { border-top:4px solid var(--ink); }
+.tools-search { background:var(--white); border:1px solid #AFA294; }
+.tools-search:focus-within { border-color:var(--cobalt); box-shadow:0 0 0 3px rgba(43,89,217,.12); }
+.tools-popular-tags button { background:var(--white); border:1px solid #BFB2A3; color:#4E596A; min-height:34px; padding:0 11px; }
+.tools-popular-tags button.is-active { background:var(--tomato); border-color:var(--tomato); color:var(--white); }
+.tools-profile-section-wrap { border-top:2px solid var(--ink); }
+.tool-profile-card { background:#FFFDF8; border:1px solid #C7BBAE; box-shadow:3px 3px 0 rgba(22,34,58,.06); }
+.tool-profile-card.is-selected { border-color:var(--tomato); box-shadow:5px 5px 0 rgba(232,111,81,.18); }
+.tool-profile-top .brand-logo, .tool-profile-top .brand-logo-fallback { width:54px; height:54px; }
+
+
+/* Paper + Pixel Atlas / final art direction pass: coral is action, ink is structure, sage is validated state. */
+:root { --cobalt:#5C6D98; --tomato:#E86F51; --sage:#23805B; --sage-soft:#DDF1E6; --blue-soft:#E8ECF8; --ink:#16223A; }
+h1 em, h2 em, .inner-page > .inner-hero h1 em { color:var(--tomato) !important; }
+.eyebrow, .section-kicker, .workflow-kicker, .filter-count, .detail-index, .row-use span, .tool-recommendation-label, .tools-popular-tags > span { color:var(--tomato); }
+.topnav a:hover, .text-link:hover, .rail-item:hover, .rail-item.active { color:var(--tomato); }
+.primary-action { background:var(--tomato); border-color:var(--tomato); }
+.primary-action:hover { background:#C9533D; }
+.pill.is-active, .pill-tomato.is-active { background:var(--tomato); border-color:var(--tomato); }
+.pill-mint.is-active { background:var(--sage); border-color:var(--sage); }
+.view-switch button.active { background:var(--ink); border-color:var(--ink); }
+.tools-count strong, .results-head strong, .strip-number { color:var(--ink); }
+
+/* Catalog pages use a three-stage atlas: index rail, data canvas, and selection stage. */
+.tools-page, .skills-page, .workflow-browser, .ui-guide-section, .path-page, .principles-page { position:relative; }
+.tools-page::before, .skills-page::before, .workflow-browser::before, .ui-guide-section::before, .path-page::before, .principles-page::before { content:"FIELD MAP / 2026"; position:absolute; right:clamp(20px,5vw,72px); top:18px; color:#9B9185; font:700 9px/1 var(--display); letter-spacing:.14em; }
+.tools-page::after, .skills-page::after, .workflow-browser::after, .ui-guide-section::after, .path-page::after, .principles-page::after { content:"+"; position:absolute; left:clamp(20px,5vw,72px); top:18px; color:var(--tomato); font:700 14px/1 var(--display); }
+.index-rail { background:rgba(238,229,215,.36); }
+.rail-heading { color:var(--ink); }
+.rail-item { min-height:32px; padding:8px 10px; border-left:2px solid transparent; }
+.rail-item:hover, .rail-item.active { background:#F8DED5; border-left-color:var(--tomato); transform:none; }
+.rail-item.active span { color:var(--tomato); }
+.directory-panel { background:rgba(255,253,248,.24); }
+.section-intro, .tools-intro, .workflow-lead, .ui-guide-lead, .skills-page-intro { padding-top:12px; }
+.section-intro h2, .tools-intro h2, .workflow-lead h1, .ui-guide-lead h1, .skills-page-intro h1 { text-wrap:balance; }
+.tool-list, .standalone-tool-list, .skills-page-list, .workflow-card-list, .ui-catalog-list { background:#FFFDF8; border:1px solid #CFC4B5; }
+.tool-row, .standalone-tool-row { padding-inline:18px; }
+.tool-row:nth-child(8n+1), .standalone-tool-row:nth-child(8n+1) { background:#FBF5EB; }
+.tool-row:hover, .standalone-tool-row:hover { background:#F8E7E0; transform:translateX(4px); }
+.row-marker, .standalone-tool-marker { border-radius:0; }
+.row-titleline h3, .standalone-tool-main strong { color:var(--ink); }
+.role-tag { border:1px solid #E5B7A9; background:#F9E9E3; color:#B94F39; }
+.category-label, .standalone-tool-category, .standalone-tool-source { color:#64708A; }
+.difficulty-초급 { color:var(--sage); border-color:#A9D4BA; background:var(--sage-soft); }
+
+/* Skills are index cards, not an undifferentiated accordion. */
+.skill-explainer { border-top:5px solid var(--tomato); }
+.skills-role-note { background:#F1E9DD; border:1px solid #CEC2B4; padding:clamp(24px,4vw,42px); }
+.skills-role-note > div:first-child strong { color:var(--ink); }
+.skill-page-entry { background:#FFFDF8; border:1px solid #CFC4B5; box-shadow:3px 3px 0 rgba(22,34,58,.06); }
+.skill-page-entry:nth-child(3n+2) { border-left:4px solid var(--tomato); }
+.skill-page-entry:nth-child(3n+3) { border-left:4px solid var(--sage); }
+.skill-page-entry summary { background:transparent; }
+.skill-page-entry summary:hover { background:#F8E7E0; }
+.skill-page-entry summary em { color:#64708A; }
+.skill-page-detail { background:#F7F0E5; border-top:1px dashed #CFC4B5; }
+.skill-page-actions a { color:var(--tomato); }
+
+/* Selection and connection signals repeat across tools, skills, and prompt flows. */
+.tool-recommendation-panel, .detail-connected-atlas, .task-recommender { border-top:4px solid var(--tomato); }
+.tool-recommendation-badge, .tool-recommendation-item:hover { background:#F8DED5; color:#B94F39; }
+.task-result-card:hover { background:#F8E7E0; }
+.task-result-card em { color:#B94F39; }
+.task-result-index { border-left:3px solid var(--sage); }
+
+@media (max-width:760px) { .tools-page::before, .skills-page::before, .workflow-browser::before, .ui-guide-section::before, .path-page::before, .principles-page::before { right:20px; } .tools-page::after, .skills-page::after, .workflow-browser::after, .ui-guide-section::after, .path-page::after, .principles-page::after { left:20px; } .index-rail { background:#F1E9DD; } .tool-list, .standalone-tool-list, .skills-page-list, .workflow-card-list, .ui-catalog-list { border-left:0; border-right:0; } }
