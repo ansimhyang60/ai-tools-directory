@@ -469,3 +469,47 @@ h1 em, h2 em, .inner-page > .inner-hero h1 em { color:var(--tomato); }
 .tool-recommendation-title h3 { margin-top:6px; }
 .tool-recommendation-title > p { margin-top:38px; }
 @media (max-width:620px) { .brand-logo { width:54px; height:54px; padding:9px; } .tool-profile-name-row { align-items:flex-start; flex-direction:column; gap:5px; } .tool-profile-coordinate { font-size:8px; } .tool-recommendation-title { gap:12px; } .tool-recommendation-title > p { margin-top:26px; } }
+
+
+/* Paper + Pixel Atlas / unified UI system: every page shares one rhythm, one readable measure, and one coral action signal. */
+:root { --space-page: clamp(22px, 4vw, 64px); --space-section: clamp(42px, 7vw, 104px); --ui-radius: 0; --ui-shadow: 6px 6px 0 rgba(22,34,58,.08); }
+.inner-page > *:not(.topbar):not(.inner-hero):not(.footer) { width:min(1180px, calc(100% - 2 * var(--space-page))); margin-left:auto; margin-right:auto; }
+.inner-hero { padding:clamp(60px, 9vw, 132px) var(--space-page) clamp(48px, 7vw, 96px); }
+.inner-hero h1, .tools-page h2, .skills-page-intro h2, .ui-guide-lead h2, .path-page h2, .principles-page h2 { max-width: 11ch; text-wrap:balance; }
+.inner-page p { max-width:68ch; line-height:1.8; }
+.skill-explainer { margin-top:var(--space-section); padding:clamp(28px, 5vw, 62px); background:#F3ECDD; border:1px solid rgba(22,34,58,.16); box-shadow:var(--ui-shadow); }
+.skill-explainer-heading { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr); gap:clamp(24px,6vw,86px); align-items:end; padding-bottom:clamp(34px,5vw,58px); border-bottom:1px solid rgba(22,34,58,.2); }
+.skill-explainer-heading h2 { margin:14px 0 0; font-size:clamp(32px,5vw,64px); line-height:.98; letter-spacing:-.07em; }
+.skill-explainer-heading h2 em { color:#E86F51; font-style:normal; }
+.skill-explainer-heading p { margin:0; color:#4F596B; }
+.skill-explainer-grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:1px; margin-top:clamp(28px,4vw,46px); background:rgba(22,34,58,.16); border:1px solid rgba(22,34,58,.16); }
+.skill-explainer-grid article { min-height:184px; padding:24px 22px; background:#FFFDF8; }
+.skill-explainer-grid article > span, .skill-explainer-flow > span { display:block; color:#E86F51; font:700 10px/1.2 var(--display); letter-spacing:.14em; }
+.skill-explainer-grid strong { display:block; margin:24px 0 10px; font-size:18px; }
+.skill-explainer-grid p { margin:0; font-size:14px; line-height:1.65; color:#5C6473; }
+.skill-explainer-flow { display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px 28px; align-items:baseline; margin-top:28px; padding-top:24px; border-top:1px dashed rgba(22,34,58,.3); }
+.skill-explainer-flow strong { font-size:clamp(16px,2vw,22px); color:#16223A; }
+.skill-explainer-flow p { grid-column:2; margin:0; color:#687080; font-size:14px; }
+.skills-role-note { margin-top:clamp(28px,5vw,68px); }
+.skills-role-columns article, .guide-page-card, .skill-page-entry, .ui-catalog-entry, .path-page-steps article { border-radius:var(--ui-radius); }
+.skills-page-list { margin-top:28px; }
+.skill-page-entry + .skill-page-entry { margin-top:10px; }
+.skill-page-entry summary { min-height:72px; padding:18px 22px; }
+.skill-page-detail { padding:0 30px 30px; }
+.skills-browser, .ui-catalog-toolbar, .tools-search-panel { margin-top:var(--space-section); }
+@media (max-width:760px) { .skill-explainer-heading { grid-template-columns:1fr; } .skill-explainer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .skill-explainer-flow { grid-template-columns:1fr; gap:10px; } .skill-explainer-flow p { grid-column:auto; } .skill-page-entry summary { gap:12px; padding:16px; } .skill-page-detail { padding:0 18px 24px; } }
+@media (max-width:460px) { .skill-explainer { padding:22px 18px; } .skill-explainer-grid { grid-template-columns:1fr; } .skill-explainer-grid article { min-height:auto; } }
+
+
+/* Paper + Pixel Atlas / homepage choice rail: make the two content layers impossible to confuse. */
+.homepage-choice-grid { width:min(1180px, calc(100% - 2 * var(--space-page))); margin:0 auto; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; padding:clamp(34px,5vw,70px) 0; }
+.homepage-choice-card { position:relative; min-height:270px; padding:clamp(24px,4vw,42px); display:flex; flex-direction:column; color:#16223A; text-decoration:none; border:1px solid rgba(22,34,58,.18); box-shadow:var(--ui-shadow); transition:transform .18s cubic-bezier(.23,1,.32,1), box-shadow .18s cubic-bezier(.23,1,.32,1); }
+.homepage-choice-card:hover { transform:translate(-3px,-3px); box-shadow:10px 10px 0 rgba(22,34,58,.12); }
+.homepage-choice-card.choice-tool { background:#EAF0FF; }
+.homepage-choice-card.choice-skill { background:#F7E4DA; }
+.choice-card-index { color:#E86F51; font:700 10px/1.2 var(--display); letter-spacing:.15em; }
+.homepage-choice-card h2 { margin:34px 0 14px; font-size:clamp(32px,4vw,54px); line-height:.95; letter-spacing:-.07em; }
+.homepage-choice-card h2 em { color:#E86F51; font-style:normal; }
+.homepage-choice-card p { max-width:36ch; margin:0; color:#526075; line-height:1.7; }
+.choice-card-action { display:flex; align-items:center; gap:9px; margin-top:auto; padding-top:30px; font:700 12px/1 var(--display); }
+@media (max-width:620px) { .homepage-choice-grid { grid-template-columns:1fr; gap:12px; padding:30px 0 44px; } .homepage-choice-card { min-height:220px; } .homepage-choice-card h2 { margin-top:24px; } }
