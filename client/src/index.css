@@ -448,3 +448,24 @@ h1 em, h2 em, .inner-page > .inner-hero h1 em { color:var(--tomato); }
 .detail-marker { background:var(--tomato)!important; }
 .detail-tip { border-left-color:var(--tomato); }
 @media (max-width:620px) { .tools-page::before, .workflow-browser::before, .ui-guide-section::before, .skills-section::before, .path-page::before, .principles-page::before { right:20px; font-size:8px; } .tools-page::after, .workflow-browser::after, .ui-guide-section::after, .skills-section::after, .path-page::after, .principles-page::after { left:20px; } .standalone-tool-row:nth-child(12n+1) { margin-top:16px; padding-top:22px; } }
+
+
+/* Paper + Pixel Atlas logo system: real marks are generous anchors, never tiny metadata icons. */
+.brand-logo { width:62px; height:62px; flex:none; display:inline-flex; align-items:center; justify-content:center; padding:11px; border:1px solid rgba(22,34,58,.16); background:#FFFDF8; box-shadow:4px 4px 0 rgba(22,34,58,.08); }
+.brand-logo.is-compact { width:34px; height:34px; padding:6px; box-shadow:2px 2px 0 rgba(22,34,58,.08); }
+.brand-logo img { display:block; width:100%; height:100%; object-fit:contain; }
+.brand-logo-fallback { width:62px; height:62px; flex:none; display:inline-flex; align-items:center; justify-content:center; background:var(--ink); color:#FFFDF8; font-family:var(--display); font-size:16px; font-weight:800; letter-spacing:-.06em; }
+.brand-logo-fallback.is-compact { width:34px; height:34px; font-size:10px; }
+.tool-profile-top { min-height:74px; align-items:flex-start; }
+.tool-profile-top > .tool-profile-category { margin-left:12px; padding-top:12px; }
+.tool-profile-top > a { margin-left:auto; }
+.tool-profile-name-row { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-top:20px; }
+.tool-profile-coordinate { color:#9B9184; font-family:var(--display); font-size:9px; letter-spacing:.12em; white-space:nowrap; }
+.featured-tool-link { gap:11px; }
+.featured-tool-link .brand-logo { background:#FFFDF8; border-color:rgba(22,34,58,.15); }
+.tool-recommendation-title { display:flex; align-items:flex-start; gap:18px; }
+.tool-recommendation-title > span { display:block; }
+.tool-recommendation-title > span > span { display:block; }
+.tool-recommendation-title h3 { margin-top:6px; }
+.tool-recommendation-title > p { margin-top:38px; }
+@media (max-width:620px) { .brand-logo { width:54px; height:54px; padding:9px; } .tool-profile-name-row { align-items:flex-start; flex-direction:column; gap:5px; } .tool-profile-coordinate { font-size:8px; } .tool-recommendation-title { gap:12px; } .tool-recommendation-title > p { margin-top:26px; } }
