@@ -13,9 +13,10 @@ button { cursor:pointer; }
 a { color:inherit; text-decoration:none; }
 .site-shell { min-height:100vh; overflow-x:clip; background:var(--paper); }
 .topbar { height:74px; padding:0 5vw; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:28px; background:rgba(247,242,232,.92); backdrop-filter:blur(16px); position:sticky; top:0; z-index:20; }
-.brand { display:flex; align-items:baseline; gap:13px; min-width:170px; }
-.brand-mark,.footer-brand { font-family:var(--display); font-weight:800; font-size:25px; letter-spacing:-.08em; }
-.brand-mark span,.footer-brand span { color:var(--tomato); }
+.brand { display:flex; align-items:center; gap:9px; min-width:170px; }
+.brand-mark { width:30px; height:30px; object-fit:contain; flex:0 0 auto; }
+.footer-brand { font-family:var(--display); font-weight:800; font-size:25px; letter-spacing:-.08em; }
+.footer-brand span { color:var(--tomato); }
 .brand-caption,.updated,.section-kicker,.filter-label,.category-label,.detail-index { font-family:var(--display); font-size:10px; letter-spacing:.14em; font-weight:700; color:var(--muted); }
 .topnav { display:flex; gap:32px; font-size:13px; font-weight:600; color:#514B45; }
 .topnav a:hover,.text-link:hover { color:var(--cobalt); }
@@ -374,3 +375,76 @@ h1 em,h2 em { font-style:normal; color:var(--cobalt); }
 /* Contextual recommendations appear only after a tool profile is selected. */
 .tool-profile-card { cursor:pointer; }.tool-profile-card:focus-visible { outline:3px solid var(--cobalt); outline-offset:3px; }.tool-profile-card.is-selected { background:#E8EEFF; border-color:var(--cobalt); box-shadow:7px 7px 0 #B9C9FF; transform:translate(-2px,-2px); }.tool-profile-select-hint { margin-top:14px; padding-top:9px; border-top:1px dashed var(--line); color:var(--cobalt); font-family:var(--display); font-size:9px; letter-spacing:.02em; }.tool-recommendation-panel { margin-top:24px; padding:22px; border:2px solid #14203B; background:#14203B; color:#FFFDF8; }.tool-recommendation-header { display:flex; justify-content:space-between; gap:20px; align-items:start; }.tool-recommendation-header span:first-child { color:#FF8A78; font-family:var(--display); font-size:9px; letter-spacing:.12em; }.tool-recommendation-header h3 { margin-top:8px; font-family:var(--display); font-size:25px; letter-spacing:-.05em; }.tool-recommendation-header p { margin-top:7px; color:#B9C5E4; font-size:11px; }.tool-recommendation-badge { flex:none; padding:8px 10px; color:#14203B; background:#F6D84A; font-family:var(--display); font-size:10px; }.tool-recommendation-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:22px; }.tool-recommendation-label { padding-bottom:9px; border-bottom:1px solid #4A5572; color:#83A2FF; font-family:var(--display); font-size:10px; letter-spacing:.08em; text-transform:uppercase; }.tool-recommendation-item { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 0; border-bottom:1px solid #3E4965; color:#FFFDF8; text-decoration:none; }.tool-recommendation-item:hover { color:#F6D84A; }.tool-recommendation-item strong { display:block; font-size:12px; line-height:1.35; }.tool-recommendation-item small { display:block; margin-top:5px; color:#B9C5E4; font-size:10px; line-height:1.4; }.tool-recommendation-item svg { flex:none; color:#83A2FF; }.tool-recommendation-empty { padding:15px 0; color:#B9C5E4; font-size:11px; line-height:1.5; }.workflow-recommendation-item svg { color:#FF8A78; }
 @media (max-width:700px) { .tool-recommendation-header { display:block; }.tool-recommendation-badge { display:inline-block; margin-top:12px; }.tool-recommendation-grid { grid-template-columns:1fr; gap:24px; } }
+
+
+/* Paper + Pixel Atlas refinement pass: breathe first, clarify the data layer, keep every title inside the page gutter. */
+:root { --page-gutter:clamp(24px, 5.2vw, 88px); --content-max:1450px; }
+.topbar { padding-left:var(--page-gutter); padding-right:var(--page-gutter); min-height:78px; }
+.hero { padding-left:var(--page-gutter); padding-right:var(--page-gutter); }
+.signal-strip { padding-left:var(--page-gutter); padding-right:var(--page-gutter); }
+.content-layout, .path-section, .principles { max-width:var(--content-max); }
+.directory-panel, .index-rail { padding-left:var(--page-gutter); padding-right:var(--page-gutter); }
+.home-bridge { padding-left:var(--page-gutter); padding-right:var(--page-gutter); }
+.inner-page > .inner-hero { padding:clamp(76px, 9vw, 142px) var(--page-gutter) clamp(64px, 7vw, 104px); min-height:350px; overflow:visible; }
+.inner-page > .inner-hero h1 { max-width:900px; padding-right:12px; overflow:visible; word-break:keep-all; }
+.inner-page > .tools-page, .inner-page > .workflow-browser, .inner-page > .ui-guide-section, .inner-page > .skills-section, .inner-page > .path-page, .inner-page > .principles-page { width:min(var(--content-max), 100%); margin:0 auto; padding-left:var(--page-gutter); padding-right:var(--page-gutter); }
+.inner-page > .tools-page { padding-bottom:96px; }
+.tools-intro { padding-top:52px; padding-bottom:48px; gap:clamp(34px, 5vw, 92px); }
+.tools-intro h2, .tool-profile-heading h2 { max-width:740px; word-break:keep-all; }
+.tool-profile-section-wrap { padding-top:70px; }
+.tool-profile-heading { align-items:start; margin-bottom:32px; }
+.tool-profile-grid { gap:18px; }
+.tool-profile-card { min-height:430px; padding:26px 24px 24px; }
+.tools-search-panel { margin-top:58px; padding:26px 0 28px; }
+.tools-dataset-tabs { margin-top:34px; gap:10px; flex-wrap:wrap; }
+.tools-dataset-tabs button { padding:14px 18px; }
+.dataset-explainer { margin:0 0 20px; padding:15px 18px; border-left:4px solid var(--cobalt); background:#E8EEFF; color:#31456E; font-size:12px; line-height:1.65; }
+.tools-filter-panel { margin-top:18px; padding:22px 0 26px; }
+.standalone-tool-list { margin-top:18px; }
+.standalone-tool-row { min-height:92px; padding:24px 14px; gap:20px; }
+.standalone-tool-main { min-width:0; padding-right:8px; }
+.standalone-tool-main strong, .standalone-tool-main small { overflow-wrap:anywhere; }
+.tool-detail-panel { width:min(560px,100%); padding:84px 48px 54px; overflow-y:auto; }
+.tool-detail-panel h2 { max-width:100%; font-size:clamp(42px, 6vw, 66px); line-height:.96; overflow-wrap:anywhere; }
+.detail-tip { margin-top:22px; padding:18px 18px 20px; border-left:5px solid var(--tomato); background:#FFF2EA; }
+.detail-tip span { display:block; color:#B74432; font-family:var(--display); font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+.detail-tip p { margin-top:9px; color:#5D413A; font-size:13px; line-height:1.7; }
+.prompt-example { white-space:pre-wrap; color:var(--muted); font-size:13px; line-height:1.75; }
+.prompt-copy { display:inline-flex; align-items:center; gap:7px; margin-top:13px; }
+.raw-tool-row { background:rgba(237,228,213,.22); }
+@media (max-width:900px) { .inner-page > .tools-page, .inner-page > .workflow-browser, .inner-page > .ui-guide-section, .inner-page > .skills-section, .inner-page > .path-page, .inner-page > .principles-page { padding-left:28px; padding-right:28px; } .tool-profile-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .standalone-tool-row { grid-template-columns:28px 8px minmax(0,1fr) 24px; } .standalone-tool-category, .standalone-tool-price, .standalone-tool-source { display:none; } }
+@media (max-width:620px) { .topbar { min-height:66px; } .inner-page > .inner-hero { min-height:300px; padding:66px 20px 58px; } .inner-page > .inner-hero h1 { font-size:clamp(48px, 14vw, 72px); line-height:.94; } .inner-page > .tools-page, .inner-page > .workflow-browser, .inner-page > .ui-guide-section, .inner-page > .skills-section, .inner-page > .path-page, .inner-page > .principles-page { padding-left:20px; padding-right:20px; } .tools-intro { display:block; padding-top:38px; padding-bottom:34px; } .tools-count { margin-top:28px; } .tool-profile-section-wrap { padding-top:48px; } .tool-profile-grid { grid-template-columns:1fr; } .tool-profile-card { min-height:0; padding:22px 20px; } .tools-search-panel { margin-top:38px; } .dataset-explainer { margin-bottom:16px; } .standalone-tool-row { min-height:0; padding:22px 6px; grid-template-columns:24px 6px minmax(0,1fr) 20px; gap:12px; align-items:start; } .standalone-tool-main strong { display:block; font-size:14px; line-height:1.35; } .standalone-tool-main small { display:block; margin-top:6px; font-size:11px; line-height:1.55; } .tool-detail-panel { padding:72px 24px 40px; } .tool-detail-panel h2 { font-size:46px; } .home-bridge { padding-left:20px; padding-right:20px; } }
+
+
+/* Paper + Pixel Atlas style decisions: Coral Marker owns action and selection; blue is a quiet index link. */
+:root { --cobalt:#496B9F; --tomato:#E86F51; --atlas-blue:#E8EEFF; }
+h1 em, h2 em, .inner-page > .inner-hero h1 em { color:var(--tomato); }
+.primary-action, .dataset-tab.active, .tools-dataset-tabs button.is-active, .pill.is-active, .view-switch button.active { background:var(--tomato); border-color:var(--tomato); }
+.primary-action:hover { background:#C9543D; }
+.section-kicker, .eyebrow, .workflow-kicker, .tools-location a, .text-link, .filter-count, .detail-index, .detail-block span, .tool-recommendation-label { color:var(--tomato); }
+.featured-slide-section, .tools-page, .workflow-browser, .ui-guide-section, .skills-section, .path-page, .principles-page { position:relative; }
+.tools-page::before, .workflow-browser::before, .ui-guide-section::before, .skills-section::before, .path-page::before, .principles-page::before { content:"FIELD MAP / 2026 · COORDINATE"; position:absolute; top:18px; right:var(--page-gutter); color:#A59A8C; font-family:var(--display); font-size:9px; letter-spacing:.14em; }
+.tools-page::after, .workflow-browser::after, .ui-guide-section::after, .skills-section::after, .path-page::after, .principles-page::after { content:"+"; position:absolute; top:17px; left:var(--page-gutter); color:var(--tomato); font-family:var(--display); font-size:18px; line-height:1; }
+.tools-page .tools-location, .workflow-browser .workflow-location { padding-top:28px; }
+.section-intro, .tools-intro, .workflow-lead, .ui-guide-lead, .skills-page-intro { position:relative; }
+.section-intro::before, .tools-intro::before, .workflow-lead::before, .ui-guide-lead::before, .skills-page-intro::before { content:"01"; position:absolute; top:0; left:0; color:var(--tomato); font-family:var(--display); font-size:10px; letter-spacing:.1em; }
+.section-intro > div, .tools-intro > div:first-child, .workflow-lead > div:first-child, .ui-guide-lead > p, .skills-page-intro > div:first-child { padding-left:22px; }
+.tools-intro h2, .section-intro h2, .workflow-lead h1, .ui-guide-lead h1, .skills-page-intro h1 { max-width:780px; }
+.tools-dataset-tabs button.is-active small { color:#FFF8F1; }
+.dataset-explainer { border-left-color:var(--tomato); background:#FFF2EA; color:#68453C; }
+.standalone-tool-list { border-top:2px solid var(--ink); }
+.standalone-tool-row { border-bottom:1px solid var(--line); }
+.standalone-tool-row:nth-child(12n+1) { margin-top:22px; border-top:4px solid var(--ink); padding-top:26px; }
+.standalone-tool-row:hover { background:#FFF8F0; transform:translateX(7px); }
+.standalone-tool-index, .standalone-tool-source, .standalone-tool-price, .standalone-tool-category { font-family:var(--display); font-size:10px; letter-spacing:.04em; }
+.standalone-tool-index { color:var(--tomato); font-weight:800; }
+.standalone-tool-marker { background:var(--tomato); }
+.role-tag { border:1px solid #F0B4A7; background:#FFF2EA; color:#A94A38; }
+.tool-profile-card.is-selected { border-color:var(--tomato); box-shadow:6px 6px 0 #F5C7BD; }
+.tool-profile-card.is-selected::before { background:var(--tomato); }
+.tool-recommendation-panel { border-top-color:var(--tomato); }
+.tools-count { border-left-color:var(--tomato); background:#FFF2EA; }
+.tools-count strong { color:var(--tomato); }
+.detail-marker { background:var(--tomato)!important; }
+.detail-tip { border-left-color:var(--tomato); }
+@media (max-width:620px) { .tools-page::before, .workflow-browser::before, .ui-guide-section::before, .skills-section::before, .path-page::before, .principles-page::before { right:20px; font-size:8px; } .tools-page::after, .workflow-browser::after, .ui-guide-section::after, .skills-section::after, .path-page::after, .principles-page::after { left:20px; } .standalone-tool-row:nth-child(12n+1) { margin-top:16px; padding-top:22px; } }
