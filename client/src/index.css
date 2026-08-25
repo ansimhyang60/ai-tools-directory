@@ -665,3 +665,10 @@ h1 em, h2 em, .inner-page > .inner-hero h1 em { color:var(--tomato) !important; 
 .task-result-index { border-left:3px solid var(--sage); }
 
 @media (max-width:760px) { .tools-page::before, .skills-page::before, .workflow-browser::before, .ui-guide-section::before, .path-page::before, .principles-page::before { right:20px; } .tools-page::after, .skills-page::after, .workflow-browser::after, .ui-guide-section::after, .path-page::after, .principles-page::after { left:20px; } .index-rail { background:#F1E9DD; } .tool-list, .standalone-tool-list, .skills-page-list, .workflow-card-list, .ui-catalog-list { border-left:0; border-right:0; } }
+
+
+/* SKILL is a destination, not a raw-record dataset: keep it visually distinct and equally clickable. */
+.dataset-tab.skill-tab, .tools-dataset-tabs > .skill-tab { display:inline-flex; align-items:center; justify-content:center; gap:4px; background:var(--ink); border:1px solid var(--ink); color:var(--white); font:700 12px/1 var(--display); letter-spacing:.06em; }
+.dataset-tab.skill-tab:hover, .tools-dataset-tabs > .skill-tab:hover { background:var(--tomato); border-color:var(--tomato); color:var(--white); transform:translateY(-1px); }
+.dataset-tab.skill-tab small, .tools-dataset-tabs > .skill-tab small { background:var(--sage-soft); color:var(--sage); }
+.dataset-tab.skill-tab:hover small, .tools-dataset-tabs > .skill-tab:hover small { background:rgba(255,255,255,.24); color:var(--white); }
