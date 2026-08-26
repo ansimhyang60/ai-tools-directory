@@ -203,7 +203,25 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+function vitePluginLocalApi(): Plugin {
+  return {
+    name: "local-api-compat",
+    configureServer(server) {
+      server.middlewares.use("/api/health", (req, res, next) => {
+        if (req.method !== "GET") return next();
+        res.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
+        res.end(JSON.stringify({ ok: true, service: "ai-tools-directory", runtime: "local-vite" }));
+      });
+      server.middlewares.use("/api/oauth/callback", (req, res, next) => {
+        if (req.method !== "GET") return next();
+        res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
+        res.end('<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>AI/100 로그인</title></head><body><p>인증 결과를 확인하는 중입니다. <a href="/">홈으로 돌아가기</a></p></body></html>');
+      });
+    },
+  };
+}
+
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy(), vitePluginLocalApi()];
 
 export default defineConfig({
   plugins,

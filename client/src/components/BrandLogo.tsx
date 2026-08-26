@@ -12,6 +12,17 @@ const logoSources: Record<string, string> = {
   zapier: "/manus-storage/zapier_aa712b85.svg",
 };
 
+const logoFallbackSources: Record<string, string> = {
+  chatgpt: "https://cdn.simpleicons.org/openai/111827",
+  claude: "https://cdn.simpleicons.org/anthropic/111827",
+  gemini: "https://cdn.simpleicons.org/googlegemini/111827",
+  manus: "https://cdn.simpleicons.org/manus/111827",
+  cursor: "https://cdn.simpleicons.org/cursor/111827",
+  canva: "https://cdn.simpleicons.org/canva/111827",
+  gamma: "https://cdn.simpleicons.org/gamma/111827",
+  zapier: "https://cdn.simpleicons.org/zapier/111827",
+};
+
 const logoLabels: Record<string, string> = {
   chatgpt: "ChatGPT 로고",
   claude: "Claude 로고",
@@ -24,8 +35,9 @@ const logoLabels: Record<string, string> = {
 };
 
 export default function BrandLogo({ name, compact = false }: { name: string; compact?: boolean }) {
-  const [failed, setFailed] = useState(false);
-  const source = logoSources[name.toLowerCase()];
-  if (!source || failed) return <span className={`brand-logo-fallback ${compact ? "is-compact" : ""}`} aria-label={`${name} 로고`}>{name.slice(0, 2).toUpperCase()}</span>;
-  return <span className={`brand-logo ${compact ? "is-compact" : ""}`}><img src={source} alt={logoLabels[name.toLowerCase()] || `${name} 로고`} onError={() => setFailed(true)} /></span>;
+  const key = name.toLowerCase();
+  const [source, setSource] = useState(logoSources[key]);
+  const fallbackSource = logoFallbackSources[key];
+  if (!source) return <span className={`brand-logo-fallback ${compact ? "is-compact" : ""}`} aria-label={`${name} 로고`}>{name.slice(0, 2).toUpperCase()}</span>;
+  return <span className={`brand-logo ${compact ? "is-compact" : ""}`}><img src={source} alt={logoLabels[key] || `${name} 로고`} onError={() => setSource((current) => current === fallbackSource ? "" : fallbackSource || "")} /></span>;
 }

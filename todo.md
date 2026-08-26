@@ -72,3 +72,12 @@
 - [ ] 상세 패널을 즉시 렌더링하고 의도하지 않은 닫힘 방지
 - [ ] 핵심 페이지·검색·필터·모바일 검증
 - [ ] 체크포인트 저장
+
+## Vercel Hobby 전환 작업
+
+- [x] 현재 Express 라우트와 프론트엔드 API 호출 경로 점검
+- [x] `api/` Serverless Function 엔드포인트 분리
+- [x] `vercel.json` routes·build 설정 추가
+- [x] 로컬 dev 서버와 Vercel 호환 빌드 검증
+- [x] Vercel용 UI 스타일 전반 개선 및 반응형 확인
+- [x] GitHub 자동 배포용 README·환경변수 안내 정리
