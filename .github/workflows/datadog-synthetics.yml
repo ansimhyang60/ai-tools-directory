@@ -1,5 +1,5 @@
 # Datadog Synthetic tests are optional. The application build and deployment do not depend on Datadog.
-# Add DD_API_KEY and DD_APP_KEY repository secrets to enable this workflow.
+# Add DD_API_KEY and DD_APP_KEY repository secrets to enable the external check.
 name: Run Datadog Synthetic tests
 
 on:
@@ -11,20 +11,16 @@ on:
 
 jobs:
   datadog:
-    if: ${{ secrets.DD_API_KEY != '' && secrets.DD_APP_KEY != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Run Datadog Synthetic tests
+        if: ${{ secrets.DD_API_KEY != '' && secrets.DD_APP_KEY != '' }}
         uses: DataDog/synthetics-ci-github-action@87b505388a22005bb8013481e3f73a367b9a53eb # v1.4.0
         with:
           api_key: ${{ secrets.DD_API_KEY }}
           app_key: ${{ secrets.DD_APP_KEY }}
           test_search_query: "tag:e2e-tests"
-
-  datadog-not-configured:
-    if: ${{ secrets.DD_API_KEY == '' || secrets.DD_APP_KEY == '' }}
-    runs-on: ubuntu-latest
-    steps:
       - name: Explain optional check
+        if: ${{ secrets.DD_API_KEY == '' || secrets.DD_APP_KEY == '' }}
         run: echo "Datadog Synthetic tests skipped because DD_API_KEY/DD_APP_KEY are not configured. This does not block the application build or deployment."
