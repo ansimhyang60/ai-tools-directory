@@ -4,6 +4,7 @@
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm build:vercel",
   "outputDirectory": "dist/public",
+  "crons": [{ "path": "/api/scheduled/archive-refresh", "schedule": "0 3 * * *" }],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "handle": "filesystem" },
