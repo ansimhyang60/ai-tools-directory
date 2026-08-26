@@ -1,7 +1,7 @@
 /* Generated from the repository's expanded public catalog; resource lists and model-only records are excluded. */
 import { aimattersTools } from "./aimattersTools";
 
-export type DirectoryTool = { id:number; slug:string; name:string; category:string; sourceCategory:string; description:string; useCase:string; tokenTip:string; promptStarter:string; pricing:string; source:string; verifiedAt:string; url:string; tags:string[] };
+export type DirectoryTool = { id:number; slug:string; name:string; category:string; sourceCategory:string; description:string; useCase:string; tokenTip:string; promptStarter:string; pricing:string; source:string; verifiedAt:string; url:string; pricingUrl?: string; tags:string[] };
 const baseDirectoryTools: DirectoryTool[] = [
   {
     "id": 1,
@@ -12431,6 +12431,7 @@ const baseDirectoryTools: DirectoryTool[] = [
   }
 ];
 
+const verifiedPricingUrls: Record<string, string> = { "Jamie AI": "https://www.meetjamie.ai/pricing", "Tactiq": "https://tactiq.io/pricing", "Fathom": "https://fathom.video/pricing", "Dzine AI": "https://www.dzine.ai/pricing", "Captions": "https://www.captions.ai/pricing", "FeedHive": "https://www.feedhive.com/pricing", "Vizard": "https://vizard.ai/pricing", "QuillBot": "https://quillbot.com/premium" };
 const aimattersDirectoryTools: DirectoryTool[] = aimattersTools.map((tool, index) => ({
   id: baseDirectoryTools.length + index + 1,
   slug: tool.slug,
@@ -12445,6 +12446,7 @@ const aimattersDirectoryTools: DirectoryTool[] = aimattersTools.map((tool, index
   source: tool.source,
   verifiedAt: tool.verifiedAt,
   url: tool.url,
+  pricingUrl: verifiedPricingUrls[tool.name],
   tags: tool.tags,
 }));
 
