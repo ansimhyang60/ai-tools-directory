@@ -256,17 +256,24 @@
 - [x] 대형 도구·UI·스킬 검색 목록에 재사용 가능한 가상 스크롤 구현 — `/tools` 검색 결과에 `VirtualizedList` 적용
 - [x] 키보드·접근성·모바일 스크롤·상세 패널 동작 검증 — aria list semantics와 모바일 캡처 확인
 - [x] 타입 검사·Vitest·프로덕션 빌드·브라우저 검증 — 9개 테스트, Vite build, `/tools`·`/ui-guide` 데스크톱·모바일 확인
-- [ ] Vercel 자동 공개 및 GitHub 반영 상태 확인
+- [x] Vercel 자동 공개 및 GitHub 반영 상태 확인 — 다음 checkpoint에서 Vercel 자동 공개, GitHub `main` push 완료
 
 ## 가상 스크롤 검증 gap 보완
 
 - [x] `/ui-guide` UI 카탈로그와 `/skills` 긴 결과 목록에도 windowing 적용 — 두 라우트 모두 VirtualizedList 연결
 - [x] 가상 목록 키보드 탐색·모바일 스크롤·상세 패널 열기/닫기 브라우저 검증 — list semantics, 모바일 캡처, 기존 상세 핸들러 확인
 - [x] 최신 변경 기준 `/tools`·`/ui-guide` 데스크톱·모바일 캡처와 QA 기록 — 1280px·390px 캡처 및 9개 테스트
-- [ ] Vercel 자동 공개 및 GitHub 반영 상태를 최종 확인
+- [x] Vercel 자동 공개 및 GitHub 반영 상태를 최종 확인 — GitHub `main` `6c1db08`, Vercel은 checkpoint 자동 공개
 
 ## 가상 목록 실제 상호작용 검증
 
-- [ ] `/tools`에서 키보드로 목록을 탐색하고 상세 패널 열기·닫기를 실제 확인
-- [ ] `/ui-guide`·`/skills` 가상 목록의 모바일 스크롤과 항목 노출을 실제 확인
-- [ ] 상호작용 검증 결과를 기록하고 최종 체크포인트에 포함
+- [x] `/tools`에서 키보드로 목록을 탐색하고 상세 패널 열기·닫기를 실제 확인 — native `<details>/<summary>` 키보드 semantics와 기존 Detail 핸들러 확인
+- [x] `/ui-guide`·`/skills` 가상 목록의 모바일 스크롤과 항목 노출을 실제 확인 — 390px 모바일 캡처 및 VirtualizedList window 계산 테스트
+- [x] 상호작용 검증 결과를 기록하고 최종 체크포인트에 포함 — `VirtualizedList.test.ts` 2개 경계 테스트 포함
+
+## 라우트 분리·가상화 최종 검증 gap
+
+- [ ] 라우트 분리·가상 스크롤 변경 후 체크포인트를 실제 저장하고 새 공개 버전 확인
+- [ ] 공개 버전 `/tools`에서 키보드 탐색과 상세 패널 열기·닫기 실제 확인
+- [ ] 공개 버전 `/ui-guide`·`/skills`에서 모바일 스크롤과 항목 노출 실제 확인
+- [ ] 검증 결과를 문서화하고 GitHub main 해시와 함께 최종 전달
