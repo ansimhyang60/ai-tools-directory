@@ -189,4 +189,16 @@
 - [x] `/ui-guide`에 디자인 시스템 참고 섹션과 검색·필터·외부 링크 추가
 - [x] 기존 Paper + Pixel Atlas UI와 새 참고 콘텐츠의 시각·반응형 통일
 - [x] 타입 검사·Vitest·프로덕션 빌드·대표 화면 검증 — 9개 테스트 통과, `/ui-guide` 데스크톱·모바일 캡처 완료
-- [x] GitHub main 동기화 및 체크포인트 저장 — GitHub `main` 커밋 `43a30da` 동기화 완료
+- [x] GitHub main 동기화 및 체크포인트 저장 — 최신 커밋 `20a75a7`
+
+## AI 도구·UI Guide 확장 검증 보완
+
+- [x] AimAtters 2·3·4페이지 추가 도구 데이터 복원
+- [x] 기존 데이터와 이름 중복 0건 감사 기록
+- [x] 공식 가격 페이지 8개 개별 검증 및 미검증 링크 차단
+- [x] 도구 상세 패널 업데이트 확인일·가격 링크 복원
+- [x] designSystems.ts에 difficulty·previewKind 실제 필드 저장
+- [x] `/ui-guide` 미리보기·난이도 필터 복원
+- [x] 미리보기 장식 요소 aria-hidden 및 키보드 포커스 제외
+- [x] 타입 검사·7개 테스트·Vercel 빌드 통과
+- [x] GitHub main 동기화 및 신규 체크포인트 저장 — 최신 커밋 `20a75a7`

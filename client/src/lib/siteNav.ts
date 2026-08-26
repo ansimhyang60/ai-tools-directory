@@ -3,7 +3,6 @@ export const siteNav = [
   ["도구 찾기", "/tools"],
   ["UI 참고", "/ui-guide"],
   ["스킬 라이브러리", "/skills"],
-  ["기회·뉴스", "/archive"],
   ["학습 경로", "/path"],
   ["사용 원칙", "/principles"],
 ] as const;

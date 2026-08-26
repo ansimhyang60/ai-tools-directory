@@ -1,68 +1,79 @@
-# AI Tools Directory 복구 디자인 브리프
+# AI Tools 100 Directory — Design Direction
 
-## Ground Truth
-GitHub 저장소 `ansimhyang60/ai-tools-directory`의 최신 main 브랜치를 기능·콘텐츠 기준의 원본으로 삼는다. AI 도구 100개, 공개 카탈로그 736개, 기술/스킬 라이브러리, 워크플로와 업무 프롬프트를 누락 없이 복원하고, 기존 사이트의 검색형 디렉터리 역할을 유지한다.
+## Three directions
 
-## 선택한 방향: Paper + Pixel Atlas
+### Theme Name: Editorial Field Guide
+Very brief intro: A calm, editorial directory that feels like a printed field guide translated into a modern search tool. It prioritizes clarity, reading rhythm, and trustworthy categorization.
+Probability: 0.07
+
+### Theme Name: Signal Console
+Very brief intro: A structured intelligence console with strong indexing, compact data density, and a high-contrast operational feel. It is useful for power users who compare many tools quickly.
+Probability: 0.04
+
+### Theme Name: Paper + Pixel Atlas
+Very brief intro: A tactile hybrid of paper notes and digital signals, using warm surfaces, ink-like typography, and sharp electric accents to make a large catalog feel approachable.
+Probability: 0.09
+
+## Selected approach: Paper + Pixel Atlas
 
 ### Design Movement
-편집형 정보 디자인과 브루탈리스트 데이터 아틀라스를 결합한다. 종이 질감의 따뜻한 바탕 위에 정밀한 픽셀 좌표, 잉크 선, 작은 라벨을 얹어 ‘수집하고 탐색하는 지식 도감’의 감각을 만든다.
+Contemporary editorial brutalism softened by a paper archive sensibility: a practical research atlas rather than a generic SaaS dashboard.
 
 ### Core Principles
-1. 정보량은 많되 시각적 위계는 명확하게 유지한다.
-2. 검색·필터·상세 패널은 장식이 아니라 탐색 속도를 높이는 도구로 설계한다.
-3. 카드와 배지는 데이터의 출처·범위·난이도를 빠르게 읽게 해야 한다.
-4. 모바일에서도 목록, 필터, 상세 탐색의 흐름이 끊기지 않아야 한다.
+1. Search first: the first screen should make it obvious how to find a tool by name, job, category, or difficulty.
+2. Catalog as culture: each tool is presented as a distinct entry with a clear role, not a uniform anonymous card.
+3. Warm structure, sharp signals: cream paper surfaces create trust; vivid cobalt, tomato, and mint identify states and categories.
+4. Density with breathing room: the catalog can be information-rich without becoming a spreadsheet.
 
 ### Color Philosophy
-따뜻한 종이색을 기본 면으로 사용하고 잉크 네이비를 정보 구조의 기준선으로 삼는다. 데이터 종류를 구분하는 시그니처 산호색과 세이지 그린은 과도한 장식이 아니라 선택 상태·검증 상태·추천 상태를 의미한다. 보라색 그라디언트와 네온 글로우는 사용하지 않는다.
+The base is warm paper cream (#F7F2E8), chosen to make a 100-tool catalog feel readable and human. Ink navy (#172033) gives authority and contrast. Cobalt (#2457FF) marks actions and links, tomato (#FF654F) marks attention and popular paths, and mint (#BFE8D0) marks beginner-friendly routes. The colors are functional labels, not decoration.
 
 ### Layout Paradigm
-중앙 정렬 랜딩이 아니라 좌측의 고정된 탐색 레일, 넓은 도구 목록 캔버스, 우측의 선택 상세 스테이지가 이어지는 비대칭 아틀라스 구조를 사용한다. 홈에서는 히어로가 검색을 바로 끌어안고, 목록 페이지에서는 필터가 상단에 고정되어 긴 데이터셋을 빠르게 축소한다.
+An asymmetric atlas layout: a narrow fixed-feeling index rail and a wide content field on desktop, collapsing into a stacked search-first layout on mobile. Sections use editorial rules, offset labels, and large index numerals instead of a centered marketing grid.
 
 ### Signature Elements
-1. 픽셀 좌표처럼 보이는 작은 번호 라벨과 얇은 잉크 규칙선.
-2. 종이 카드의 미세한 오프셋 그림자와 찢긴 가장자리 느낌의 섹션 캡슐.
-3. 도구 선택 시 카드 아래에 연계 스킬과 업무 프롬프트가 펼쳐지는 ‘연결 아틀라스’ 모듈.
+1. A “signal strip” hero with oversized index number 100 and small status labels.
+2. Tool rows with left-side category markers and a right-side “use it for” action cue.
+3. A persistent category rail that behaves like the margin notes of a field guide.
 
 ### Interaction Philosophy
-사용자의 클릭은 선택 상태를 명확하게 남겨야 하며, 검색어·카테고리·난이도 필터는 즉시 결과를 좁힌다. 카드 선택, Enter/Space 키, 상세 패널 닫기와 뒤로가기를 모두 지원한다. 링크가 없는 데이터는 빈 링크 버튼 대신 출처와 상태를 정직하게 보여준다.
+Every interaction should reduce uncertainty: search results update instantly, category counts reflect the current view, filter chips explain why an item is visible, and an empty state suggests a next query. Buttons should feel crisp and immediate, never mysterious.
 
 ### Animation
-초기 목록은 30ms 간격의 짧은 페이드·슬라이드로 나타내되, 결과가 많을 때는 첫 화면만 애니메이션한다. 카드 hover는 160ms 이내의 translate와 shadow 변화만 사용한다. 상세 패널은 220ms ease-out으로 열린다. `prefers-reduced-motion`에서는 모든 비필수 모션을 제거한다.
+Use short 160–220ms transform/opacity transitions for search results, category chips, and detail panels. Prefer subtle row lift and marker color changes over large page motion. Respect prefers-reduced-motion and keep keyboard interactions instant.
 
 ### Typography System
-헤드라인은 `Space Grotesk`의 굵은 디스플레이 스타일, 본문과 데이터는 `IBM Plex Sans`, 메타 라벨은 `IBM Plex Mono`를 사용한다. 제목은 짧고 강하게, 설명은 15–16px의 넉넉한 행간으로 설정한다. 숫자·ID·검증일은 모노스페이스로 분리한다.
+Use Space Grotesk for display labels and headings, with IBM Plex Sans for body text and metadata. Headings are compact and editorial; descriptions use readable line-height. Tool names use bold display type, while role labels use uppercase microtype with tracking.
 
 ### Brand Essence
-업무와 창작에 바로 연결되는 AI 도구·기술·프롬프트를 한곳에서 탐색하는 한국어 지식 디렉터리. 성격은 **정밀함, 호기심, 실용성**이다.
+A practical, human-curated map of AI tools for people who want to make something useful next. Personality: grounded, curious, direct.
 
 ### Brand Voice
-헤드라인은 짧고 단정하며, CTA는 사용자가 다음 행동을 바로 알 수 있게 쓴다. 설명은 과장 대신 출처와 쓰임을 구체적으로 말한다.
-
-예시 문장 1: “찾고, 비교하고, 바로 써보세요.”
-예시 문장 2: “도구 하나를 고르면 연결된 스킬과 업무 프롬프트가 따라옵니다.”
+Headlines are confident but never hype-driven. CTAs are specific and action-oriented. Microcopy explains what happens next.
+Examples:
+- “Start with the job, not the tool.”
+- “Find the smallest useful stack for your next project.”
 
 ### Wordmark & Logo
-텍스트를 단순히 조판하지 않고, 격자 위에 놓인 작은 십자형 탐색 마커와 ‘A’ 형태의 열린 좌표를 결합한 심볼을 사용한다. 워드마크는 대문자 `AI/100`을 짧은 모노스페이스 라벨처럼 조합한다.
+A bold “AI/100” index mark: an editorial slash separating the category of intelligence from the catalog count. It should appear as a compact text mark in the header and favicon-like badge, not as a default wordmark.
 
 ### Signature Brand Color
-시그니처 컬러는 **Coral Marker `#E86F51`**이다. 선택·추천·행동 유도에만 사용해 AI/100의 탐색 마커 역할을 한다.
+Cobalt blue #2457FF — ownable, legible, and used only for active search, selected categories, and primary links.
 
-## 복구 원칙
-원본 저장소의 데이터 파일과 페이지 구조를 우선 보존한다. 새 디자인은 콘텐츠를 삭제하거나 축약하지 않고, 100개 추천 도구·736개 공개 카탈로그·스킬·워크플로·프롬프트의 접근성을 높이는 범위에서만 적용한다.
-
-## Reference Ground Truth: 첨부 기술 노트형 마인드맵
-
-첨부 예시는 중심 주제에서 장(Chapter) 박스가 방사형으로 퍼지고, 각 장 아래에 개념·도구·질문·세부 키워드가 손그림 화살표와 메모 라벨로 이어지는 한 화면형 지식 지도다. 이후 워크트리·마인드맵은 카드형 추천 레일이 아니라 이 정보 구조를 기준으로 하며, AI/100의 종이 바탕·잉크 선·Coral Marker·좌표 라벨로 재해석한다. 업무 노드를 중심에 두고 AI 툴·SKILL·프롬프트·워크플로우가 가지가 되며, 선택한 노드의 연결선과 하위 가지가 함께 강조된다.
+## Implementation reminder
+Every component should reinforce the selected Paper + Pixel Atlas direction: warm paper background, editorial rules, asymmetric index layout, Space Grotesk + IBM Plex Sans, and cobalt as the primary action color. Avoid purple gradients, generic centered hero sections, and anonymous dashboard cards.
 
 ## Style Decisions
-- 선택 방향은 Paper + Pixel Atlas이며, 이후 모든 컴포넌트는 이 철학을 따른다.
-- 데이터의 출처·검증일·가격 상태를 숨기지 않는다.
-- 대량 카탈로그 페이지에는 성능을 위해 목록 렌더링을 단순화하고, 상세 정보는 선택 시 노출한다.
-- `server/`는 수정하지 않고 프론트엔드만 복구한다.
 
-- Electric blue는 브랜드 색이 아니다. 정보 구조는 Ink Navy, 선택·추천·CTA는 Coral Marker `#E86F51`, 검증·안정 상태는 Sage Green으로 역할을 고정한다.
-- 대량 카탈로그는 좌측 인덱스/필터, 중앙 데이터 캔버스, 선택 시 연결 상세가 드러나는 비대칭 아틀라스 구조를 유지한다.
-- 긴 목록의 각 행은 좌표 ID, 모노 메타, 출처·상태 배지, 얇은 잉크 규칙선을 가진 종이 인덱스 카드처럼 표현한다.
-- AI 도구·스킬·업무 프롬프트는 태그와 연결 캡슐로 서로 이어지며, 사용자가 작업에서 도구와 스킬 조합으로 이동할 수 있어야 한다.
+- Korean display typography uses a deliberate grotesque stack with IBM Plex Sans KR first, then IBM Plex Sans, to make Korean headings feel designed rather than default.
+- AI/100 is rendered as an index stamp with a rule, slash, and small catalog caption; it is not plain nav text.
+- Cobalt #2457FF is reserved for active search, selected filters/categories, primary links, and key headline emphasis. Tomato and mint are functional state colors.
+- Tool entries use stronger role labels, explicit category markers, and more prominent “사용 예시” cues so the directory reads like a field guide rather than anonymous SaaS rows.
+- Lower guidance sections reuse index numerals, rules, and margin-note labels from the catalog.
+
+## Style Decisions — Catalog Expansion
+
+- AI/100 and the curated 100-tool index remain the primary brand signal. The 736+ public records are a secondary discovery layer and never replace the core identity.
+- Korean is the primary explanatory voice. English is reserved for compact atlas labels, status tags, and the brand phrase.
+- Cobalt marks active/search/primary links; tomato marks attention or popular paths; mint marks beginner-friendly routes.
+- The open catalog carries explicit source labels and pricing-state language so a row communicates what it is, where it came from, and how confidently its price is known.

@@ -1,5 +1,0 @@
-# Final visual review notes
-
-The current site keeps the Paper + Pixel Atlas foundation: paper background, ink rules, coral accents, editorial Korean headlines, and dense catalog language. The reviewer recommends a stronger cross-page atlas shell, especially on `/tools` and `/skills`: persistent left index/filter rail, central paper data canvas, and visible selected-detail or connection stage. `/skills` needs stronger sectioning, grouped paper panels, coordinate labels, and connected-atlas cues rather than an endless flat list. The AI/100 coordinate marker and open-A brand cue should recur across navigation, section headers, rows, and selected states. Long lists should use clearer title/category/status/source/action hierarchy with restrained coral and sage semantics.
-
-Accepted amendments: directory pages should use an atlas shell; the brand mark should be a recurring coordinate cue; long lists should be grouped with coordinate IDs, ink rules, mono metadata, and meaningful coral/sage states.

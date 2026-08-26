@@ -1,6 +1,5 @@
 /* Paper + Pixel Atlas: spacious editorial directory with explicit AI-tool vs raw-record taxonomy. */
 import { Fragment, useEffect, useMemo, useState } from "react";
-import { useAuth } from "@/_core/hooks/useAuth";
 import { ArrowUpRight, BookOpen, ChevronRight, Command, Filter, Grid2X2, Layers3, Search, Sparkles, X } from "lucide-react";
 import { Link } from "wouter";
 import { tools, categories, difficulties, type Tool } from "@/lib/tools";
@@ -29,13 +28,6 @@ function CuratedRow({ tool, onOpen, index, roleTag = "큐레이션 추천" }: { 
 function DetailPanel({ item, onClose }: { item: DetailItem; onClose: () => void }) { const directory = hasTokenTip(item); const tool = item as Tool; useEffect(() => { const handleKey = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); }; window.addEventListener("keydown", handleKey); return () => window.removeEventListener("keydown", handleKey); }, [onClose]); return <div className="detail-backdrop" role="presentation" onClick={(event) => event.stopPropagation()} onMouseDown={(event) => event.stopPropagation()}><aside className="detail-panel" aria-modal="true" onClick={(event) => event.stopPropagation()}><button className="detail-close" onClick={onClose} aria-label="상세 패널 닫기"><X size={19} /></button><div className="detail-index"><span>{directory ? "AI TOOL" : "ENTRY"}</span> {String(item.id).padStart(3, "0")} <span className="detail-rule" /></div><div className="detail-marker" style={{ background: categoryColors[getCategory(item)] || (directory ? "#2457FF" : "#A59A8C") }} /><span className="category-label">{getCategory(item)}</span><h2>{getName(item)}</h2><p className="detail-role">{directory ? item.description : item.role}</p><div className="detail-block"><span>{directory ? "어디에 쓰나요?" : "핵심 정보"}</span><strong>{directory ? item.useCase : item.example}</strong></div>{directory && <><div className="detail-tip"><span>토큰·비용 아끼는 팁</span><p>{item.tokenTip}</p></div><div className="detail-block"><span>바로 쓰는 프롬프트</span><p className="prompt-example">{item.promptStarter}</p></div></>}{"difficulty" in item && <div className="detail-block"><span>시작 난이도</span><strong>{item.difficulty}</strong></div>}{"tags" in item && <div className="detail-tags">{item.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div>}{"url" in item && item.url && <a className="primary-action detail-action" href={item.url} target="_blank" rel="noreferrer">공식 페이지 열기 <ArrowUpRight size={16} /></a>}<p className="detail-footnote">기능·요금·컨텍스트 한도는 변경될 수 있으니 실제 도입 전 공식 안내를 확인하세요. 토큰 팁은 효율적인 요청 작성을 위한 일반 가이드입니다.</p></aside></div>; }
 
 export default function Home() {
-  // The useAuth hook provides authentication state.
-  // To implement login/logout, call logout(), or start login from an event
-  // handler: onClick={() => startLogin()} (imported from "@/const"). Never call
-  // startLogin() during render (no href={startLogin()}) — it mints a one-time
-  // nonce cookie and must run only at the moment of navigation.
-  let { user, loading, error, isAuthenticated, logout } = useAuth();
-
   const [query, setQuery] = useState(""); const [category, setCategory] = useState("전체"); const [difficulty, setDifficulty] = useState<(typeof difficulties)[number]>("전체"); const [selected, setSelected] = useState<DetailItem | null>(null); const [view, setView] = useState<"list" | "grid">("list"); const [dataset, setDataset] = useState<Dataset>("popular"); const [directoryOpen, setDirectoryOpen] = useState(true); const [featuredIndex, setFeaturedIndex] = useState(0);
   const [skillQuery] = useState("");
   const filteredPopular = useMemo(() => { const term = query.trim().toLowerCase(); return popularTools.filter((tool) => (!term || [tool.name, tool.category, tool.role, tool.summary, tool.example, ...tool.tags].join(" ").toLowerCase().includes(term)) && (category === "전체" || tool.category === category)); }, [query, category]);

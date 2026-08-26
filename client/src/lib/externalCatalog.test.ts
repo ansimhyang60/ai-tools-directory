@@ -10,6 +10,9 @@ describe("external catalog integrations", () => {
     expect(aimattersTools.length).toBeGreaterThanOrEqual(15);
     expect(aimattersTools.every((tool) => tool.source === "AimAtters AI Tool DB")).toBe(true);
     expect(aimattersTools.every((tool) => tool.url.startsWith("https://"))).toBe(true);
+    const verifiedPricingTools = directoryTools.filter((tool) => tool.sourceCategory === "AimAtters AI Tool DB" && tool.pricingUrl);
+    expect(verifiedPricingTools.length).toBeGreaterThanOrEqual(8);
+    expect(verifiedPricingTools.every((tool) => tool.pricingUrl?.startsWith("https://"))).toBe(true);
     expect(new Set(aimattersTools.map((tool) => normalized(tool.name))).size).toBe(aimattersTools.length);
     expect(directoryTools.some((tool) => tool.name === "10Web AI" && tool.sourceCategory === "AimAtters AI Tool DB")).toBe(true);
   });
@@ -19,5 +22,7 @@ describe("external catalog integrations", () => {
     expect(designSystemReferences.every((item) => item.url.startsWith("https://"))).toBe(true);
     expect(designSystemReferences.some((item) => item.name === "shadcn/ui")).toBe(true);
     expect(designSystemReferences.some((item) => item.companionLinks.some((link) => link.label === "GitHub"))).toBe(true);
+    expect(designSystemReferences.every((item) => ["초급", "중급", "고급"].includes(item.difficulty))).toBe(true);
+    expect(designSystemReferences.every((item) => ["button", "form", "card", "table"].includes(item.previewKind))).toBe(true);
   });
 });
