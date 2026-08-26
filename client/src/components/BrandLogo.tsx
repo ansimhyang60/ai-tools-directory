@@ -2,16 +2,17 @@
 import { useState } from "react";
 
 const logoSources: Record<string, string> = {
-  chatgpt: "/manus-storage/chatgpt_45afef68.svg",
-  claude: "/manus-storage/claude_17fe10b6.svg",
-  gemini: "/manus-storage/gemini_100d576c.svg",
-  manus: "/manus-storage/manus_ccbc9567.svg",
-  cursor: "/manus-storage/cursor_b27b77c7.svg",
-  canva: "/manus-storage/canva_49da2353.svg",
-  gamma: "/manus-storage/gamma_ad820713.png",
-  zapier: "/manus-storage/zapier_aa712b85.svg",
+  chatgpt: "/assets/logo-chatgpt.svg",
+  claude: "/assets/logo-claude.svg",
+  gemini: "/assets/logo-gemini.svg",
+  manus: "/assets/logo-manus.svg",
+  cursor: "/assets/logo-cursor.svg",
+  canva: "/assets/logo-canva.svg",
+  gamma: "/assets/logo-gamma.png",
+  zapier: "/assets/logo-zapier.svg",
 };
 
+// Vercel serves these files from the same origin; the CDN remains a last-resort fallback for cached deployments.
 const logoFallbackSources: Record<string, string> = {
   chatgpt: "https://cdn.simpleicons.org/openai/111827",
   claude: "https://cdn.simpleicons.org/anthropic/111827",
