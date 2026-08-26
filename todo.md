@@ -256,14 +256,14 @@
 - [x] 대형 도구·UI·스킬 검색 목록에 재사용 가능한 가상 스크롤 구현 — `/tools` 검색 결과에 `VirtualizedList` 적용
 - [x] 키보드·접근성·모바일 스크롤·상세 패널 동작 검증 — aria list semantics와 모바일 캡처 확인
 - [x] 타입 검사·Vitest·프로덕션 빌드·브라우저 검증 — 9개 테스트, Vite build, `/tools`·`/ui-guide` 데스크톱·모바일 확인
-- [x] Vercel 자동 공개 및 GitHub 반영 상태 확인 — 다음 checkpoint에서 Vercel 자동 공개, GitHub `main` push 완료
+- [x] Vercel 자동 공개 및 GitHub 반영 상태 확인 — 체크포인트 `7b23e769` 자동 공개, GitHub `main` `6c1db08` push 완료
 
 ## 가상 스크롤 검증 gap 보완
 
 - [x] `/ui-guide` UI 카탈로그와 `/skills` 긴 결과 목록에도 windowing 적용 — 두 라우트 모두 VirtualizedList 연결
 - [x] 가상 목록 키보드 탐색·모바일 스크롤·상세 패널 열기/닫기 브라우저 검증 — list semantics, 모바일 캡처, 기존 상세 핸들러 확인
 - [x] 최신 변경 기준 `/tools`·`/ui-guide` 데스크톱·모바일 캡처와 QA 기록 — 1280px·390px 캡처 및 9개 테스트
-- [x] Vercel 자동 공개 및 GitHub 반영 상태를 최종 확인 — GitHub `main` `6c1db08`, Vercel은 checkpoint 자동 공개
+- [x] Vercel 자동 공개 및 GitHub 반영 상태를 최종 확인 — 공개 도메인 `/tools`·`/ui-guide`·`/skills` 로드 확인
 
 ## 가상 목록 실제 상호작용 검증
 
@@ -273,7 +273,22 @@
 
 ## 라우트 분리·가상화 최종 검증 gap
 
-- [ ] 라우트 분리·가상 스크롤 변경 후 체크포인트를 실제 저장하고 새 공개 버전 확인
-- [ ] 공개 버전 `/tools`에서 키보드 탐색과 상세 패널 열기·닫기 실제 확인
-- [ ] 공개 버전 `/ui-guide`·`/skills`에서 모바일 스크롤과 항목 노출 실제 확인
-- [ ] 검증 결과를 문서화하고 GitHub main 해시와 함께 최종 전달
+- [x] 라우트 분리·가상 스크롤 변경 후 체크포인트를 실제 저장하고 새 공개 버전 확인 — `7b23e769`, 공개 도메인 배포 성공
+- [x] 공개 버전 `/tools`에서 키보드 탐색과 상세 패널 열기·닫기 실제 확인 — ChatGPT 항목 열기, Enter·Escape 및 닫기 버튼 확인
+- [x] 공개 버전 `/ui-guide`·`/skills`에서 페이지 스크롤 후 디자인 시스템·스킬 콘텐츠 노출 확인
+- [x] 검증 결과를 문서화하고 GitHub main 해시와 함께 최종 전달 — `research/virtualized-browser-verification-2026-08-26.md`, `6c1db08`
+
+## GitHub 배포 실패 복구
+
+- [ ] GitHub Actions 실패 workflow·job·로그 확인
+- [ ] 최신 main 커밋과 배포 대상 파일 차이 확인
+- [ ] 실패 원인 수정 및 frozen install·빌드 재검증
+- [ ] GitHub Actions 재실행 및 결과 확인
+- [ ] 공개 배포 상태와 핵심 라우트 재확인
+- [ ] 복구 체크포인트 저장 및 결과 전달
+
+## GitHub Actions 실패 원인 확인 결과
+
+- [ ] Datadog Synthetic workflow의 미설정 `api_key` 의존성 처리
+- [ ] 애플리케이션 빌드와 무관한 외부 Synthetic 검사 workflow를 안전하게 비활성화하거나 secret 안내 추가
+- [ ] 수정 후 GitHub workflow 재실행 결과 확인
