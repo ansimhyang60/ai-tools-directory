@@ -1,0 +1,7 @@
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import { PageFrame } from "./GuideShared";
+
+export function PrinciplesPage() {
+  const rules = [["01", "개인정보를 지키기", "고객 명단과 기밀 문서는 익명화하고, AI가 만든 결과는 사람이 마지막에 확인합니다."], ["02", "작은 자동화부터", "대량 발송보다 내 업무 한 단계부터 시험합니다. 실패해도 되돌릴 수 있게 로그와 백업을 남깁니다."], ["03", "한 도구에 올인하지 않기", "조사·디자인·개발·배포는 각자 잘하는 도구로 나누면 결과를 설명하고 개선하기 쉽습니다."], ["04", "라이선스 확인하기", "GitHub 스킬과 오픈소스 코드는 저장소의 LICENSE와 사용 조건을 확인한 뒤 적용합니다."], ["05", "결과를 기록하기", "무엇을 입력했고 무엇이 바뀌었는지 남겨야 다음 사람이 다시 사용할 수 있습니다."]];
+  return <PageFrame active="/principles" kicker="FIELD NOTES / SAFETY" title={<>도구보다<br /><em>흐름이 먼저.</em></>}><section className="principles-page"><div className="principles-page-note"><ShieldCheck size={23} /><p>AI는 대신 결정하는 사람이 아니라, 사람이 더 빨리 시도하게 해주는 작업 파트너입니다.</p></div><div className="source-principles"><span>원문에서 가져온 실전 체크</span><div><p><strong>계획 먼저:</strong> 구현 전에 AI에게 요구사항·파일 구조·완료 조건을 다시 말하게 합니다.</p><p><strong>작게 검증:</strong> 한 번에 전체 앱을 만들지 않고 작은 기능·테스트·스크린샷을 반복합니다.</p><p><strong>비용·권한 관리:</strong> 토큰·API 키·외부 커넥터 권한을 필요한 범위로 제한하고, 발송·삭제·결제는 사람 승인을 둡니다.</p></div><div className="source-links"><a href="https://wikidocs.net/338128" target="_blank" rel="noreferrer">바이브 코딩 원문 <ArrowUpRight size={14} /></a><a href="https://wikidocs.net/340811" target="_blank" rel="noreferrer">프롬프트 원문 <ArrowUpRight size={14} /></a></div></div>{rules.map(([num, title, text]) => <article key={num}><span>{num}</span><div><h2>{title}</h2><p>{text}</p></div></article>)}</section></PageFrame>;
+}
