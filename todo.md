@@ -81,3 +81,17 @@
 - [x] 로컬 dev 서버와 Vercel 호환 빌드 검증
 - [x] Vercel용 UI 스타일 전반 개선 및 반응형 확인
 - [x] GitHub 자동 배포용 README·환경변수 안내 정리
+
+## Vercel 환경변수 등록 작업
+
+- [ ] 공유된 Vercel 프로젝트와 현재 로그인 상태 확인
+- [ ] 필요한 `VITE_` 환경변수 목록과 값의 출처 확인
+- [ ] 사용자 확인 후 환경변수 저장 및 적용 환경 선택
+- [ ] 재배포·빌드 결과와 사이트 동작 검증
+
+## Vercel Runtime 오류 수정
+
+- [x] Vercel 로그의 Function Runtime 오류 원인 확인
+- [x] `vercel.json` runtime 선언 수정 또는 제거
+- [x] GitHub main에 수정 push 후 자동 재배포 트리거
+- [ ] Vercel 최신 배포 성공 확인 및 환경변수 등록 재개
