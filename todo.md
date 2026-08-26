@@ -209,4 +209,4 @@
 - [x] `patches/wouter@3.7.1.patch` 누락 원인과 패치 설정 확인 — Docker 사전 install 단계 문제로 patchedDependencies 제거
 - [x] `package.json`·`pnpm-lock.yaml` specifier 불일치 해소 — frozen install 통과
 - [x] 타입 검사·Vitest·Vercel 빌드 재검증 — check, 7 tests, build:vercel 통과
-- [ ] 복구 체크포인트 저장 및 결과 기록
+- [x] 복구 체크포인트 저장 및 결과 기록 — 체크포인트 `d3a02326`, 개발 서버 running
