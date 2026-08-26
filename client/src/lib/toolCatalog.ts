@@ -1,6 +1,8 @@
 /* Generated from the repository's expanded public catalog; resource lists and model-only records are excluded. */
+import { aimattersTools } from "./aimattersTools";
+
 export type DirectoryTool = { id:number; slug:string; name:string; category:string; sourceCategory:string; description:string; useCase:string; tokenTip:string; promptStarter:string; pricing:string; source:string; verifiedAt:string; url:string; tags:string[] };
-export const directoryTools: DirectoryTool[] = [
+const baseDirectoryTools: DirectoryTool[] = [
   {
     "id": 1,
     "slug": "quickgpt-1",
@@ -12428,4 +12430,23 @@ export const directoryTools: DirectoryTool[] = [
     ]
   }
 ];
+
+const aimattersDirectoryTools: DirectoryTool[] = aimattersTools.map((tool, index) => ({
+  id: baseDirectoryTools.length + index + 1,
+  slug: tool.slug,
+  name: tool.name,
+  category: tool.category,
+  sourceCategory: "AimAtters AI Tool DB",
+  description: tool.description,
+  useCase: tool.useCase,
+  tokenTip: tool.tokenTip,
+  promptStarter: tool.promptStarter,
+  pricing: tool.pricing,
+  source: tool.source,
+  verifiedAt: tool.verifiedAt,
+  url: tool.url,
+  tags: tool.tags,
+}));
+
+export const directoryTools: DirectoryTool[] = [...baseDirectoryTools, ...aimattersDirectoryTools];
 export const directoryToolCategories = ['전체', ...Array.from(new Set(directoryTools.map((tool) => tool.category))).sort()];

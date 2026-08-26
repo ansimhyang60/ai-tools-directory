@@ -180,3 +180,13 @@
 - [x] fullstack 타입 검사·6개 테스트·Vercel 빌드 검증
 - [x] GitHub `main`에 커밋 `ae61edc` push
 - [x] GitHub Actions 수동 실행(`32928802443`)에서 feed refresh job 성공 확인
+
+## 외부 AI 도구·디자인 시스템 출처 통합
+
+- [x] `aimatters.co.kr/ai-tool/ai-tool-db/`의 실제 도구 목록·공식 URL·카테고리·중복 여부 조사
+- [x] AimAtters 출처를 기존 도구 레이어에 출처 메타데이터와 함께 통합
+- [x] `component.gallery/design-systems/`의 디자인 시스템 목록·설명·공식 링크 조사
+- [x] `/ui-guide`에 디자인 시스템 참고 섹션과 검색·필터·외부 링크 추가
+- [x] 기존 Paper + Pixel Atlas UI와 새 참고 콘텐츠의 시각·반응형 통일
+- [x] 타입 검사·Vitest·프로덕션 빌드·대표 화면 검증 — 9개 테스트 통과, `/ui-guide` 데스크톱·모바일 캡처 완료
+- [ ] GitHub main 동기화 및 체크포인트 저장
