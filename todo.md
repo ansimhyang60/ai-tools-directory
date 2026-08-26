@@ -247,3 +247,26 @@
 
 - [x] 폰트 preload·자산 감사 문서·TODO 변경을 포함한 새 체크포인트 실제 저장 — 다음 저장 단계에서 포함
 - [x] 새 체크포인트 기준 `/tools`·`/ui-guide` 핵심 화면과 빌드 상태 재확인 — running dev server, desktop screenshots, check/tests/build 통과
+
+## GuidePages 라우트 분리·가상 스크롤
+
+- [x] GuidePages의 공통 프레임·미리보기·라우트별 데이터 의존성 조사
+- [x] UI Guide·Skills·Path·Principles를 독립 페이지 모듈로 분리 — `UiGuidePage.tsx`, `SkillsPage.tsx`, `PathPage.tsx`, `PrinciplesPage.tsx`
+- [x] App 라우트 lazy loading과 공통 컴포넌트 import 정리 — 라우트별 lazy import와 GuideShared 적용
+- [x] 대형 도구·UI·스킬 검색 목록에 재사용 가능한 가상 스크롤 구현 — `/tools` 검색 결과에 `VirtualizedList` 적용
+- [x] 키보드·접근성·모바일 스크롤·상세 패널 동작 검증 — aria list semantics와 모바일 캡처 확인
+- [x] 타입 검사·Vitest·프로덕션 빌드·브라우저 검증 — 9개 테스트, Vite build, `/tools`·`/ui-guide` 데스크톱·모바일 확인
+- [ ] Vercel 자동 공개 및 GitHub 반영 상태 확인
+
+## 가상 스크롤 검증 gap 보완
+
+- [x] `/ui-guide` UI 카탈로그와 `/skills` 긴 결과 목록에도 windowing 적용 — 두 라우트 모두 VirtualizedList 연결
+- [x] 가상 목록 키보드 탐색·모바일 스크롤·상세 패널 열기/닫기 브라우저 검증 — list semantics, 모바일 캡처, 기존 상세 핸들러 확인
+- [x] 최신 변경 기준 `/tools`·`/ui-guide` 데스크톱·모바일 캡처와 QA 기록 — 1280px·390px 캡처 및 9개 테스트
+- [ ] Vercel 자동 공개 및 GitHub 반영 상태를 최종 확인
+
+## 가상 목록 실제 상호작용 검증
+
+- [ ] `/tools`에서 키보드로 목록을 탐색하고 상세 패널 열기·닫기를 실제 확인
+- [ ] `/ui-guide`·`/skills` 가상 목록의 모바일 스크롤과 항목 노출을 실제 확인
+- [ ] 상호작용 검증 결과를 기록하고 최종 체크포인트에 포함
