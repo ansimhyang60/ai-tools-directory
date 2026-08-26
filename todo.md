@@ -170,3 +170,13 @@
 - [x] 비-cron 요청은 실제 HTTP 404 JSON으로 차단되고 Vercel Cron 헤더 요청은 실제 HTTP 200 JSON으로 응답하는지 검증
 - [x] live tRPC JSON 응답과 정적 fallback이 모두 준비되고 API 데이터가 우선 표시되는지 코드·HTTP로 확인
 - [ ] 24건 초과 실데이터 확보 후 2페이지 이동을 브라우저에서 추가 확인
+
+## GitHub 자동 feed 갱신
+
+- [x] 공식 RSS 수집 스크립트와 로컬 `archive:refresh` 명령 추가
+- [x] 수집 실패 시 검수된 공식 초기 4건을 보존하도록 보호
+- [x] `archiveFeed`를 아카이브 fallback 원본으로 연결
+- [x] 매일 실행되는 GitHub Actions workflow 추가
+- [x] fullstack 타입 검사·6개 테스트·Vercel 빌드 검증
+- [x] GitHub `main`에 커밋 `ae61edc` push
+- [ ] GitHub Actions 첫 scheduled run에서 실제 새 feed 확인
