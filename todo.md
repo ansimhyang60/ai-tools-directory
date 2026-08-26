@@ -202,3 +202,11 @@
 - [x] 미리보기 장식 요소 aria-hidden 및 키보드 포커스 제외
 - [x] 타입 검사·7개 테스트·Vercel 빌드 통과
 - [x] GitHub main 동기화 및 신규 체크포인트 저장 — 최신 커밋 `20a75a7`
+
+## 개발 서버 및 배포 빌드 장애 복구
+
+- [x] 응답하지 않는 개발 서버 재시작 및 상태 확인 — localhost health/home HTTP 200
+- [x] `patches/wouter@3.7.1.patch` 누락 원인과 패치 설정 확인 — Docker 사전 install 단계 문제로 patchedDependencies 제거
+- [x] `package.json`·`pnpm-lock.yaml` specifier 불일치 해소 — frozen install 통과
+- [x] 타입 검사·Vitest·Vercel 빌드 재검증 — check, 7 tests, build:vercel 통과
+- [ ] 복구 체크포인트 저장 및 결과 기록
