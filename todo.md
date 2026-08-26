@@ -102,3 +102,12 @@
 - [ ] 저장소 전체의 `runtime`, `builds`, `now.json`, 중복 `vercel.json` 검색
 - [ ] Vercel Root Directory·Framework 설정 충돌 확인
 - [ ] 필요한 경우 runtime 관련 설정을 완전히 제거하고 재배포
+
+## Vercel 이미지·UX 보완
+
+- [ ] 고정 Vercel 주소에서 깨지는 이미지 URL 전체 검색
+- [ ] Vercel 독립 자산 경로와 이미지 fallback 적용
+- [ ] API 로딩 애니메이션과 에러 메시지 UI 추가
+- [ ] 메인 버튼 hover·focus·active 인터랙션 보완
+- [ ] 모바일 이미지 비율·간격·내비게이션 검증
+- [ ] 고정 Vercel 주소 기준 배포 확인
