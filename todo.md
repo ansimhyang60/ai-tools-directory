@@ -179,4 +179,4 @@
 - [x] 매일 실행되는 GitHub Actions workflow 추가
 - [x] fullstack 타입 검사·6개 테스트·Vercel 빌드 검증
 - [x] GitHub `main`에 커밋 `ae61edc` push
-- [ ] GitHub Actions 첫 scheduled run에서 실제 새 feed 확인
+- [x] GitHub Actions 수동 실행(`32928802443`)에서 feed refresh job 성공 확인
