@@ -111,3 +111,10 @@
 - [ ] 메인 버튼 hover·focus·active 인터랙션 보완
 - [ ] 모바일 이미지 비율·간격·내비게이션 검증
 - [ ] 고정 Vercel 주소 기준 배포 확인
+
+## API health 연결 오류 재수정
+
+- [ ] `/api/health` 함수의 현재 export·응답 형식 확인
+- [ ] Vercel 기본 Node.js handler 형식으로 health 함수 수정
+- [ ] `/api` routes 설정과 실제 배포 경로 검증
+- [ ] 성공 시 상태 UI 문구와 실패 시 안내 문구 재확인
