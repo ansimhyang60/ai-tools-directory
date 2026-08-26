@@ -745,7 +745,7 @@ body { background:var(--paper); color:var(--ink); }
 .tool-profile-card { background:#FFFFFF; border-color:#CBD5E1; border-radius:12px; box-shadow:var(--ui-shadow); }
 .tool-profile-card:hover { border-color:#9EB7EE; transform:translateY(-3px); }
 .tool-profile-card.is-selected { border-color:var(--tomato); box-shadow:0 12px 30px rgba(232,93,72,.16); }
-.standalone-tool-list { border-top:2px solid var(--ink); }
+
 .standalone-tool-row { background:#FFFFFF; border-bottom-color:#DFE5EC; }
 .standalone-tool-row:hover { background:#EEF4FF; }
 .dataset-explainer { background:#FFF0EB; border-left-color:var(--tomato); color:#4B5565; border-radius:0 8px 8px 0; }
@@ -987,3 +987,20 @@ body { background:var(--paper); color:var(--ink); }
 .detail-price-unverified { color:var(--muted); font-size:11px; font-weight:700; }
 @media (max-width:900px) { .design-system-toolbar { align-items:start; } .design-system-difficulty { justify-content:flex-start; } }
 @media (max-width:620px) { .design-system-preview { margin-top:12px; } }
+
+/* Rendering budget: keep long directory pages responsive without changing layout. */
+.standalone-tool-list > * {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 84px;
+}
+.design-system-grid > * {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 280px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .standalone-tool-row,
+  .tool-profile-card,
+  .design-system-card {
+    transition: none !important;
+  }
+}

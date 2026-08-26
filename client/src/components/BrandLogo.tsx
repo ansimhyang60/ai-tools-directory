@@ -40,5 +40,5 @@ export default function BrandLogo({ name, compact = false }: { name: string; com
   const [source, setSource] = useState(logoSources[key]);
   const fallbackSource = logoFallbackSources[key];
   if (!source) return <span className={`brand-logo-fallback ${compact ? "is-compact" : ""}`} aria-label={`${name} 로고`}>{name.slice(0, 2).toUpperCase()}</span>;
-  return <span className={`brand-logo ${compact ? "is-compact" : ""}`}><img src={source} alt={logoLabels[key] || `${name} 로고`} onError={() => setSource((current) => current === fallbackSource ? "" : fallbackSource || "")} /></span>;
+  return <span className={`brand-logo ${compact ? "is-compact" : ""}`}><img src={source} alt={logoLabels[key] || `${name} 로고`} loading="lazy" decoding="async" onError={() => setSource((current) => current === fallbackSource ? "" : fallbackSource || "")} /></span>;
 }

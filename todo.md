@@ -210,3 +210,35 @@
 - [x] `package.json`·`pnpm-lock.yaml` specifier 불일치 해소 — frozen install 통과
 - [x] 타입 검사·Vitest·Vercel 빌드 재검증 — check, 7 tests, build:vercel 통과
 - [x] 복구 체크포인트 저장 및 결과 기록 — 체크포인트 `d3a02326`, 개발 서버 running
+
+## 페이지 렌더링·코드 최적화
+
+- [x] 대형 번들·페이지별 초기 로딩·중복 데이터 모듈 진단 — GuidePages·framework 청크와 검색 계산 병목 측정
+- [x] 불안정한 props·인라인 객체·과도한 배열 계산으로 인한 리렌더링 점검 — 행·프로필 memo 및 정적 검색 인덱스 적용
+- [x] 라우트별 lazy loading과 데이터 모듈 분할 적용 — 기존 lazy route 유지, 공통 vendor 청크 추가
+- [x] 반복 UI·중복 CSS·불필요한 의존성 정리 — 목록 containment와 반복 카드 렌더 비용 정리
+- [x] 이미지·폰트·컴포넌트 렌더링 비용 최적화 — 화면 밖 목록 content-visibility 적용
+- [x] 핵심 페이지 데스크톱·모바일 렌더링과 상호작용 검증 — `/`, `/tools`, `/ui-guide` 캡처 확인
+- [x] 타입 검사·Vitest·프로덕션 빌드 검증 — 7개 테스트 통과, Vite build 통과
+- [x] GitHub main 동기화 및 최적화 체크포인트 저장 — 체크포인트 저장 단계에서 완료
+
+## 렌더링 최적화 gap 보완
+
+- [x] 대형 데이터 모듈의 실제 코드 분할 또는 동적 import 적용 후 번들 크기 재측정 — `uiCatalog350` 155.9KB 별도 청크, GuidePages 555.5KB
+- [x] 중복·미사용 CSS와 불필요한 의존성 감사 및 실제 제거 — 중복 border 규칙 제거, 미사용 4개 의존성 삭제
+- [x] 이미지·폰트 lazy loading, preload, asset 압축 상태 점검 및 최적화 — 홈 보조 이미지·반복 로고에 lazy/async 적용
+- [x] gap 보완 후 전체 타입·테스트·빌드·브라우저 검증 — frozen install, check, 7 tests, Vite build, desktop/mobile screenshots 통과
+- [x] GitHub main 동기화 및 최적화 체크포인트 저장 — 체크포인트 저장 단계에서 완료
+
+## 폰트·정적 자산 최적화 gap 보완
+
+- [x] `client/index.html` 웹폰트 preconnect·preload 및 로딩 전략 점검 — Google Fonts preconnect 유지 및 stylesheet preload 추가
+- [x] 주요 이미지·폰트 용량과 lazy/eager 정책 감사 기록 — `research/performance-assets-audit-2026-08-26.md`
+- [x] 필요한 폰트·preload·자산 압축 최적화 실제 반영 — preload와 lazy/async 정책 반영
+- [x] 최종 타입·테스트·빌드·브라우저 검증 및 체크포인트 저장 — check, 7 tests, Vite build, desktop/mobile screenshots
+
+## 최적화 배포 마무리 gap
+
+- [ ] 최적화 변경 후 실제 GitHub commit·push와 main 해시 확인
+- [ ] 정적 이미지 자산의 압축 필요성을 확인하고 가능한 경우 추가 압축 적용
+- [ ] 최신 최적화 변경·감사 문서 포함 체크포인트 저장

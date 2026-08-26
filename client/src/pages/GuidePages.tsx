@@ -1,8 +1,8 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowUpRight, BookOpen, ChevronRight, Home as HomeIcon, Search, ShieldCheck, Sparkles } from "lucide-react";
 import { Link } from "wouter";
 import { uiGuides } from "@/lib/uiGuides";
-import { uiCatalog350, type UiCatalogEntry } from "@/lib/uiCatalog350";
+import type { UiCatalogEntry } from "@/lib/uiCatalog350";
 import { skills, skillCategories } from "@/lib/skills";
 import { skills300 } from "@/lib/skills300";
 import { designSystemReferences, type DesignSystemReference } from "@/lib/designSystems";
@@ -25,13 +25,15 @@ function UiCatalogRow({ item }: { item: UiCatalogEntry }) {
 }
 
 export function UiGuidePage() {
+  const [uiCatalog, setUiCatalog] = useState<UiCatalogEntry[]>([]);
+  useEffect(() => { import("@/lib/uiCatalog350").then(({ uiCatalog350 }) => setUiCatalog(uiCatalog350)); }, []);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("전체");
   const [systemQuery, setSystemQuery] = useState("");
   const [systemTech, setSystemTech] = useState("전체");
   const [systemDifficulty, setSystemDifficulty] = useState("전체");
-  const catalogCategories = useMemo(() => ["전체", ...Array.from(new Set(uiCatalog350.map((item) => item.category)))], []);
-  const filtered = useMemo(() => { const term = query.trim().toLowerCase(); return uiCatalog350.filter((item) => (category === "전체" || item.category === category) && (!term || [item.name, item.category, item.location, item.purpose, item.example, item.tools].join(" ").toLowerCase().includes(term))); }, [query, category]);
+  const catalogCategories = useMemo(() => ["전체", ...Array.from(new Set(uiCatalog.map((item) => item.category)))], []);
+  const filtered = useMemo(() => { const term = query.trim().toLowerCase(); return uiCatalog.filter((item) => (category === "전체" || item.category === category) && (!term || [item.name, item.category, item.location, item.purpose, item.example, item.tools].join(" ").toLowerCase().includes(term))); }, [query, category]);
   const systemTechs = useMemo(() => ["전체", ...Array.from(new Set(designSystemReferences.flatMap((item) => item.tech)))], []);
   const systemDifficulties = ["전체", "초급", "중급", "고급"];
   const filteredSystems = useMemo(() => { const term = systemQuery.trim().toLowerCase(); return designSystemReferences.filter((item) => (systemTech === "전체" || item.tech.includes(systemTech)) && (systemDifficulty === "전체" || item.difficulty === systemDifficulty) && (!term || [item.name, item.owner, item.platform, item.tech.join(" "), item.features.join(" ")].join(" ").toLowerCase().includes(term))); }, [systemQuery, systemTech, systemDifficulty]);
