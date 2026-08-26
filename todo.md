@@ -95,3 +95,10 @@
 - [x] `vercel.json` runtime 선언 수정 또는 제거
 - [x] GitHub main에 수정 push 후 자동 재배포 트리거
 - [ ] Vercel 최신 배포 성공 확인 및 환경변수 등록 재개
+
+## 반복 Vercel Runtime 오류 재점검
+
+- [ ] 최신 GitHub 커밋과 Vercel 실패 배포 커밋 비교
+- [ ] 저장소 전체의 `runtime`, `builds`, `now.json`, 중복 `vercel.json` 검색
+- [ ] Vercel Root Directory·Framework 설정 충돌 확인
+- [ ] 필요한 경우 runtime 관련 설정을 완전히 제거하고 재배포
