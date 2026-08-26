@@ -694,3 +694,12 @@ h1 em, h2 em, .inner-page > .inner-hero h1 em { color:var(--tomato) !important; 
   .skill-directory-intro { grid-template-columns:1fr; gap:18px; padding:24px; }
   .skill-directory-intro a { grid-column:auto; }
 }
+
+
+/* Route loading is intentionally calm and explicit; it avoids a blank or frozen-looking detail transition. */
+.route-loading { min-height:100vh; display:grid; place-content:center; gap:14px; padding:32px; background:var(--paper); color:var(--ink); text-align:center; }
+.route-loading span { color:var(--tomato); font:700 10px/1 var(--display); letter-spacing:.16em; }
+.route-loading strong { font-family:var(--display); font-size:clamp(23px,4vw,36px); letter-spacing:-.05em; }
+.detail-backdrop { cursor:default; }
+.detail-panel { overflow-y:auto; overscroll-behavior:contain; }
+.detail-panel button, .detail-panel a { position:relative; z-index:1; }
