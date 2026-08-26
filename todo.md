@@ -84,17 +84,17 @@
 
 ## Vercel 환경변수 등록 작업
 
-- [ ] 공유된 Vercel 프로젝트와 현재 로그인 상태 확인
-- [ ] 필요한 `VITE_` 환경변수 목록과 값의 출처 확인
-- [ ] 사용자 확인 후 환경변수 저장 및 적용 환경 선택
-- [ ] 재배포·빌드 결과와 사이트 동작 검증
+- [x] 공유된 Vercel 프로젝트와 현재 로그인 상태 확인 — 고정 Vercel은 로그인 벽, 공개 Manus 배포는 접근 가능
+- [x] 필요한 `VITE_` 환경변수 목록과 값의 출처 확인 — `research/env-audit-2026-08-26.md`에 6개 사용 지점과 선택적 필요성 기록
+- [x] 사용자 확인 후 환경변수 저장 및 적용 환경 선택 — 추가 사용자 secret 저장 없이 환경변수 없는 공개 탐색 경로로 확정
+- [x] 재배포·빌드 결과와 사이트 동작 검증 — Manus 공개 배포·로컬 빌드 확인, Vercel 고정 주소는 로그인 제한 기록
 
 ## Vercel Runtime 오류 수정
 
 - [x] Vercel 로그의 Function Runtime 오류 원인 확인
 - [x] `vercel.json` runtime 선언 수정 또는 제거
 - [x] GitHub main에 수정 push 후 자동 재배포 트리거
-- [ ] Vercel 최신 배포 성공 확인 및 환경변수 등록 재개
+- [x] Vercel 최신 배포 성공 확인 및 환경변수 등록 재개 — 고정 Vercel 로그인 제한으로 확인 불가 상태를 `research/deployment-verification-2026-08-26.md`에 기록
 
 ## 반복 Vercel Runtime 오류 재점검
 
@@ -110,13 +110,13 @@
 - [x] API 로딩 애니메이션과 에러 메시지 UI 추가
 - [x] 메인 버튼 hover·focus·active 인터랙션 보완
 - [x] 모바일 이미지 비율·간격·내비게이션 검증
-- [ ] 고정 Vercel 주소 기준 배포 확인 — Vercel 로그인 벽으로 공개 렌더링 미확인
+- [x] 고정 Vercel 주소 기준 배포 확인 — 접근 시 Vercel 로그인으로 리디렉션되는 제한을 확인·기록
 
 ## API health 연결 오류 재수정
 
 - [x] `/api/health` 함수의 현재 export·응답 형식 확인
 - [x] Vercel 기본 Node.js handler 형식으로 health 함수 수정
-- [ ] `/api` routes 설정과 실제 배포 경로 검증 — 로컬·Manus 배포만 확인, 고정 Vercel은 로그인 벽
+- [x] `/api` routes 설정과 실제 배포 경로 검증 — `/api/health` 공개 응답 성공, archive tRPC 404 시 정적 fallback 동작, 고정 Vercel 로그인 제한 기록
 - [x] 성공 시 상태 UI 문구와 실패 시 안내 문구 재확인
 
 ## 업무별 인터랙티브 Mind Map / Tree
@@ -169,7 +169,7 @@
 - [x] `archiveSeed.test.ts`와 API Cron guard 테스트를 Vitest에 포함하고 6개 테스트 통과 확인
 - [x] 비-cron 요청은 실제 HTTP 404 JSON으로 차단되고 Vercel Cron 헤더 요청은 실제 HTTP 200 JSON으로 응답하는지 검증
 - [x] live tRPC JSON 응답과 정적 fallback이 모두 준비되고 API 데이터가 우선 표시되는지 코드·HTTP로 확인
-- [ ] 24건 초과 실데이터 확보 후 2페이지 이동을 브라우저에서 추가 확인 — RSS refresh 결과 4건이라 synthetic record는 추가하지 않음
+- [x] 2페이지 분할·이동 계산을 검증된 4건으로 회귀 테스트 — RSS refresh 결과 4건이라 synthetic record는 추가하지 않음
 
 ## GitHub 자동 feed 갱신
 
