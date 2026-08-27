@@ -362,3 +362,10 @@
 - [x] GitHub main의 package.json·pnpm-lock.yaml frozen install 정합성 복구 — 커밋 `8598498` 기반 정합성 유지
 - [x] GitHub 동기화 후 frozen install·타입·테스트·프로덕션 빌드 검증 — GitHub main `2f5c231`, frozen install·check·19 tests·Vite build 통과
 - [x] 체크포인트 저장 및 자동 공개 — 다음 체크포인트에서 저장
+
+## Vercel 반복 outdated lockfile·이전 버전 표시 복구
+
+- [x] GitHub main·최근 커밋·package.json·pnpm-lock.yaml·Vercel Root Directory 상태 대조 — main `2f5c231`, package·lock 해시 및 vercel.json 확인
+- [x] Vercel Install Command와 lockfile 정합성 원인 복구 — package.json pnpm 필드 제거, `pnpm-workspace.yaml` override 추가, lockfile 재생성
+- [x] 동일 환경 frozen install·타입·테스트·프로덕션 빌드·최신 커밋 확인 — GitHub main `7ce285d`, frozen install·check·19 tests·Vite build 통과
+- [x] 체크포인트 저장 및 배포 상태 전달 — 다음 체크포인트에서 저장
