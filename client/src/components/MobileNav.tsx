@@ -9,12 +9,18 @@ export default function MobileNav({ active }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const [location] = useLocation();
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const initialLocationRef = useRef(location);
   const openedRef = useRef(false);
   const close = () => setOpen(false);
 
   useEffect(() => {
-    close();
+    if (initialLocationRef.current !== location) close();
   }, [location]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   useEffect(() => {
     if (!open) {
