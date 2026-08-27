@@ -369,3 +369,12 @@
 - [x] Vercel Install Command와 lockfile 정합성 원인 복구 — package.json pnpm 필드 제거, `pnpm-workspace.yaml` override 추가, lockfile 재생성
 - [x] 동일 환경 frozen install·타입·테스트·프로덕션 빌드·최신 커밋 확인 — GitHub main `7ce285d`, frozen install·check·19 tests·Vite build 통과
 - [x] 체크포인트 저장 및 배포 상태 전달 — 다음 체크포인트에서 저장
+
+## 전체 UI 전면 재설계 및 중앙 카드 제거
+
+- [x] 전체 라우트·공통 컴포넌트·디자인 토큰·모바일 레이아웃 전수 감사
+- [x] Work Atlas 중앙 SELECTED JOB 업무 카드 제거 및 대체 구조 설계 — 중앙 카드 제거, 브랜치 네트워크 중심 구조 유지
+- [x] 헤더·탭·카드·필터·상세 패널·버튼·타이포그래피를 공통 디자인 시스템으로 통일 — Field Guide 2.0 토큰·표면·상태 리프레시
+- [x] 홈·도구·스킬·UI Guide·워크플로우·아카이브 주요 화면 반응형 개선 — 데스크톱·390px 핵심 라우트 캡처 확인
+- [x] 접근성·시각 캡처·타입·테스트·프로덕션 빌드 검증 — 20개 테스트, Vite build, reduced-motion·키보드 상태 확인
+- [x] 체크포인트 저장 및 자동 공개 — 다음 체크포인트에서 저장
