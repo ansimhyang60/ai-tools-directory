@@ -36,7 +36,7 @@ export async function refreshArchive() {
   let inserted = 0;
   for (const seed of officialSeeds) { await upsertArchiveItem({ ...seed, contentHash: hashFor(seed), lastSeenAt: new Date(), createdAt: new Date(), updatedAt: new Date() }); inserted += 1; }
   for (const source of rssSources) {
-    try { const response = await fetch(source.url, { signal: AbortSignal.timeout(12_000), headers: { "user-agent": "AI100-ArchiveBot/1.0 (+official-source-index)" } }); if (!response.ok) continue; const items = parseRss(await response.text(), source); for (const item of items) { await upsertArchiveItem(item); inserted += 1; } }
+    try { const response = await fetch(source.url, { signal: AbortSignal.timeout(12_000), headers: { "user-agent": "AI-Guide-ArchiveBot/1.0 (+official-source-index)" } }); if (!response.ok) continue; const items = parseRss(await response.text(), source); for (const item of items) { await upsertArchiveItem(item); inserted += 1; } }
     catch (error) { console.warn(`[Archive] source refresh skipped: ${source.url}`, error); }
   }
   return { inserted, sources: rssSources.length, seeded: officialSeeds.length, refreshedAt: new Date().toISOString() };

@@ -5,6 +5,7 @@ import { ArrowUpRight, BarChart3, Boxes, BriefcaseBusiness, Check, Code2, Copy, 
 import { workflowPrompts } from "@/lib/workflows";
 import { accountingWorkflowPrompts, advancedBusinessWorkflowPrompts, excelAutomationWorkflowPrompts, extraWorkflowPrompts } from "@/lib/workflowsExtra";
 import { PageFrame } from "./GuidePages";
+import { BRAND_NAME } from "@/lib/brand";
 
 const popularWorkflowTags = ["재고", "CRM", "ERP", "엑셀 자동화", "메일", "홈페이지", "데이터 분석", "경리"];
 
@@ -52,7 +53,7 @@ const roadmapByCategory: Record<string, { title: string; description: string; st
     { label: "05 반복", title: "성과·건강도 주간 리뷰", prompt: "접촉수·응답·문의·전환·이탈 신호를 전주와 비교하고 사실·가설·다음 실험을 나눠 CRM 운영 리뷰로 작성해줘.", checklist: ["기간과 지표 정의가 같은가요?", "인과관계를 단정하지 않았나요?", "다음 실험이 작고 측정 가능한가요?"], next: "다음 주 초안 단계에서 최신 CRM 자료를 반영하세요." },
   ] },
 };
-const sourceById: Record<string, string> = Object.fromEntries(allWorkflowPrompts.map((item) => [item.id, "AI/100 공개 프롬프트 카탈로그"]));
+const sourceById: Record<string, string> = Object.fromEntries(allWorkflowPrompts.map((item) => [item.id, `${BRAND_NAME} 공개 프롬프트 카탈로그`]));
 const roleByCategory: Record<string, string> = {
   "업무 자동화": "반복 업무를 안전하게 설계하는 업무 자동화 담당자",
   "엑셀 자동화": "엑셀과 데이터 정리를 돕는 실무 자동화 담당자",

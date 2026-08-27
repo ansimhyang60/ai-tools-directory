@@ -6,6 +6,7 @@ import { skills } from "./skills";
 import { workflowPrompts } from "./workflows";
 import { accountingWorkflowPrompts, advancedBusinessWorkflowPrompts, excelAutomationWorkflowPrompts, extraWorkflowPrompts } from "./workflowsExtra";
 import { popularTools } from "./popularTools";
+import { BRAND_NAME } from "./brand";
 
 export type SearchKind = "AI 도구" | "SKILL" | "UI Guide" | "디자인 시스템" | "워크플로우" | "아카이브";
 export type SearchFilter = "전체" | SearchKind | "프롬프트";
@@ -78,9 +79,9 @@ export const globalSearchRecords: SearchRecord[] = [
     meta: `${item.category} · ${item.location}`,
     tags: [item.category, item.location, item.pattern, item.example, item.tools],
     href: `/ui-guide#pattern-${item.id}`,
-    source: "AI/100 UI Guide 원문 카탈로그",
+    source: `${BRAND_NAME} UI Guide 원문 카탈로그`,
     popularity: 0,
-    trustScore: trustFor("UI Guide", "AI/100 UI Guide 원문 카탈로그"),
+    trustScore: trustFor("UI Guide", `${BRAND_NAME} UI Guide 원문 카탈로그`),
   })),
   ...designSystemReferences.map((system) => ({
     id: `design:${system.name}`,
@@ -102,9 +103,9 @@ export const globalSearchRecords: SearchRecord[] = [
     meta: `${workflow.category} · ${workflow.tools.join(" · ")}`,
     tags: [workflow.category, ...workflow.tools, workflow.background, workflow.request, workflow.output],
     href: `/workflows/${workflow.id}`,
-    source: "AI/100 공개 프롬프트 카탈로그",
+    source: `${BRAND_NAME} 공개 프롬프트 카탈로그`,
     popularity: 0,
-    trustScore: trustFor("워크플로우", "AI/100 공개 프롬프트 카탈로그"),
+    trustScore: trustFor("워크플로우", `${BRAND_NAME} 공개 프롬프트 카탈로그`),
     isPrompt: true,
   })),
   ...archiveFeed.map((item) => ({

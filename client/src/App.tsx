@@ -17,7 +17,7 @@ const PrinciplesPage = lazy(() => import("./pages/PrinciplesPage").then((module)
 const GlobalSearchPage = lazy(() => import("./pages/GlobalSearchPage").then((module) => ({ default: module.GlobalSearchPage })));
 
 function Router() {
-  return <Suspense fallback={<div className="route-loading" role="status"><span>FIELD GUIDE / LOADING</span><strong>잠시만요, 화면을 펼치는 중입니다.</strong></div>}><Switch><Route path="/" component={Home} /><Route path="/workflows" component={WorkflowsPage} /><Route path="/tools" component={ToolsPage} /><Route path="/workflows/:id" component={WorkflowDetailPage} /><Route path="/ui-guide" component={UiGuidePage} /><Route path="/skills" component={SkillsPage} /><Route path="/path" component={PathPage} /><Route path="/principles" component={PrinciplesPage} /><Route path="/search" component={GlobalSearchPage} /><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch></Suspense>;
+  return <Suspense fallback={<div className="route-loading" role="status"><span>AI 활용 가이드 / LOADING</span><strong>잠시만요, 화면을 펼치는 중입니다.</strong></div>}><Switch><Route path="/" component={Home} /><Route path="/workflows" component={WorkflowsPage} /><Route path="/tools" component={ToolsPage} /><Route path="/workflows/:id" component={WorkflowDetailPage} /><Route path="/ui-guide" component={UiGuidePage} /><Route path="/skills" component={SkillsPage} /><Route path="/path" component={PathPage} /><Route path="/principles" component={PrinciplesPage} /><Route path="/search" component={GlobalSearchPage} /><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch></Suspense>;
 }
 
 export default function App() {

@@ -1228,3 +1228,9 @@ body { background:var(--paper); color:var(--ink); }
 .global-search-trust { color:#596170; white-space:nowrap; }
 @media (max-width:900px) { .global-search-toolbar { align-items:stretch; } .global-search-sort { order:2; } .global-search-result-count { order:3; } }
 @media (max-width:680px) { .global-search-trigger-wrap { z-index:50; } .global-search-suggestions { position:fixed; top:70px; right:16px; width:min(330px, calc(100vw - 32px)); } .global-search-suggestions-large { position:absolute; top:calc(100% + 8px); right:0; left:0; width:100%; } .global-search-sort { margin-top:18px; } .global-search-sort button { flex:1; } .global-search-trust { display:none; } }
+
+/* AI 활용 가이드 brand lockup: the compact mark keeps the Korean name legible at every breakpoint. */
+.brand-mark-text { display:grid; place-items:center; width:32px; height:32px; flex:0 0 32px; border:1px solid var(--ink); border-radius:50%; background:var(--paper); color:var(--cobalt); font-family:var(--display); font-size:14px; font-weight:800; letter-spacing:-.08em; line-height:1; }
+.stamp-main { white-space:nowrap; }
+.stamp-caption { white-space:nowrap; }
+@media (max-width:760px) { .brand-mark-text { width:26px; height:26px; flex-basis:26px; font-size:12px; } }
