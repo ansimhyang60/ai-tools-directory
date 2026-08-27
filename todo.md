@@ -346,3 +346,10 @@
 - [x] 활성 메뉴 색상·테두리·번호 표식·현재 위치 라벨 구현
 - [x] 라우트별 열린 메뉴 캡처·접근성·타입·테스트·프로덕션 빌드 검증 — 16개 테스트, `/tools` 열린 상태 캡처, Vite build 통과
 - [x] 체크포인트 저장 및 자동 공개 — 다음 체크포인트에서 저장
+
+## Vercel frozen lockfile 설치 실패 복구
+
+- [x] 배포 설정·package.json·pnpm-lock.yaml·패치 상태와 설치 실패 원인 진단 — GitHub main `b7da8dd`의 lockfile importer와 package.json specifier 불일치 재현
+- [x] 의존성·lockfile·Vercel 설정 정합성 복구 — 검증된 package·lockfile을 GitHub main에 `8598498`로 동기화, Vercel 설정 유지
+- [x] frozen install·타입·테스트·프로덕션 빌드·배포 준비 검증 — GitHub clone에서 frozen install, check, 16개 Vitest, Vite build 통과
+- [x] 체크포인트 저장 및 자동 공개 — 다음 체크포인트에서 저장
