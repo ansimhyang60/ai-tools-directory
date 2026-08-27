@@ -1,5 +1,6 @@
 /* Generated from the repository's expanded public catalog; resource lists and model-only records are excluded. */
 import { aimattersTools } from "./aimattersTools";
+import { googleLabsTools } from "./googleLabsTools";
 
 export type DirectoryTool = { id:number; slug:string; name:string; category:string; sourceCategory:string; description:string; useCase:string; tokenTip:string; promptStarter:string; pricing:string; source:string; verifiedAt:string; url:string; pricingUrl?: string; tags:string[] };
 const baseDirectoryTools: DirectoryTool[] = [
@@ -12450,5 +12451,16 @@ const aimattersDirectoryTools: DirectoryTool[] = aimattersTools.map((tool, index
   tags: tool.tags,
 }));
 
-export const directoryTools: DirectoryTool[] = [...baseDirectoryTools, ...aimattersDirectoryTools];
+const existingDirectoryTools: DirectoryTool[] = [...baseDirectoryTools, ...aimattersDirectoryTools];
+const googleLabsByName = new Map(googleLabsTools.map((tool) => [tool.name, tool]));
+const mergedExistingDirectoryTools = existingDirectoryTools.map((tool) => {
+  const update = googleLabsByName.get(tool.name);
+  return update ? { ...tool, ...update, id: tool.id } : tool;
+});
+const existingDirectoryNames = new Set(existingDirectoryTools.map((tool) => tool.name));
+const newGoogleLabsTools = googleLabsTools
+  .filter((tool) => !existingDirectoryNames.has(tool.name))
+  .map((tool, index) => ({ ...tool, id: existingDirectoryTools.length + index + 1 }));
+
+export const directoryTools: DirectoryTool[] = [...mergedExistingDirectoryTools, ...newGoogleLabsTools];
 export const directoryToolCategories = ['전체', ...Array.from(new Set(directoryTools.map((tool) => tool.category))).sort()];
