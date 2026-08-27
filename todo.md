@@ -349,7 +349,16 @@
 
 ## Vercel frozen lockfile 설치 실패 복구
 
-- [ ] 배포 설정·package.json·pnpm-lock.yaml·패치 상태와 설치 실패 원인 진단
-- [ ] 의존성·lockfile·Vercel 설정 정합성 복구
-- [ ] frozen install·타입·테스트·프로덕션 빌드·배포 준비 검증
+- [x] 배포 설정·package.json·pnpm-lock.yaml·패치 상태와 설치 실패 원인 진단 — GitHub main `b7da8dd`의 lockfile importer와 package.json specifier 불일치 재현
+- [x] 의존성·lockfile·Vercel 설정 정합성 복구 — 검증된 package·lockfile을 GitHub main에 `8598498`로 동기화, Vercel 설정 유지
+- [x] frozen install·타입·테스트·프로덕션 빌드·배포 준비 검증 — GitHub clone에서 frozen install, check, 16개 Vitest, Vite build 통과
+- [x] 체크포인트 저장 및 자동 공개 — 다음 체크포인트에서 저장
+
+## 신규 AI 도구 카탈로그 완성 및 배포 복구
+
+- [ ] 미등록·부분 등록 10개 도구의 공식 정보·URL·가격·출처 조사
+- [ ] 중앙 AI 카탈로그에 도구 레코드·카테고리·토큰 팁·프롬프트·신뢰도 메타데이터 통합
+- [ ] 도구명·공식 URL·중복·상세 패널 회귀 테스트 보강
+- [ ] GitHub main의 package.json·pnpm-lock.yaml frozen install 정합성 복구
+- [ ] GitHub 동기화 후 frozen install·타입·테스트·프로덕션 빌드 검증
 - [ ] 체크포인트 저장 및 자동 공개
