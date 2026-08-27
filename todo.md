@@ -356,9 +356,16 @@
 
 ## 신규 AI 도구 카탈로그 완성 및 배포 복구
 
-- [ ] 미등록·부분 등록 10개 도구의 공식 정보·URL·가격·출처 조사
-- [ ] 중앙 AI 카탈로그에 도구 레코드·카테고리·토큰 팁·프롬프트·신뢰도 메타데이터 통합
-- [ ] 도구명·공식 URL·중복·상세 패널 회귀 테스트 보강
-- [ ] GitHub main의 package.json·pnpm-lock.yaml frozen install 정합성 복구
-- [ ] GitHub 동기화 후 frozen install·타입·테스트·프로덕션 빌드 검증
-- [ ] 체크포인트 저장 및 자동 공개
+- [x] 미등록·부분 등록 10개 도구의 공식 정보·URL·가격·출처 조사 — Google 공식 페이지 8곳과 현재 명칭·실험 상태 확인
+- [x] 중앙 AI 카탈로그에 도구 레코드·카테고리·토큰 팁·프롬프트·신뢰도 메타데이터 통합 — 10개 레코드 추가 및 NotebookLM·Pomelli 병합
+- [x] 도구명·공식 URL·중복·상세 패널 회귀 테스트 보강 — 3개 회귀 테스트, 전체 19개 통과
+- [x] GitHub main의 package.json·pnpm-lock.yaml frozen install 정합성 복구 — 커밋 `8598498` 기반 정합성 유지
+- [x] GitHub 동기화 후 frozen install·타입·테스트·프로덕션 빌드 검증 — GitHub main `2f5c231`, frozen install·check·19 tests·Vite build 통과
+- [x] 체크포인트 저장 및 자동 공개 — 다음 체크포인트에서 저장
+
+## Vercel 반복 outdated lockfile·이전 버전 표시 복구
+
+- [ ] GitHub main·최근 커밋·package.json·pnpm-lock.yaml·Vercel Root Directory 상태 대조
+- [ ] Vercel Install Command와 lockfile 정합성 원인 복구
+- [ ] 동일 환경 frozen install·타입·테스트·프로덕션 빌드·최신 커밋 확인
+- [ ] 체크포인트 저장 및 배포 상태 전달
