@@ -1111,3 +1111,30 @@ body { background:var(--paper); color:var(--ink); }
   .sketch-map-board { border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); }
   .sketch-map-board::after { width:9px; height:9px; box-shadow:0 0 0 5px rgba(53,92,255,.10); }
 }
+
+
+/* Long directory lists: the viewport belongs to the list, not its first virtual row. */
+.standalone-tool-list { min-height:320px; overflow:visible; }
+.standalone-tool-list .virtual-list { display:block; width:100%; min-height:320px; border:0; overflow-x:hidden; }
+.standalone-tool-list .virtual-list > div { width:100%; }
+.standalone-tool-list .standalone-tool-row { width:100%; box-sizing:border-box; }
+@media (max-width:760px) {
+  .standalone-tool-list { min-height:360px; }
+  .standalone-tool-list .virtual-list { min-height:360px; }
+}
+@media (max-width:620px) {
+  .standalone-tool-list .standalone-tool-category,
+  .standalone-tool-list .standalone-tool-price,
+  .standalone-tool-list .standalone-tool-source { display:none; }
+  .standalone-tool-list .standalone-tool-row { grid-template-columns:30px 5px minmax(0,1fr) 22px; }
+}
+
+
+/* Full directory is intentionally rendered as a complete catalog; do not virtualize or content-hide its rows. */
+.popular-tool-list { display:block; width:100%; min-height:0; }
+.popular-tool-list > div { content-visibility:visible !important; contain: none; contain-intrinsic-size:auto; }
+.popular-tool-list .standalone-tool-row { min-height:92px; }
+
+
+/* The complete 89-service catalog is the exception to the page-level render budget. */
+.standalone-tool-list > .popular-tool-list { content-visibility:visible !important; contain:none !important; contain-intrinsic-size:auto !important; }

@@ -21,7 +21,7 @@ export function VirtualizedList<T>({ items, itemHeight, renderItem, className = 
   const { start, end } = getVirtualWindow(items.length, itemHeight, scrollTop, viewportHeight, overscan);
   const visible = useMemo(() => items.slice(start, end), [items, start, end]);
 
-  return <div className={`virtual-list ${className}`} onScroll={(event) => setScrollTop(event.currentTarget.scrollTop)} style={{ maxHeight: viewportHeight, overflowY: "auto", contain: "strict" }} role="list" aria-label="검색 결과 목록">
+  return <div className={`virtual-list ${className}`} onScroll={(event) => setScrollTop(event.currentTarget.scrollTop)} style={{ height: viewportHeight, maxHeight: viewportHeight, minHeight: Math.min(viewportHeight, 320), overflowY: "auto", overflowX: "hidden", contain: "layout paint", width: "100%" }} role="list" aria-label="검색 결과 목록">
     <div style={{ height: items.length * itemHeight, position: "relative" }}>
       <div style={{ position: "absolute", top: start * itemHeight, left: 0, right: 0 }}>
         {visible.map((item, offset) => <div key={start + offset} style={{ minHeight: itemHeight }} role="listitem">{renderItem(item, start + offset)}</div>)}
