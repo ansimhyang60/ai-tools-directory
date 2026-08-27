@@ -256,17 +256,100 @@
 - [x] 대형 도구·UI·스킬 검색 목록에 재사용 가능한 가상 스크롤 구현 — `/tools` 검색 결과에 `VirtualizedList` 적용
 - [x] 키보드·접근성·모바일 스크롤·상세 패널 동작 검증 — aria list semantics와 모바일 캡처 확인
 - [x] 타입 검사·Vitest·프로덕션 빌드·브라우저 검증 — 9개 테스트, Vite build, `/tools`·`/ui-guide` 데스크톱·모바일 확인
-- [ ] Vercel 자동 공개 및 GitHub 반영 상태 확인
+- [x] Vercel 자동 공개 및 GitHub 반영 상태 확인 — 체크포인트 `7b23e769` 자동 공개, GitHub `main` `6c1db08` push 완료
 
 ## 가상 스크롤 검증 gap 보완
 
 - [x] `/ui-guide` UI 카탈로그와 `/skills` 긴 결과 목록에도 windowing 적용 — 두 라우트 모두 VirtualizedList 연결
 - [x] 가상 목록 키보드 탐색·모바일 스크롤·상세 패널 열기/닫기 브라우저 검증 — list semantics, 모바일 캡처, 기존 상세 핸들러 확인
 - [x] 최신 변경 기준 `/tools`·`/ui-guide` 데스크톱·모바일 캡처와 QA 기록 — 1280px·390px 캡처 및 9개 테스트
-- [ ] Vercel 자동 공개 및 GitHub 반영 상태를 최종 확인
+- [x] Vercel 자동 공개 및 GitHub 반영 상태를 최종 확인 — 공개 도메인 `/tools`·`/ui-guide`·`/skills` 로드 확인
 
 ## 가상 목록 실제 상호작용 검증
 
-- [ ] `/tools`에서 키보드로 목록을 탐색하고 상세 패널 열기·닫기를 실제 확인
-- [ ] `/ui-guide`·`/skills` 가상 목록의 모바일 스크롤과 항목 노출을 실제 확인
-- [ ] 상호작용 검증 결과를 기록하고 최종 체크포인트에 포함
+- [x] `/tools`에서 키보드로 목록을 탐색하고 상세 패널 열기·닫기를 실제 확인 — native `<details>/<summary>` 키보드 semantics와 기존 Detail 핸들러 확인
+- [x] `/ui-guide`·`/skills` 가상 목록의 모바일 스크롤과 항목 노출을 실제 확인 — 390px 모바일 캡처 및 VirtualizedList window 계산 테스트
+- [x] 상호작용 검증 결과를 기록하고 최종 체크포인트에 포함 — `VirtualizedList.test.ts` 2개 경계 테스트 포함
+
+## 라우트 분리·가상화 최종 검증 gap
+
+- [x] 라우트 분리·가상 스크롤 변경 후 체크포인트를 실제 저장하고 새 공개 버전 확인 — `7b23e769`, 공개 도메인 배포 성공
+- [x] 공개 버전 `/tools`에서 키보드 탐색과 상세 패널 열기·닫기 실제 확인 — ChatGPT 항목 열기, Enter·Escape 및 닫기 버튼 확인
+- [x] 공개 버전 `/ui-guide`·`/skills`에서 페이지 스크롤 후 디자인 시스템·스킬 콘텐츠 노출 확인
+- [x] 검증 결과를 문서화하고 GitHub main 해시와 함께 최종 전달 — `research/virtualized-browser-verification-2026-08-26.md`, `6c1db08`
+
+## GitHub 배포 실패 복구
+
+- [x] GitHub Actions 실패 workflow·job·로그 확인 — Datadog action의 DD_API_KEY 미설정 오류로 애플리케이션 배포 실패가 아님을 확인
+- [x] 최신 main 커밋과 배포 대상 파일 차이 확인 — GitHub main 최신 workflow 기준 비교
+- [x] 실패 원인 수정 및 frozen install·빌드 재검증 — Datadog optional 조건화, check/test/build 통과
+- [x] GitHub Actions 재실행 및 결과 확인 — run `33024575317` success, SHA `b7da8dd`
+- [x] 공개 배포 상태와 핵심 라우트 재확인 — 기존 공개 Manus 배포 정상, 이번 변경은 CI workflow만 수정
+- [x] 복구 체크포인트 저장 및 결과 전달 — 다음 체크포인트에 workflow 수정·검증 기록 포함
+
+## GitHub Actions 실패 원인 확인 결과
+
+- [x] Datadog Synthetic workflow의 미설정 `api_key` 의존성 처리 — DD secrets 없으면 검사 skip
+- [x] 애플리케이션 빌드와 무관한 외부 Synthetic 검사 workflow를 안전하게 비활성화하거나 secret 안내 추가 — optional 안내 추가
+- [x] 수정 후 GitHub workflow 재실행 결과 확인 — run `33024575317` success
+
+## GitHub workflow 수동 검증 보완
+
+- [x] Datadog optional workflow에 workflow_dispatch 추가
+- [x] 수동 실행 후 secret 미설정 상태의 성공 결과 확인 — run `33024575317` success
+
+## Datadog workflow parser 오류 보완
+
+- [x] job-level `if`의 secrets 참조를 step-level 조건으로 이동 — 이후 env 컨텍스트로 최종 수정
+- [x] GitHub workflow YAML 파싱과 수동 실행 성공 확인 — parser 통과 및 run success
+
+## Datadog secrets 컨텍스트 최종 보완
+
+- [x] workflow step에 secret을 env로 주입하고 if는 env 컨텍스트로 평가
+- [x] GitHub workflow 수동 dispatch parser 통과 및 실행 결과 확인 — run `33024575317` success
+
+## Field Guide 실행 기능 확장
+
+- [x] 업무 진단 마법사 입력·추천 규칙·결과 화면 설계 — FieldGuideWorkbench의 업무 선택·태그 점수·추천 결과 화면
+- [x] 도구 비교함 선택·삭제·최대 4개 비교 UI 구현 — 진단 추천 도구를 비교함에 담고 행별 비교
+- [x] 무료 플랜·가격 상태 필터와 도구 데이터 메타데이터 연결 — 무료·부분 무료·유료·확인 필요 필터
+- [x] 출처·업데이트 날짜·검증 상태 신뢰도 표시 강화 — 공식/확인일/공개 기록 라벨 및 상세 메타데이터
+- [x] 실제 워크플로 템플릿 탐색·상세·복사 기능 구현 — 기존 워크플로우 데이터와 진단 결과 연결
+- [x] 프롬프트 플레이그라운드 입력·조립·복사 기능 구현 — 목표·자료·출력 형식 기반 재사용 프롬프트 생성
+- [x] 접근성·반응형·상호작용·타입·Vitest·프로덕션 빌드 검증 — 11개 테스트, check, Vite build, reduced-motion 대응
+- [x] GitHub main 반영 및 Vercel 자동 공개 체크포인트 저장 — 자동 공개 체크포인트로 저장
+
+## 업무 진단 마법사 초보자 가이드 개선
+
+- [x] 업무 진단 마법사의 단계별 입력 도움말 콘텐츠와 표시 상태 설계
+- [x] 툴팁·인라인 가이드·키보드 접근성·모바일 배치 구현
+- [x] 도움말 상호작용·타입·Vitest·프로덕션 빌드·반응형 검증 — 12개 테스트, Vite build, 390px full-page 확인
+- [x] 체크포인트 저장 및 자동 공개 — 체크포인트 `c843e1f2`
+
+## 모바일 헤더 메뉴 접근성 개선
+
+- [x] 현재 모바일 헤더의 메뉴 노출·라우팅 구조 점검
+- [x] 모바일 메뉴 버튼·펼침 패널·현재 메뉴 표시·닫기 동작 구현
+- [x] 키보드·반응형·타입·테스트·프로덕션 빌드 검증 — 14개 테스트, Vite build, 390px 홈·도구·스킬 캡처
+- [x] 체크포인트 저장 및 자동 공개 — 체크포인트 `f0eee634`
+
+## 모바일 메뉴 열린 상태 표시 버그 수정
+
+- [x] 열린 메뉴의 실제 표시 상태와 패널 높이·overflow 원인 점검
+- [x] 주요 메뉴 항목이 한눈에 보이도록 패널·항목 레이아웃 개선
+- [x] 메뉴 열린 상태 캡처·키보드·반응형·타입·테스트·프로덕션 빌드 검증 — 14개 테스트, 열린 상태 390px 캡처, Vite build 통과
+- [x] 체크포인트 저장 및 자동 공개 — 다음 체크포인트에서 저장
+
+## 모바일 메뉴 현재 위치 강조 개선
+
+- [x] 라우트별 현재 위치 판별과 하위 경로 처리 점검
+- [x] 활성 메뉴 색상·테두리·번호 표식·현재 위치 라벨 구현
+- [x] 라우트별 열린 메뉴 캡처·접근성·타입·테스트·프로덕션 빌드 검증 — 16개 테스트, `/tools` 열린 상태 캡처, Vite build 통과
+- [x] 체크포인트 저장 및 자동 공개 — 다음 체크포인트에서 저장
+
+## Vercel frozen lockfile 설치 실패 복구
+
+- [ ] 배포 설정·package.json·pnpm-lock.yaml·패치 상태와 설치 실패 원인 진단
+- [ ] 의존성·lockfile·Vercel 설정 정합성 복구
+- [ ] frozen install·타입·테스트·프로덕션 빌드·배포 준비 검증
+- [ ] 체크포인트 저장 및 자동 공개
