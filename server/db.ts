@@ -1,6 +1,6 @@
 import { and, desc, eq, like, or, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { archiveItems, InsertArchiveItem, InsertUser, users } from "../drizzle/schema";
+import { archiveItems, InsertArchiveItem, InsertUser, uiDesignSystems, uiGuideItems, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -111,6 +111,63 @@ export async function listArchiveItems(filters: ArchiveListFilters) {
   const [items, totalRows] = await Promise.all([
     db.select().from(archiveItems).where(where).orderBy(desc(archiveItems.publishedAt), desc(archiveItems.createdAt)).limit(filters.limit).offset(filters.offset),
     db.select({ count: sql<number>`count(*)` }).from(archiveItems).where(where),
+  ]);
+  return { items, total: Number(totalRows[0]?.count ?? 0) };
+}
+
+export type UiGuideListFilters = {
+  category?: string;
+  query?: string;
+  limit: number;
+  offset: number;
+};
+
+export async function listUiGuideItems(filters: UiGuideListFilters) {
+  const db = await getDb();
+  if (!db) return { items: [], total: 0 };
+  const conditions = [];
+  if (filters.category && filters.category !== "전체") conditions.push(eq(uiGuideItems.category, filters.category));
+  if (filters.query?.trim()) {
+    const q = `%${filters.query.trim()}%`;
+    conditions.push(or(
+      like(uiGuideItems.name, q),
+      like(uiGuideItems.category, q),
+      like(uiGuideItems.location, q),
+      like(uiGuideItems.purpose, q),
+      like(uiGuideItems.example, q),
+      like(uiGuideItems.tools, q),
+    ));
+  }
+  const where = conditions.length ? and(...conditions) : undefined;
+  const [items, totalRows] = await Promise.all([
+    db.select().from(uiGuideItems).where(where).orderBy(uiGuideItems.id).limit(filters.limit).offset(filters.offset),
+    db.select({ count: sql<number>`count(*)` }).from(uiGuideItems).where(where),
+  ]);
+  return { items, total: Number(totalRows[0]?.count ?? 0) };
+}
+
+export type UiDesignSystemListFilters = {
+  query?: string;
+  tech?: string;
+  difficulty?: "초급" | "중급" | "고급";
+  limit: number;
+  offset: number;
+};
+
+export async function listUiDesignSystems(filters: UiDesignSystemListFilters) {
+  const db = await getDb();
+  if (!db) return { items: [], total: 0 };
+  const conditions = [];
+  if (filters.difficulty) conditions.push(eq(uiDesignSystems.difficulty, filters.difficulty));
+  if (filters.query?.trim()) {
+    const q = `%${filters.query.trim()}%`;
+    conditions.push(or(like(uiDesignSystems.name, q), like(uiDesignSystems.owner, q), like(uiDesignSystems.platform, q), like(uiDesignSystems.tech, q), like(uiDesignSystems.features, q)));
+  }
+  if (filters.tech && filters.tech !== "전체") conditions.push(like(uiDesignSystems.tech, `%${filters.tech}%`));
+  const where = conditions.length ? and(...conditions) : undefined;
+  const [items, totalRows] = await Promise.all([
+    db.select().from(uiDesignSystems).where(where).orderBy(uiDesignSystems.id).limit(filters.limit).offset(filters.offset),
+    db.select({ count: sql<number>`count(*)` }).from(uiDesignSystems).where(where),
   ]);
   return { items, total: Number(totalRows[0]?.count ?? 0) };
 }

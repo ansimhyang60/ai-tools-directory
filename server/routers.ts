@@ -9,6 +9,8 @@ import { systemRouter } from "./_core/systemRouter";
 const archiveType = z.enum(["contest", "grant", "exhibition", "news", "case-study"]);
 const archiveStatus = z.enum(["upcoming", "open", "closed", "ongoing", "unknown"]);
 const archiveListInput = z.object({ type: archiveType.optional(), status: archiveStatus.optional(), query: z.string().max(120).optional(), page: z.number().int().min(1).default(1), pageSize: z.number().int().min(1).max(50).default(20) }).default({ page: 1, pageSize: 20 });
+const uiGuideListInput = z.object({ category: z.string().max(120).optional(), query: z.string().max(120).optional(), page: z.number().int().min(1).default(1), pageSize: z.number().int().min(1).max(400).default(400) }).default({ page: 1, pageSize: 400 });
+const uiDesignSystemsListInput = z.object({ query: z.string().max(120).optional(), tech: z.string().max(120).optional(), difficulty: z.enum(["초급", "중급", "고급"]).optional(), page: z.number().int().min(1).default(1), pageSize: z.number().int().min(1).max(50).default(50) }).default({ page: 1, pageSize: 50 });
 
 export const appRouter = router({
   system: systemRouter,
@@ -18,6 +20,18 @@ export const appRouter = router({
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
       return { success: true } as const;
+    }),
+  }),
+  uiGuide: router({
+    list: publicProcedure.input(uiGuideListInput).query(async ({ input }) => {
+      const result = await db.listUiGuideItems({ category: input.category, query: input.query, limit: input.pageSize, offset: (input.page - 1) * input.pageSize });
+      return { ...result, page: input.page, pageSize: input.pageSize, pages: Math.ceil(result.total / input.pageSize) };
+    }),
+  }),
+  uiDesignSystems: router({
+    list: publicProcedure.input(uiDesignSystemsListInput).query(async ({ input }) => {
+      const result = await db.listUiDesignSystems({ query: input.query, tech: input.tech, difficulty: input.difficulty, limit: input.pageSize, offset: (input.page - 1) * input.pageSize });
+      return { ...result, page: input.page, pageSize: input.pageSize, pages: Math.ceil(result.total / input.pageSize) };
     }),
   }),
   archive: router({
