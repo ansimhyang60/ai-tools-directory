@@ -5,9 +5,17 @@ import { siteNav } from "@/lib/siteNav";
 
 type MobileNavProps = { active?: string };
 
+export function getActiveNavHref(location: string, active?: string) {
+  if (active) return active;
+  const pathname = location.split("?")[0].split("#")[0];
+  return siteNav.find(([, href]) => pathname === href || pathname.startsWith(`${href}/`))?.[1];
+}
+
 export default function MobileNav({ active }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const [location] = useLocation();
+  const currentHref = getActiveNavHref(location, active);
+  const currentLabel = siteNav.find(([, href]) => href === currentHref)?.[0];
   const triggerRef = useRef<HTMLButtonElement>(null);
   const initialLocationRef = useRef(location);
   const openedRef = useRef(false);
@@ -43,9 +51,10 @@ export default function MobileNav({ active }: MobileNavProps) {
       <button type="button" className="mobile-navigation-scrim" aria-label="메뉴 닫기" onClick={close} />
       <aside id="mobile-navigation-drawer" className="mobile-navigation-drawer" role="dialog" aria-modal="true" aria-label="모바일 주요 메뉴">
         <div className="mobile-navigation-heading"><span>AI/100 FIELD GUIDE</span><button type="button" onClick={close} aria-label="모바일 메뉴 닫기"><X size={18} /></button></div>
+        <div className="mobile-navigation-current" aria-live="polite"><span>현재 위치</span><strong>{currentLabel ?? (location === "/" ? "홈" : "탐색 중")}</strong></div>
         <p>찾고 싶은 업무나 도구를 선택하세요.</p>
         <nav className="mobile-navigation-links" aria-label="모바일 주요 메뉴">
-          {siteNav.map(([label, href], index) => <Link key={href} href={href} className={active === href || location === href ? "is-active" : ""} onClick={close}><span>{String(index + 1).padStart(2, "0")}</span><strong>{label}</strong><small>{href === "/workflows" ? "업무 템플릿" : href === "/tools" ? "AI 서비스 탐색" : href === "/ui-guide" ? "디자인 시스템" : href === "/skills" ? "반복 작업 지침" : href === "/path" ? "학습 순서" : "안전한 사용법"}</small></Link>)}
+          {siteNav.map(([label, href], index) => { const isCurrent = currentHref === href; return <Link key={href} href={href} className={isCurrent ? "is-active" : ""} aria-current={isCurrent ? "page" : undefined} onClick={close}><span className={`mobile-navigation-number ${isCurrent ? "is-current" : ""}`}>{String(index + 1).padStart(2, "0")}</span><strong>{label}</strong><small>{href === "/workflows" ? "업무 템플릿" : href === "/tools" ? "AI 서비스 탐색" : href === "/ui-guide" ? "디자인 시스템" : href === "/skills" ? "반복 작업 지침" : href === "/path" ? "학습 순서" : "안전한 사용법"}</small>{isCurrent && <em>현재 보는 페이지</em>}</Link>; })}
         </nav>
         <Link className="mobile-navigation-home" href="/" onClick={close}>홈으로 돌아가기</Link>
       </aside>

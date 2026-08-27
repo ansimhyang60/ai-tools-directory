@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { siteNav } from "@/lib/siteNav";
+import { getActiveNavHref } from "./MobileNav";
 
 describe("mobile navigation contract", () => {
   it("keeps every primary destination available to the mobile menu", () => {
@@ -16,5 +17,15 @@ describe("mobile navigation contract", () => {
   it("does not expose duplicate destinations", () => {
     const routes = siteNav.map(([, href]) => href);
     expect(new Set(routes).size).toBe(routes.length);
+  });
+
+  it("marks nested routes as belonging to the matching primary menu", () => {
+    expect(getActiveNavHref("/tools/123")).toBe("/tools");
+    expect(getActiveNavHref("/skills/automation?view=all")).toBe("/skills");
+    expect(getActiveNavHref("/unknown")).toBeUndefined();
+  });
+
+  it("prefers the explicit active route supplied by a page frame", () => {
+    expect(getActiveNavHref("/tools/123", "/skills")).toBe("/skills");
   });
 });
