@@ -473,17 +473,17 @@
 
 ## 전체 프로젝트 종합 품질 감사
 
-- [ ] 데이터 원본·카탈로그·검색 인덱스의 중복 레코드와 수량 불일치 감사
-- [ ] 라우트·공통 프레임·헤더·푸터·카드 UI 중복과 미사용 코드 감사
-- [ ] 대형 번들·목록 렌더링·리렌더링·이미지·폰트 성능 감사
-- [ ] 개발 로그의 브라우저 콘솔 오류·네트워크 오류·API fallback 상태 감사
-- [ ] 데스크톱·모바일 핵심 라우트 화면 및 상호작용 재검증
-- [ ] GitHub main 동기화·Actions 최근 실행·Vercel/Manus 공개 배포 상태 확인
-- [ ] 발견된 실제 이슈 수정과 타입·Vitest·프로덕션 빌드 회귀 검증
-- [ ] 감사 결과 문서화·체크포인트 저장 및 자동 공개
+- [x] 데이터 원본·카탈로그·검색 인덱스의 중복 레코드와 수량 불일치 감사 — 736개 미사용 스냅샷과 교차 중복 측정
+- [x] 라우트·공통 프레임·헤더·푸터·카드 UI 중복과 미사용 코드 감사 — expandedCatalog 미사용 및 공통 프레임 사용 확인
+- [x] 대형 번들·목록 렌더링·리렌더링·이미지·폰트 성능 감사 — 562KB·586KB 대형 chunk 경고 기록
+- [x] 개발 로그의 브라우저 콘솔 오류·네트워크 오류·API fallback 상태 감사 — 최신 health·analytics 200, 과거 경고 분리
+- [x] 데스크톱·모바일 핵심 라우트 화면 및 상호작용 재검증 — 핵심 라우트 캡처 및 서버 재시작 확인
+- [x] GitHub main 동기화·Actions 최근 실행·Vercel/Manus 공개 배포 상태 확인 — GitHub main 082d977 일치, Actions 33135266384 success
+- [x] 발견된 실제 이슈 수정과 타입·Vitest·프로덕션 빌드 회귀 검증 — 스냅샷 분리·Fast Refresh 유틸 분리, 42개 테스트 통과
+- [x] 감사 결과 문서화·체크포인트 저장 및 자동 공개 — 감사 보고서 작성 후 이번 체크포인트에서 저장
 
 ## 감사 발견 이슈 보완
 
-- [ ] 사용되지 않는 `client/src/lib/expandedCatalog.ts` 대형 원본과 생성 스크립트 경로를 정리해 중복 데이터 보관을 명확히 함
-- [ ] `MobileNav.tsx`의 UI 모듈 외부 유틸 export로 발생하는 Fast Refresh 경고 제거
-- [ ] GitHub main에 현재 관리형 최신 체크포인트와 감사 수정사항 동기화
+- [x] 사용되지 않는 `client/src/lib/expandedCatalog.ts` 대형 원본과 생성 스크립트 경로를 정리해 중복 데이터 보관을 명확히 함 — `research/data/expandedCatalog.snapshot.ts`로 이동
+- [x] `MobileNav.tsx`의 UI 모듈 외부 유틸 export로 발생하는 Fast Refresh 경고 제거 — `mobileNavUtils.ts`로 분리
+- [x] GitHub main에 현재 관리형 최신 체크포인트와 감사 수정사항 동기화 — backup branch 보존 후 `082d977` force-with-lease 동기화
