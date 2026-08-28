@@ -2,15 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Menu, Search, X } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { siteNav, skillCollectionNav } from "@/lib/siteNav";
+import { getActiveNavHref } from "@/lib/mobileNavUtils";
 import { BRAND_NAME } from "@/lib/brand";
 
 type MobileNavProps = { active?: string };
 
-export function getActiveNavHref(location: string, active?: string) {
-  if (active) return active;
-  const pathname = location.split("?")[0].split("#")[0];
-  return siteNav.find(([, href]) => pathname === href || pathname.startsWith(`${href}/`))?.[1];
-}
 
 export default function MobileNav({ active }: MobileNavProps) {
   const [open, setOpen] = useState(false);

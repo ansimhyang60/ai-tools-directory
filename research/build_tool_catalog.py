@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CATALOG_PATH = ROOT / "client/src/lib/expandedCatalog.ts"
+CATALOG_PATH = ROOT / "research/data/expandedCatalog.snapshot.ts"
 OUTPUT_PATH = ROOT / "client/src/lib/toolCatalog.ts"
 
 text = CATALOG_PATH.read_text(encoding="utf-8")

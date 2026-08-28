@@ -63,6 +63,6 @@ for item in items:
 for i,item in enumerate(unique,1):
     item['id']=i; item['verifiedAt']='2026-08-20'; item['tags']=[item['category']]
 
-out_path=ROOT/'client/src/lib/expandedCatalog.ts'
+out_path=ROOT/'research/data/expandedCatalog.snapshot.ts'
 out_path.write_text('export type CatalogTool = { id:number; name:string; url:string; category:string; pricing:string; note:string; source:string; verifiedAt:string; tags:string[] };\n\nexport const expandedCatalog = '+json.dumps(unique,ensure_ascii=False,indent=2)+' as const;\n',encoding='utf-8')
 print(f'items={len(items)} unique={len(unique)} output={out_path}')

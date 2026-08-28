@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getVirtualWindow } from "./VirtualizedList";
+import { getVirtualWindow } from "@/lib/virtualListUtils";
 
 describe("getVirtualWindow", () => {
   it("keeps the first window bounded and overscanned", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { siteNav, skillCollectionNav } from "@/lib/siteNav";
-import { getActiveNavHref } from "./MobileNav";
+import { getActiveNavHref } from "@/lib/mobileNavUtils";
 
 describe("mobile navigation contract", () => {
   it("keeps every primary destination available to the mobile menu", () => {
