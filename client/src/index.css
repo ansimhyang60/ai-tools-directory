@@ -1234,3 +1234,18 @@ body { background:var(--paper); color:var(--ink); }
 .stamp-main { white-space:nowrap; }
 .stamp-caption { white-space:nowrap; }
 @media (max-width:760px) { .brand-mark-text { width:26px; height:26px; flex-basis:26px; font-size:12px; } }
+
+/* External skill collection link: a distinct source marker without competing with the primary nav. */
+.topnav-resource { color:var(--tomato)!important; font-size:11px; font-weight:700; }
+.topnav-resource::before { content:"↗"; margin-right:4px; font-size:12px; }
+.mobile-navigation-links a.is-resource { border-style:dashed; background:#fffaf6; }
+.mobile-navigation-links a.is-resource:hover { border-color:var(--cobalt); background:#eef3ff; }
+.mobile-navigation-number.is-resource-mark { color:var(--cobalt); font-size:16px; }
+
+.skill-external-source { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:32px; align-items:end; margin:0 clamp(22px,5vw,76px) 42px; padding:28px 30px; border:1px dashed #9aa9c1; background:#eef3ff; }
+.skill-external-source h2 { margin:9px 0 10px; color:var(--ink); font:800 clamp(24px,3.2vw,42px)/.98 var(--display); letter-spacing:-.07em; }
+.skill-external-source h2 em { color:var(--tomato); font-style:normal; }
+.skill-external-source p { max-width:680px; margin:0; color:var(--muted); font-size:13px; line-height:1.7; }
+.skill-external-source > a { display:inline-flex; align-items:center; gap:8px; padding:12px 15px; border:1px solid var(--cobalt); background:var(--cobalt); color:var(--white); font:700 11px/1.2 var(--display); white-space:nowrap; transition:transform .16s var(--ease-out), background .16s var(--ease-out); }
+.skill-external-source > a:hover { background:var(--tomato); border-color:var(--tomato); transform:translateY(-2px); }
+@media (max-width:760px) { .skill-external-source { grid-template-columns:1fr; gap:18px; margin:0 22px 30px; padding:21px 18px; } .skill-external-source h2 { font-size:28px; } .skill-external-source p { font-size:12px; } .skill-external-source > a { justify-self:start; } }

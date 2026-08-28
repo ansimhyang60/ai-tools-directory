@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, Search, X } from "lucide-react";
 import { Link, useLocation } from "wouter";
-import { siteNav } from "@/lib/siteNav";
+import { siteNav, skillCollectionNav } from "@/lib/siteNav";
 import { BRAND_NAME } from "@/lib/brand";
 
 type MobileNavProps = { active?: string };
@@ -57,7 +57,7 @@ export default function MobileNav({ active }: MobileNavProps) {
         <Link className="mobile-navigation-search" href="/search" onClick={close}><Search size={16} /><strong>전체 검색</strong><small>도구·스킬·UI·워크플로우</small></Link>
         <nav className="mobile-navigation-links" aria-label="모바일 주요 메뉴">
           {siteNav.map(([label, href], index) => { const isCurrent = currentHref === href; return <Link key={href} href={href} className={isCurrent ? "is-active" : ""} aria-current={isCurrent ? "page" : undefined} onClick={close}><span className={`mobile-navigation-number ${isCurrent ? "is-current" : ""}`}>{String(index + 1).padStart(2, "0")}</span><strong>{label}</strong><small>{href === "/workflows" ? "업무 템플릿" : href === "/tools" ? "AI 서비스 탐색" : href === "/ui-guide" ? "디자인 시스템" : href === "/skills" ? "반복 작업 지침" : href === "/path" ? "학습 순서" : "안전한 사용법"}</small>{isCurrent && <em>현재 보는 페이지</em>}</Link>; })}
-        </nav>
+        <a className="is-resource" href={skillCollectionNav.href} target="_blank" rel="noreferrer" onClick={close} aria-label={`${skillCollectionNav.mobileLabel} 공식 GitHub 열기`}><span className="mobile-navigation-number is-resource-mark">↗</span><strong>{skillCollectionNav.mobileLabel}</strong><small>{skillCollectionNav.description}</small></a></nav>
         <Link className="mobile-navigation-home" href="/" onClick={close}>홈으로 돌아가기</Link>
       </aside>
     </div>}

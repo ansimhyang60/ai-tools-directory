@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { siteNav } from "@/lib/siteNav";
+import { siteNav, skillCollectionNav } from "@/lib/siteNav";
 import { getActiveNavHref } from "./MobileNav";
 
 describe("mobile navigation contract", () => {
@@ -12,6 +12,15 @@ describe("mobile navigation contract", () => {
       "학습 경로",
       "사용 원칙",
     ]);
+  });
+
+  it("exposes the official Korean skill collection as an external resource", () => {
+    expect(skillCollectionNav).toMatchObject({
+      label: "한국형 스킬",
+      mobileLabel: "한국형 스킬 모음집",
+      description: "SRT·KTX·정부서비스 등",
+      href: "https://github.com/NomaDamas/k-skill",
+    });
   });
 
   it("does not expose duplicate destinations", () => {

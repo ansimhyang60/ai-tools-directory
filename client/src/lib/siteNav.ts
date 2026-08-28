@@ -6,3 +6,10 @@ export const siteNav = [
   ["학습 경로", "/path"],
   ["사용 원칙", "/principles"],
 ] as const;
+
+export const skillCollectionNav = {
+  label: "한국형 스킬",
+  mobileLabel: "한국형 스킬 모음집",
+  description: "SRT·KTX·정부서비스 등",
+  href: "https://github.com/NomaDamas/k-skill",
+} as const;
