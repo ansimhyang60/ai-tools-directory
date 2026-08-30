@@ -516,3 +516,4 @@
 - [ ] 최신 변경사항을 GitHub main에 커밋·푸시
 - [ ] GitHub Actions와 연결된 Vercel 자동 배포의 새 커밋 대상·최종 상태 확인
 - [ ] 배포 URL·커밋 SHA·검증 결과를 기록하고 전달
+- [x] GitHub README를 현재 AI 활용 가이드와 Vercel 배포 절차에 맞게 개편
