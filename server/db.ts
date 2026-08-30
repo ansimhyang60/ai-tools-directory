@@ -1,6 +1,6 @@
 import { and, desc, eq, like, or, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { archiveItems, InsertArchiveItem, InsertUser, uiDesignSystems, uiGuideItems, users } from "../drizzle/schema";
+import { archiveItems, contentComments, InsertArchiveItem, InsertContentComment, InsertUser, uiDesignSystems, uiGuideItems, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -75,6 +75,31 @@ export async function upsertUser(user: InsertUser): Promise<void> {
     console.error("[Database] Failed to upsert user:", error);
     throw error;
   }
+}
+
+export async function listContentComments(contentType: InsertContentComment["contentType"], contentKey: string) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select({ id: contentComments.id, body: contentComments.body, createdAt: contentComments.createdAt, updatedAt: contentComments.updatedAt, userId: contentComments.userId, authorName: users.name, authorEmail: users.email })
+    .from(contentComments)
+    .leftJoin(users, eq(contentComments.userId, users.id))
+    .where(and(eq(contentComments.contentType, contentType), eq(contentComments.contentKey, contentKey)))
+    .orderBy(desc(contentComments.createdAt));
+}
+
+export async function createContentComment(comment: Omit<InsertContentComment, "id" | "createdAt" | "updatedAt">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  const result = await db.insert(contentComments).values(comment) as unknown as { insertId?: number };
+  const id = Number(result.insertId ?? 0);
+  return id;
+}
+
+export async function deleteContentComment(id: number, userId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  const result = await db.delete(contentComments).where(and(eq(contentComments.id, id), eq(contentComments.userId, userId))) as unknown as { affectedRows?: number };
+  return Number(result.affectedRows ?? 0) > 0;
 }
 
 export async function getUserByOpenId(openId: string) {

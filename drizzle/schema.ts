@@ -25,6 +25,23 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
+/** User comments attached to tools, skills, workflows, or other catalog entries. */
+export const contentComments = mysqlTable("content_comments", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  contentType: mysqlEnum("contentType", ["tool", "skill", "workflow", "ui-guide", "k-skill"]).notNull(),
+  contentKey: varchar("contentKey", { length: 180 }).notNull(),
+  body: varchar("body", { length: 2000 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+}, (table) => ({
+  contentIdx: index("content_comments_content_idx").on(table.contentType, table.contentKey, table.createdAt),
+  userIdx: index("content_comments_user_idx").on(table.userId),
+}));
+
+export type ContentComment = typeof contentComments.$inferSelect;
+export type InsertContentComment = typeof contentComments.$inferInsert;
+
 export const archiveItems = mysqlTable("archive_items", {
   id: int("id").autoincrement().primaryKey(),
   type: mysqlEnum("type", ["contest", "grant", "exhibition", "news", "case-study"]).notNull(),

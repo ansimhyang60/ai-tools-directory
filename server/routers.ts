@@ -1,7 +1,7 @@
 import { COOKIE_NAME } from "@shared/const";
 import { z } from "zod";
 import { getSessionCookieOptions } from "./_core/cookies";
-import { adminProcedure, publicProcedure, router } from "./_core/trpc";
+import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import * as db from "./db";
 import { refreshArchive } from "./archive";
 import { systemRouter } from "./_core/systemRouter";
@@ -33,6 +33,14 @@ export const appRouter = router({
       const result = await db.listUiDesignSystems({ query: input.query, tech: input.tech, difficulty: input.difficulty, limit: input.pageSize, offset: (input.page - 1) * input.pageSize });
       return { ...result, page: input.page, pageSize: input.pageSize, pages: Math.ceil(result.total / input.pageSize) };
     }),
+  }),
+  comments: router({
+    list: publicProcedure.input(z.object({ contentType: z.enum(["tool", "skill", "workflow", "ui-guide", "k-skill"]), contentKey: z.string().trim().min(1).max(180) })).query(({ input }) => db.listContentComments(input.contentType, input.contentKey)),
+    create: protectedProcedure.input(z.object({ contentType: z.enum(["tool", "skill", "workflow", "ui-guide", "k-skill"]), contentKey: z.string().trim().min(1).max(180), body: z.string().trim().min(1).max(2000) })).mutation(async ({ ctx, input }) => {
+      const commentId = await db.createContentComment({ userId: ctx.user.id, contentType: input.contentType, contentKey: input.contentKey, body: input.body });
+      return { id: commentId };
+    }),
+    delete: protectedProcedure.input(z.object({ id: z.number().int().positive() })).mutation(async ({ ctx, input }) => ({ deleted: await db.deleteContentComment(input.id, ctx.user.id) })),
   }),
   archive: router({
     list: publicProcedure.input(archiveListInput).query(async ({ input }) => {

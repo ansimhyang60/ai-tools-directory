@@ -487,3 +487,24 @@
 - [x] 사용되지 않는 `client/src/lib/expandedCatalog.ts` 대형 원본과 생성 스크립트 경로를 정리해 중복 데이터 보관을 명확히 함 — `research/data/expandedCatalog.snapshot.ts`로 이동
 - [x] `MobileNav.tsx`의 UI 모듈 외부 유틸 export로 발생하는 Fast Refresh 경고 제거 — `mobileNavUtils.ts`로 분리
 - [x] GitHub main에 현재 관리형 최신 체크포인트와 감사 수정사항 동기화 — backup branch 보존 후 `082d977` force-with-lease 동기화
+
+## 성능·k-skill 개인화 확장
+
+- [x] 대용량 도구·스킬 데이터의 현재 import 경로와 빌드 청크를 재측정 — 대형 catalog 청크와 초기 route import 확인
+- [x] 초기 페이지에서 대형 데이터가 로드되지 않도록 lazy import·수동 chunk 분할 적용 — React·router·data vendor 분리
+- [x] k-skill 즐겨찾기 저장·해제·즐겨찾기만 보기 기능 구현 — 카드별 별표와 즐겨찾기 필터
+- [x] 즐겨찾기 상태를 브라우저에 안전하게 저장하고 새로고침 후 복원 — localStorage helper와 회귀 테스트
+- [x] k-skill 한국어·영어 전환 버튼과 항목별 번역 표시 구현 — 전역 LanguageProvider와 헤더 토글
+- [x] 모바일·키보드 접근성·성능·타입·Vitest·프로덕션 빌드 검증 — 44개 테스트, check·build, 1280/390px 캡처
+- [x] 체크포인트 저장 및 자동 공개 — 다음 체크포인트에서 저장
+
+## 로그인·댓글·다국어·즐겨찾기 확장
+
+- [x] 기존 Manus OAuth 인증과 Google 로그인 제공 범위, 현재 로그인 UI 점검 — 기존 nonce 보호 portal 흐름에 Google 로그인 진입
+- [x] 댓글 스키마·작성자 권한·수정/삭제 정책·입력 검증 설계 — 2,000자 제한·본인 삭제·protectedProcedure
+- [x] 댓글 목록·작성·삭제 tRPC와 데이터베이스 migration 구현 — content_comments 테이블 및 3개 procedure
+- [x] 로그인 사용자 전용 댓글 UI와 비로그인 로그인 유도 UI 구현 — 도구·스킬 상세 및 Google 로그인 유도
+- [x] 헤더 한국어·영어 즉시 전환과 주요 화면 번역 상태 구현 — 홈·공통 헤더·k-skill·푸터 주요 문구
+- [x] k-skill 즐겨찾기 저장·해제·즐겨찾기만 보기·새로고침 복원 구현 — localStorage와 즐겨찾기 전용 필터
+- [x] 모바일·키보드·권한·빈 상태·오류·타입·Vitest·프로덕션 빌드 검증 — 44개 테스트, check·build, 1280/390px 화면 확인
+- [x] 체크포인트 저장 및 자동 공개 — 다음 체크포인트에서 저장

@@ -241,7 +241,9 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (!id.includes("node_modules")) return;
-          if (id.includes("react") || id.includes("wouter")) return "framework";
+          if (id.includes("@tanstack") || id.includes("@trpc") || id.includes("superjson")) return "data-vendor";
+          if (id.includes("react") || id.includes("scheduler") || id.includes("use-sync-external-store")) return "react-vendor";
+          if (id.includes("wouter")) return "router-vendor";
           if (id.includes("lucide-react")) return "icons";
           if (id.includes("@radix-ui") || id.includes("sonner")) return "ui-vendor";
         },
