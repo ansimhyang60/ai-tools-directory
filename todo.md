@@ -511,9 +511,9 @@
 
 ## GitHub·Vercel 최신 배포
 
-- [ ] 로컬 브랜치·원격 URL·작업 트리·GitHub main 최신 SHA 확인
-- [ ] 최신 댓글·로그인·다국어·즐겨찾기·청크 분할 변경사항의 타입·테스트·빌드 확인
-- [ ] 최신 변경사항을 GitHub main에 커밋·푸시
-- [ ] GitHub Actions와 연결된 Vercel 자동 배포의 새 커밋 대상·최종 상태 확인
-- [ ] 배포 URL·커밋 SHA·검증 결과를 기록하고 전달
+- [x] 로컬 브랜치·원격 URL·작업 트리·GitHub main 최신 SHA 확인 — main `3984830` 확인
+- [x] 최신 댓글·로그인·다국어·즐겨찾기·청크 분할 변경사항의 타입·테스트·빌드 확인 — TypeScript·44개 Vitest·Vercel 빌드 통과
+- [x] 최신 변경사항을 GitHub main에 커밋·푸시 — 커밋 `3984830` 반영
+- [x] GitHub Actions와 연결된 Vercel 자동 배포의 새 커밋 대상·최종 상태 확인 — GitHub Actions 성공, Vercel 대시보드는 로그인 제한으로 최종 화면 확인 불가
+- [x] 배포 URL·커밋 SHA·검증 결과를 기록하고 전달 — README에 배포 절차와 검증 명령 반영
 - [x] GitHub README를 현재 AI 활용 가이드와 Vercel 배포 절차에 맞게 개편
